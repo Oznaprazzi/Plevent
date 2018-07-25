@@ -14,6 +14,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public http: HttpClient) {
 
+    this.navCtrl.push(AvalibilityplannerPage, {
+      username: this.username
+    });
   }
 
   login() {
