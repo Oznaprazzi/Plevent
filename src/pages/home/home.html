@@ -5,5 +5,14 @@
 </ion-header>
 
 <ion-content padding>
-
+  <h1>Login</h1>
+  <ion-item>
+    <ion-label>Username</ion-label>
+    <ion-input [(ngModel)]="username" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input [(ngModel)]="password" required></ion-input>
+  </ion-item>
+  <button ion-button (click)="login()">Login</button>
 </ion-content>
