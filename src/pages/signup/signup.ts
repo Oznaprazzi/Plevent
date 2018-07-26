@@ -12,6 +12,7 @@ import{ HomePage } from '../home/home';
 export class SignupPage {
   username: string;
   password: string;
+  repassword: string;
   fname: string;
   lname: string;
   bdate: any;
@@ -21,27 +22,30 @@ export class SignupPage {
   }
 
   signup() {
-    this.http.post('http://localhost:8080/register', {
-        username : this.username,
-        password: this.password,
-        fname: this.fname,
-        lname: this.lname,
-        bdate: this.bdate
-      },
-      {
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .subscribe(res => {
+    if(this.password == this.repassword) {
+      this.http.post('http://localhost:8080/register', {
+          username: this.username,
+          password: this.password,
+          fname: this.fname,
+          lname: this.lname,
+          bdate: this.bdate
+        },
+        {
+          headers: {'Content-Type': 'application/json'}
+        })
+        .subscribe(res => {
 
-        this.error_message = '';
-        this.navCtrl.push(HomePage,{
+          this.error_message = '';
+          this.navCtrl.push(HomePage, {});
+
+
+        }, (err) => {
+          this.error_message = "Please fill in all the fields";
+          this.show_error_message = true;
         });
-
-
-      }, (err) => {
-        this.error_message = "Please fill in all the fields";
-        this.show_error_message= true;
-      });
-
+    }else{
+      this.error_message = "Passwords do not match";
+      this.show_error_message = true;
+    }
   }
 }
