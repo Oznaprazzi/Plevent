@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Welcome to Plevent</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2> Sign Up</h2>
+  <ion-label class="alert alert-danger" *ngIf="show_error_message">{{error_message}}</ion-label>
+  <ion-item>
+    <ion-label color="primary">Username</ion-label>
+    <ion-input placeholder="Enter Username" [(ngModel)]="username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary">Password</ion-label>
+    <ion-input type= "password" placeholder="6 or more characters" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Email Address</ion-label>
+    <ion-input type="email" placeholder="someone@email.com" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">First Name</ion-label>
+    <ion-input placeholder="First Name" [(ngModel)]="fname"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Last Name</ion-label>
+    <ion-input placeholder="Last Name" [(ngModel)]="lname"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Date of Birth</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="bdate"></ion-datetime>
+  </ion-item>
+  <br>
+  <button ion-button round (click)="signup()" id="signup-button">Sign Up</button>
+
+</ion-content>
