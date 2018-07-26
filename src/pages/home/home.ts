@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AvalibilityplannerPage } from '../avalibilityplanner/avalibilityplanner';
+//import { AvalibilityplannerPage } from '../avalibilityplanner/avalibilityplanner';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import 'rxjs/add/operator/toPromise';
-
+import 'rxjs/add/operator/map';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -14,12 +13,13 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public http: HttpClient) {
 
-    this.navCtrl.push(AvalibilityplannerPage, {
+    /*this.navCtrl.push(AvalibilityplannerPage, {
       username: this.username
-    });
+    });*/
   }
 
   login() {
+    console.log("logging in");
     this.http.post('http://localhost:8080/login', {
         username : this.username,
         password: this.password
@@ -27,21 +27,13 @@ export class HomePage {
       {
         headers: { 'Content-Type': 'application/json' }
       })
-      .then(data => {
+      .subscribe(res => {
+        console.log("RES");
+        console.log(res);
 
-        console.log(data.status);
-        console.log(data.data); // data received by server
-        console.log(data.headers);
-        this.navCtrl.push(AvalibilityplannerPage, {
-          username: this.username
-        });
-      })
-      .catch(error => {
-
-        console.log(error.status);
-        console.log(error.error); // error message as string
-        console.log(error.headers);
-
+      }, (err) => {
+        console.log("Error");
+        console.log(err);
       });
 
   }
