@@ -42,5 +42,8 @@
     "plugins": {
       "cordova-plugin-advanced-http": {}
     }
+  },
+  "config": {
+    "ionic_sass": "./sass.config.js"
   }
 }

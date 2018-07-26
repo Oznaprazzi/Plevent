@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-//import { AvalibilityplannerPage } from '../avalibilityplanner/avalibilityplanner';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 @Component({
   selector: 'page-home',
@@ -10,16 +9,12 @@ import 'rxjs/add/operator/map';
 export class HomePage {
   username = "";
   password = "";
-
+  error_message= "";
+  show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient) {
-
-    /*this.navCtrl.push(AvalibilityplannerPage, {
-      username: this.username
-    });*/
   }
 
   login() {
-    console.log("logging in");
     this.http.post('http://localhost:8080/login', {
         username : this.username,
         password: this.password
@@ -28,12 +23,14 @@ export class HomePage {
         headers: { 'Content-Type': 'application/json' }
       })
       .subscribe(res => {
-        console.log("RES");
-        console.log(res);
+        if (res == false){
+          this.error_message = "Username or password incorrect";
+          this.show_error_message= true;
+        }
 
       }, (err) => {
-        console.log("Error");
-        console.log(err);
+        this.error_message = "Username not found please sign up";
+        this.show_error_message= true;
       });
 
   }
