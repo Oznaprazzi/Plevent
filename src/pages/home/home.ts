@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
+
+import{ ListPage } from '../list/list';
+import{ SignupPage } from '../signup/signup';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -9,9 +13,10 @@ import 'rxjs/add/operator/map';
 export class HomePage {
   username = "";
   password = "";
-  error_message= "";
-  show_error_message= false;
+  error_message = '';
+  //show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient) {
+
   }
 
   login() {
@@ -23,15 +28,22 @@ export class HomePage {
         headers: { 'Content-Type': 'application/json' }
       })
       .subscribe(res => {
-        if (res == false){
+        if (!res){
           this.error_message = "Username or password incorrect";
-          this.show_error_message= true;
+        }else{
+          this.error_message = '';
+          this.navCtrl.push(ListPage,{
+
+          });
         }
 
       }, (err) => {
-        this.error_message = "Username not found please sign up";
-        this.show_error_message= true;
+        this.error_message = "Username not found. Please sign up.";
       });
 
+  }
+
+  register(){
+    this.navCtrl.push(SignupPage);
   }
 }

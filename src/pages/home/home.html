@@ -10,14 +10,15 @@
     <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
     <!--<strong>Error!</strong> A problem has been occurred while submitting your data.-->
   <!--</div>-->
-  <ion-label class="alert alert-danger" *ngIf="show_error_message">{{error_message}}</ion-label>
+  <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
   <ion-item>
     <ion-label>Username</ion-label>
     <ion-input [(ngModel)]="username" required></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Password</ion-label>
-    <ion-input [(ngModel)]="password" required></ion-input>
+    <ion-input type = "password" [(ngModel)]="password" required></ion-input>
   </ion-item>
-  <button ion-button (click)="login()" id="login-button">Login</button>
+  <button ion-button (click)="login()" class="login-button">Login</button>
+  <button ion-button (click)="register()" class="login-button">Register</button>
 </ion-content>
