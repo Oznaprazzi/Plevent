@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
-import 'rxjs/add/operator/map';
+
+import{ HomePage } from '../home/home';
+
+
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  username = "";
-  password = "";
-  fname= "";
-  lname="";
-  bdate="";
+  username: string;
+  password: string;
+  fname: string;
+  lname: string;
+  bdate: any;
   error_message= "";
   show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient) {
@@ -29,13 +32,14 @@ export class SignupPage {
         headers: { 'Content-Type': 'application/json' }
       })
       .subscribe(res => {
-        if (res == false){
-          this.error_message = "ur fuked cunt!";
-          this.show_error_message= true;
-        }
+
+        this.error_message = '';
+        this.navCtrl.push(HomePage,{
+        });
+
 
       }, (err) => {
-        this.error_message = "ur fuked cunt........";
+        this.error_message = "Please fill in all the fields";
         this.show_error_message= true;
       });
 
