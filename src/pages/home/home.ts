@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
-import 'rxjs/add/operator/map';
 
 import{ ListPage } from '../list/list';
 import{ SignupPage } from '../signup/signup';
