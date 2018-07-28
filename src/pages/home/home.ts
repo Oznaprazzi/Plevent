@@ -5,6 +5,8 @@ import { HttpClient} from '@angular/common/http';
 import{ ListPage } from '../list/list';
 import{ SignupPage } from '../signup/signup';
 
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -14,8 +16,15 @@ export class HomePage {
   password = "";
   error_message = '';
   //show_error_message= false;
-  constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
+    // Or to get a key/value pair
+    this.storage.get('loggedIn').then((val) => {
+      if(val){
+        this.navCtrl.push(ListPage,{
 
+        });
+      }
+    });
   }
 
   login() {
@@ -29,8 +38,12 @@ export class HomePage {
       .subscribe(res => {
         if (!res){
           this.error_message = "Username or password incorrect";
+
         }else{
           this.error_message = '';
+          this.username = '';
+          this.password = '';
+          this.storage.set('loggedIn', true);
           this.navCtrl.push(ListPage,{
 
           });
@@ -39,7 +52,7 @@ export class HomePage {
       }, (err) => {
         this.error_message = "Username not found. Please sign up.";
       });
-
+    this.storage.set('loggedIn', false);
   }
 
   register(){

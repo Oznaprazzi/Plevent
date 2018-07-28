@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams} from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
+import{ HomePage } from '../home/home';
 
 @Component({
   selector: 'page-list',
@@ -10,7 +13,7 @@ export class ListPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -32,6 +35,14 @@ export class ListPage {
     // That's right, we're pushing to ourselves!
     this.navCtrl.push(ListPage, {
       item: item
+    });
+  }
+
+  signout(){
+    this.storage.set('loggedIn', false);
+
+    this.navCtrl.push(HomePage,{
+
     });
   }
 }
