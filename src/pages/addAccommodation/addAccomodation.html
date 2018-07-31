@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Plevent Accommodation Planner</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Accommodation List</h1>
+  <ion-list>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="img/avatar-finn.png">
+      </ion-avatar>
+      <h2>Finn</h2>
+      <h3>Don't Know What To Do!</h3>
+      <p>I've had a pretty messed up day. If we just...</p>
+    </ion-item>
+  </ion-list>
+  <ion-label class="alert alert-danger" *ngIf="show_error_message">{{error_message}}</ion-label>
+  <ion-item>
+    <ion-label color="primary">Username</ion-label>
+    <ion-input placeholder="Enter Username" [(ngModel)]="username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary">Password</ion-label>
+    <ion-input type= "password" placeholder="6 or more characters" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Confirm Password</ion-label>
+    <ion-input type= "password" placeholder="Re-enter password" [(ngModel)]="repassword"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Email Address</ion-label>
+    <ion-input type="email" placeholder="someone@email.com" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">First Name</ion-label>
+    <ion-input placeholder="First Name" [(ngModel)]="fname"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Last Name</ion-label>
+    <ion-input placeholder="Last Name" [(ngModel)]="lname"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Date of Birth</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="bdate"></ion-datetime>
+  </ion-item>
+  <button ion-button (click)="signup()" id="signup-button">Sign Up</button>
+</ion-content>
