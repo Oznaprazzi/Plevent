@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
+import {CreateEventPage} from "../pages/createEvents/createevent";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     EventPage,
     AvalibilityplannerPage,
-    SignupPage
+    SignupPage,
+    CreateEventPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     EventPage,
     AvalibilityplannerPage,
-    SignupPage
+    SignupPage,
+    CreateEventPage
   ],
   providers: [
     StatusBar,

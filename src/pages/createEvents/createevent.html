@@ -1,20 +1,20 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Welcome to Plevent</ion-title>
+    <ion-title>Create New Event</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h1>Login</h1>
+
   <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
   <ion-item>
-    <ion-label>Username</ion-label>
-    <ion-input [(ngModel)]="username" required></ion-input>
+    <ion-label>Event Name</ion-label>
+    <ion-input [(ngModel)]="eventname" required></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Password</ion-label>
-    <ion-input type = "password" [(ngModel)]="password" required></ion-input>
+    <ion-label>Event Date</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="eventdate"></ion-datetime>
   </ion-item>
-  <button ion-button (click)="login()" class="login-button">Login</button>
-  <button ion-button (click)="register()" class="login-button">Register</button>
+  <button ion-button (click)="createEvent()" class="create-event">Create Event</button>
+
 </ion-content>
