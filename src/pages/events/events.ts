@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {Storage} from '@ionic/storage';
 
-import{ HomePage } from '../home/home';
+import{HomePage} from '../home/home';
 import {CreateEventPage} from "../createEvents/createevent";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'page-events',
@@ -14,7 +15,9 @@ export class EventPage {
   // icons: string[];
   // items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
+
+    this.getAllEvents();
     // If we navigated to this page, we will have an item available as a nav param
     //
     //
@@ -38,15 +41,31 @@ export class EventPage {
   //     item: item
   //   });
   // }
-  addEvent(){
+  addEvent() {
     this.navCtrl.push(CreateEventPage, {});
   }
 
-  signout(){
+  signout() {
     this.storage.set('loggedIn', false);
 
-    this.navCtrl.push(HomePage,{
+    this.navCtrl.push(HomePage, {});
+  }
 
-    });
+  getAllEvents() {
+    this.http.post('http://localhost:8080/get_events', {
+        username: "dipen"
+      },
+      {
+        headers: {'Content-Type': 'application/json'}
+      })
+      .subscribe(res => {
+        if (!res) {
+
+
+        }
+
+      }, (err) => {
+
+      });
   }
 }
