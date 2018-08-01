@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { EventPage } from '../pages/events/events';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
 import { SignupPage } from '../pages/signup/signup';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,7 +17,7 @@ import { IonicStorageModule } from '@ionic/storage';
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    EventPage,
     AvalibilityplannerPage,
     SignupPage
   ],
@@ -31,7 +31,7 @@ import { IonicStorageModule } from '@ionic/storage';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    EventPage,
     AvalibilityplannerPage,
     SignupPage
   ],

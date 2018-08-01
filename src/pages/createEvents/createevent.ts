@@ -8,10 +8,10 @@ import{ SignupPage } from '../signup/signup';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-createevent',
+  templateUrl: 'createevent.html'
 })
-export class HomePage {
+export class CreateEventPage {
   username = "";
   password = "";
   error_message = '';
