@@ -15,15 +15,19 @@ export class HomePage {
   username = "";
   password = "";
   error_message = '';
+  user: number = -1;
   //show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
     // Or to get a key/value pair
-    this.storage.get('loggedIn').then((val) => {
-      if(val){
-        this.navCtrl.push(ListPage,{
-
-        });
-      }
+    this.storage.get('userid').then((data)=>{
+      this.user = data;
+      this.storage.get('loggedIn').then((val) => {
+        if(val){
+          this.navCtrl.push(ListPage,{
+            userid: this.user
+          });
+        }
+      });
     });
   }
 
@@ -36,16 +40,16 @@ export class HomePage {
         headers: { 'Content-Type': 'application/json' }
       })
       .subscribe(res => {
-        if (!res){
+        if (!res.valid){
           this.error_message = "Username or password incorrect";
-
         }else{
           this.error_message = '';
           this.username = '';
           this.password = '';
+          this.storage.set('userid', res.user._id);
           this.storage.set('loggedIn', true);
           this.navCtrl.push(ListPage,{
-
+              userid: res.user._id
           });
         }
 
