@@ -22,10 +22,10 @@ export class CreateEventPage {
 
   createEvent() {
 
-    this.http.post('http://localhost:8080/event', {
+    this.http.post('http://localhost:8080/events/add_event', {
         eventName: this.eventname,
         eventDate: this.eventdate,
-      users: "5b5c05f2b9db8e34f046ffd5"
+        users: "5b5c05f2b9db8e34f046ffd5"
 
       },
       {
