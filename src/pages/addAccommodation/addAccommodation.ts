@@ -44,7 +44,7 @@ export class addAccommodationPage {
 
       }, (err) => {
         this.error_message = "Please fill in all the fields";
-        this.show_error_message = true;
+        //this.show_error_message = true;
       });
   }
 }

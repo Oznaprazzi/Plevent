@@ -39,7 +39,7 @@ export class HomePage {
       {
         headers: { 'Content-Type': 'application/json' }
       })
-      .subscribe(res => {
+      .subscribe((res : {valid, user}) => {
         if (!res.valid){
           this.error_message = "Username or password incorrect";
         }else{
