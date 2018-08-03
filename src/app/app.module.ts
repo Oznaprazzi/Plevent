@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
 import { SignupPage } from '../pages/signup/signup';
+import { GroceriesPage } from '../pages/groceries/groceries';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -19,7 +20,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     ListPage,
     AvalibilityplannerPage,
-    SignupPage
+    SignupPage,
+    GroceriesPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     ListPage,
     AvalibilityplannerPage,
-    SignupPage
+    SignupPage,
+    GroceriesPage
   ],
   providers: [
     StatusBar,
