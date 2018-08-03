@@ -12,8 +12,9 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  user =  {};
   error_message = '';
+  username = '';
+  password = '';
   userid: number = -1;
   //show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
@@ -32,8 +33,8 @@ export class HomePage {
 
   login() {
     this.http.post('http://localhost:8080/login', {
-        username : this.user.username,
-        password: this.user.password
+        username : this.username,
+        password: this.password
       },
       {
         headers: { 'Content-Type': 'application/json' }
