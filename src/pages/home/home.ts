@@ -12,19 +12,18 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  username = "";
-  password = "";
+  user =  {};
   error_message = '';
-  user: number = -1;
+  userid: number = -1;
   //show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
     // Or to get a key/value pair
     this.storage.get('userid').then((data)=>{
-      this.user = data;
+      this.userid = data;
       this.storage.get('loggedIn').then((val) => {
         if(val){
-          this.navCtrl.push(ListPage,{
-            userid: this.user
+          this.navCtrl.setRoot(ListPage,{
+            userid: this.userid
           });
         }
       });
@@ -33,8 +32,8 @@ export class HomePage {
 
   login() {
     this.http.post('http://localhost:8080/login', {
-        username : this.username,
-        password: this.password
+        username : this.user.username,
+        password: this.user.password
       },
       {
         headers: { 'Content-Type': 'application/json' }
