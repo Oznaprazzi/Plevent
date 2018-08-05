@@ -7,12 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>GroceriesPage</ion-title>
+    <ion-title>Grocery List</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let grocery of groceries">
+      {{grocery.description}}
+    </ion-item>
+  </ion-list>
 </ion-content>

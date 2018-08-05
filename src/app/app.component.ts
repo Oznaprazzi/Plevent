@@ -14,7 +14,7 @@ import { GroceriesPage } from '../pages/groceries/groceries';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = GroceriesPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -25,7 +25,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Events', component: ListPage },
-      {title: 'Availability Planner', component: AvalibilityplannerPage},
+      { title: 'Availability Planner', component: AvalibilityplannerPage},
       { title: 'Groceries', component: GroceriesPage }
     ];
 
