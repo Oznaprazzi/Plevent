@@ -7,6 +7,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { EventPage } from '../pages/events/events';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
+import { AccommodationPlannerPage } from "../pages/accommodationPlanner/accommodationPlanner"
+import { AddAccommodationPage } from "../pages/addAccommodation/addAccommodation"
 import { SignupPage } from '../pages/signup/signup';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,6 +23,8 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
     HomePage,
     EventPage,
     AvalibilityplannerPage,
+    AddAccommodationPage,
+    AccommodationPlannerPage,
     SignupPage,
     CreateEventPage
   ],
@@ -36,6 +40,8 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
     HomePage,
     EventPage,
     AvalibilityplannerPage,
+    AddAccommodationPage,
+    AccommodationPlannerPage,
     SignupPage,
     CreateEventPage
   ],

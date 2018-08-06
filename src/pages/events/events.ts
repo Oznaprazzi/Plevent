@@ -14,6 +14,7 @@ export class EventPage {
   // selectedItem: any;
   // icons: string[];
   // items: Array<{title: string, note: string, icon: string}>;
+
   userid: number = -1;
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
 
@@ -22,6 +23,7 @@ export class EventPage {
       this.userid = data;
       this.getUser();
     });
+
 
     // If we navigated to this page, we will have an item available as a nav param
     //
@@ -47,7 +49,9 @@ export class EventPage {
   //   });
   // }
   addEvent() {
-    this.navCtrl.push(CreateEventPage, {});
+    this.navCtrl.push(CreateEventPage, {
+      userid : this.userid
+    });
   }
 
   signout() {

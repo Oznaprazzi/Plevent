@@ -26,9 +26,7 @@ export class HomePage {
       console.log(data);
       this.storage.get('loggedIn').then((val) => {
         if(val){
-          this.navCtrl.setRoot(EventPage,{
-            userid: this.userid
-          });
+          this.navCtrl.setRoot(EventPage,{});
         }
       });
     });

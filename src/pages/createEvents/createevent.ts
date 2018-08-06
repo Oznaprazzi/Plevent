@@ -24,7 +24,6 @@ export class CreateEventPage {
       this.username = data.username;
       this.userid = data._id;
       this.updateUsers();
-      //TODO: no idea why this does not select it self
     });
   }
 
