@@ -12,20 +12,20 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  username = "";
-  password = "";
   error_message = '';
-  user: number = -1;
+  username = '';
+  password = '';
+  userid: number = -1;
   //show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
     // Or to get a key/value pair
 
     this.storage.get('userid').then((data)=>{
-      this.user = data;
+      this.userid = data;
       this.storage.get('loggedIn').then((val) => {
         if(val){
-          this.navCtrl.push(EventPage,{
-            userid: this.user
+          this.navCtrl.setRoot(EventPage,{
+            userid: this.userid
           });
         }
       });

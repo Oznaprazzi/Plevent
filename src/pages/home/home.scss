@@ -1,12 +1,47 @@
 page-home {
-  .login-button {
-    width: 40%;
-    margin-top: 10px;
-    margin-left: 30%;
-    margin-right: 30%;
-  }
+    .toolbar-title-md{
+      font-size: 4rem;
+      color: #282828;
+    }
+    .login-content {
+    background: #52b1b1;
 
-  ion-title {
-    min-height: 56px;
+    .logo-row {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+
+    .login-box {
+      background: #282828;
+      padding: 20px 20px 0px 20px;
+      margin-top: 30px;
+    }
+
+    .signup-col {
+      margin: 0px 16px 0px 16px;
+      padding-bottom: 20px;
+    }
+
+    .item-inner {
+      border-bottom-color: #ffffff !important;
+      box-shadow: none !important;
+    }
+
+    .submit-btn {
+      background: #e57d21;
+      border-radius: 10px !important;
+      border: 1px solid #ffffff;
+    }
+      .submit-btn:hover{
+        background:  #ea9448;
+      }
+
+    .register-btn {
+      color: #ffffff;
+      font-size: 0.8em;
+    }
+      .register-btn:hover{
+        color: #52b1b1;
+      }
   }
 }
