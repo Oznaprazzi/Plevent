@@ -17,8 +17,10 @@ export class CreateEventPage {
   error_message = '';
   userid = -1;
   //show_error_message= false;
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage, public navParams: NavParams) {
-    this.userid = this.navParams.get('userid');
+  constructor(public navCtrl: NavController, public http: HttpClient, private storage: Storage, public navParams: NavParams) {
+    this.storage.get('userid').then((data) => {
+      this.userid = data;
+    })
   }
 
   createEvent() {

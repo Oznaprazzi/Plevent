@@ -16,11 +16,11 @@ export class EventPage {
   // items: Array<{title: string, note: string, icon: string}>;
   userid:number = -1;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, private storage: Storage) {
 
     this.getAllEvents();
-    this.userid = navParams.get('userid');
-    this.storage.get('userid').then(data => {
+    //this.userid = navParams.get('userid');
+    this.storage.get('userid').then((data) => {
       this.userid = data;
     })
     // If we navigated to this page, we will have an item available as a nav param
