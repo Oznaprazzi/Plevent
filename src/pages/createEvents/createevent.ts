@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 
 
 import {Storage} from '@ionic/storage';
 import {EventPage} from "../events/events";
-import { Global } from "../../services/global";
 
 @Component({
   selector: 'page-createevent',
@@ -19,7 +18,7 @@ export class CreateEventPage {
   username: string = "";
   userid: any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage,public navParams: NavParams, public global: Global) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
 
     storage.get('userObject').then((data)=> {
       this.username = data.username;
