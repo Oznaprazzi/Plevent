@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
+import { AccommodationPlannerPage } from "../pages/accommodationPlanner/accommodationPlanner"
 import { AddAccommodationPage } from "../pages/addAccommodation/addAccommodation"
 import { SignupPage } from '../pages/signup/signup';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -21,6 +22,7 @@ import { IonicStorageModule } from '@ionic/storage';
     ListPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
+    AccommodationPlannerPage,
     SignupPage
   ],
   imports: [
@@ -36,6 +38,7 @@ import { IonicStorageModule } from '@ionic/storage';
     ListPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
+    AccommodationPlannerPage,
     SignupPage
   ],
   providers: [
