@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
 import { EventPage } from '../pages/events/events';
 
+
+
 @Component({
   templateUrl: 'app.html'
 })

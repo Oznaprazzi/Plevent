@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
 import {CreateEventPage} from "../pages/createEvents/createevent";
+import {Global} from "../services/global";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
     StatusBar,
     HomePage,
     SplashScreen,
+    Global,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

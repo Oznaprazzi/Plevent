@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {Storage} from '@ionic/storage';
 import {EventPage} from "../events/events";
-
+import { Global } from "../../services/global";
 
 @Component({
   selector: 'page-createevent',
@@ -18,13 +18,14 @@ export class CreateEventPage {
   toppings: Array<string>;
   //show_error_message= false;
   userid: number = -1;
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage,public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage,public navParams: NavParams, public gobal: Global) {
     this.toppings = ['bacon', 'xcheese'];
     // this.storage.get('userid').then((data)=> {
     //   this.userid = data;
     // });
     //
-    this.userid = navParams.get('userif');
+    this.userid = navParams.get('userid');
+    console.log(this.userid);
   }
 
   createEvent() {

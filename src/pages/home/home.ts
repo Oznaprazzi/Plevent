@@ -6,6 +6,7 @@ import{ EventPage } from '../events/events';
 import{ SignupPage } from '../signup/signup';
 
 import { Storage } from '@ionic/storage';
+import { Global } from "../../services/global";
 
 @Component({
   selector: 'page-home',
@@ -17,7 +18,7 @@ export class HomePage {
   password = '';
   userid: number = -1;
   //show_error_message= false;
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage, public global: Global) {
     // Or to get a key/value pair
 
     this.storage.get('userid').then((data)=>{
@@ -30,6 +31,8 @@ export class HomePage {
         }
       });
     });
+
+    console.log(this.userid);
   }
 
   login() {
