@@ -7,6 +7,7 @@ import{ SignupPage } from '../signup/signup';
 
 import { Storage } from '@ionic/storage';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -22,14 +23,15 @@ export class HomePage {
 
     this.storage.get('userid').then((data)=>{
       this.userid = data;
+      console.log(data);
       this.storage.get('loggedIn').then((val) => {
         if(val){
-          this.navCtrl.setRoot(EventPage,{
-            userid: this.userid
-          });
+          this.navCtrl.setRoot(EventPage,{});
         }
       });
     });
+
+
   }
 
   login() {
@@ -53,6 +55,9 @@ export class HomePage {
           this.navCtrl.push(EventPage,{
               userid: res.user._id
           });
+          //this.global.userid = res.user._id;
+          console.log(this.userid);
+
         }
 
       }, (err) => {

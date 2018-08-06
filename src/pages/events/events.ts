@@ -14,15 +14,15 @@ export class EventPage {
   // selectedItem: any;
   // icons: string[];
   // items: Array<{title: string, note: string, icon: string}>;
-  userid:number = -1;
-
-  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, private storage: Storage) {
-
+  userid: number = -1;
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
     this.getAllEvents();
-    //this.userid = navParams.get('userid');
-    this.storage.get('userid').then((data) => {
+    storage.get('userid').then((data)=> {
       this.userid = data;
-    })
+      this.getUser();
+    });
+
+
     // If we navigated to this page, we will have an item available as a nav param
     //
     //
@@ -74,5 +74,13 @@ export class EventPage {
       }, (err) => {
 
       });
+  }
+
+  getUser(){
+    this.http.get(`http://localhost:8080/users/get_user/${this.userid}`).subscribe(res => {
+      this.storage.set('userObject', res);
+    }, (err) => {
+      console.log("error"+ err);
+    });
   }
 }
