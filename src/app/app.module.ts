@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { EventPage } from '../pages/events/events';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
 import { AccommodationPlannerPage } from "../pages/accommodationPlanner/accommodationPlanner"
 import { AddAccommodationPage } from "../pages/addAccommodation/addAccommodation"
@@ -14,16 +14,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
+import {CreateEventPage} from "../pages/createEvents/createevent";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
     AccommodationPlannerPage,
-    SignupPage
+    SignupPage,
+    CreateEventPage
   ],
   imports: [
     BrowserModule,
@@ -35,11 +37,12 @@ import { IonicStorageModule } from '@ionic/storage';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
     AccommodationPlannerPage,
-    SignupPage
+    SignupPage,
+    CreateEventPage
   ],
   providers: [
     StatusBar,
