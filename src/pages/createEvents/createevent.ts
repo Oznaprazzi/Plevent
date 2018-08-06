@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 
 
@@ -15,9 +15,10 @@ export class CreateEventPage {
   eventname = "";
   eventdate = "";
   error_message = '';
+  userid = -1;
   //show_error_message= false;
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
-
+  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage, public navParams: NavParams) {
+    this.userid = this.navParams.get('userid');
   }
 
   createEvent() {

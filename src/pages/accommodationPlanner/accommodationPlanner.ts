@@ -11,11 +11,11 @@ export class AccommodationPlannerPage {
   constructor(public navCtrl: NavController, public http: HttpClient) {
     this.http.get('http://localhost:8080/accommo/getAccommo')
       .subscribe(res => {
-      this.accomodations = res;
+      this.accommodations = res;
 
 
     }, (err) => {
-      this.error_message = "Please fill in all the fields";
+      //this.error_message = "Please fill in all the fields";
     });
   }
 
