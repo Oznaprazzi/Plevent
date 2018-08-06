@@ -20,8 +20,9 @@ export class EventPage {
     this.getAllEvents();
     storage.get('userid').then((data)=> {
       this.userid = data;
+      this.getUser();
     });
-    this.getUser();
+
     // If we navigated to this page, we will have an item available as a nav param
     //
     //
@@ -74,11 +75,10 @@ export class EventPage {
   }
 
   getUser(){
-  var id =this.userid;
-    this.http.get('http://localhost:8080/users/get_user/${id}').subscribe(res => {
-      console.log(res);
-      }, (err) => {
+    this.http.get(`http://localhost:8080/users/get_user/${this.userid}`).subscribe(res => {
+      this.storage.set('userObject', res);
+    }, (err) => {
       console.log("error"+ err);
-      });
+    });
   }
 }

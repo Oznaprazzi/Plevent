@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Global {
-  public username : string = "";
+  public userObject : any;
 }

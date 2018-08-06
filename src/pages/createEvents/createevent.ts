@@ -15,13 +15,17 @@ export class CreateEventPage {
   eventname = "";
   eventdate = "";
   error_message = '';
-  toppings: Array<string>;
-  //show_error_message= false;
-  userid: number = -1;
+  users: any;
+  username: string = "";
+  userid: any;
+
   constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage,public navParams: NavParams, public global: Global) {
-    this.toppings = ['bacon', 'xcheese'];
-    storage.get('userid').then((data)=> {
-      this.userid = data;
+
+    storage.get('userObject').then((data)=> {
+      this.username = data.username;
+      this.userid = data._id;
+      this.updateUsers();
+      //TODO: no idea why this does not select it self
     });
   }
 
@@ -30,7 +34,7 @@ export class CreateEventPage {
     this.http.post('http://localhost:8080/events/add_event', {
         eventName: this.eventname,
         eventDate: this.eventdate,
-        users: "5b5c05f2b9db8e34f046ffd5"
+        users: this.userid
 
       },
       {
@@ -48,7 +52,12 @@ export class CreateEventPage {
       });
   }
 
+  updateUsers(){
+    this.http.get(`http://localhost:8080/users`).subscribe(res => {
+      this.users  = res as Array<Object>;
+    }, (err) => {
+      console.log("error"+ err);
+    });
 
-
-
+  }
 }
