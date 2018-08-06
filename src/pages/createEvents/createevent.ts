@@ -18,14 +18,11 @@ export class CreateEventPage {
   toppings: Array<string>;
   //show_error_message= false;
   userid: number = -1;
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage,public navParams: NavParams, public gobal: Global) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage,public navParams: NavParams, public global: Global) {
     this.toppings = ['bacon', 'xcheese'];
-    // this.storage.get('userid').then((data)=> {
-    //   this.userid = data;
-    // });
-    //
-    this.userid = navParams.get('userid');
-    console.log(this.userid);
+    storage.get('userid').then((data)=> {
+      this.userid = data;
+    });
   }
 
   createEvent() {
@@ -50,6 +47,8 @@ export class CreateEventPage {
 
       });
   }
+
+
 
 
 }

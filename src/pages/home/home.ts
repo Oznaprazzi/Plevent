@@ -23,6 +23,7 @@ export class HomePage {
 
     this.storage.get('userid').then((data)=>{
       this.userid = data;
+      console.log(data);
       this.storage.get('loggedIn').then((val) => {
         if(val){
           this.navCtrl.setRoot(EventPage,{
@@ -32,7 +33,7 @@ export class HomePage {
       });
     });
 
-    console.log(this.userid);
+
   }
 
   login() {
@@ -56,6 +57,9 @@ export class HomePage {
           this.navCtrl.push(EventPage,{
               userid: res.user._id
           });
+          //this.global.userid = res.user._id;
+          console.log(this.userid);
+
         }
 
       }, (err) => {
