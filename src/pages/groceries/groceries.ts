@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 /**
@@ -19,7 +19,7 @@ export class GroceriesPage {
   error_message: string = '';
   groceries: any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public navParams: NavParams) {
     this.updateList();
   }
 
@@ -30,6 +30,44 @@ export class GroceriesPage {
         item['selected'] = false;
       }
       this.groceries = res;
+    });
+  }
+
+  deleteItem(item){
+    var id = item._id;
+    this.http.delete(`http://localhost:8080/grocery/item/${id}`).subscribe(res => {
+      this.updateList();
+    });
+  }
+
+  doAddPrompt(){
+    let prompt = this.alertCtrl.create({
+      title: 'Add Item',
+      inputs: [{name: 'name', placeholder: 'Item name'}],
+      buttons: [
+        {
+          text: 'Add',
+          handler: data => {
+            this.addItem(data);        
+          }
+        },
+        {
+          text: 'Cancel',
+          handler: data => {
+            // Close Prompt
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  private addItem(item: {name}) {
+    var data = {
+      description : item.name
+    }
+    this.http.post('http://localhost:8080/grocery/item', data).subscribe(res => {
+      this.updateList();
     });
   }
 
