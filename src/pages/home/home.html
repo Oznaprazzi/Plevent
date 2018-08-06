@@ -1,20 +1,37 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Welcome to Plevent</ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="assets/imgs/logo.png"/>
+      <ion-title>Plevent Login</ion-title>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+    <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
+    <form (ngSubmit)="login()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input placeholder="Username" name="username" [(ngModel)]="username" required></ion-input>
+            </ion-item>
 
-<ion-content padding>
-  <h1>Login</h1>
-  <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
-  <ion-item>
-    <ion-label>Username</ion-label>
-    <ion-input [(ngModel)]="username" required></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Password</ion-label>
-    <ion-input type = "password" [(ngModel)]="password" required></ion-input>
-  </ion-item>
-  <button ion-button (click)="login()" class="login-button">Login</button>
-  <button ion-button (click)="register()" class="login-button">Register</button>
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit">Login</button>
+          <button ion-button class="register-btn" block clear (click)="register()">Create New Account</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
 </ion-content>

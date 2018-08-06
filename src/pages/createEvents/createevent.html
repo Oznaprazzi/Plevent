@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Create New Event</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
+  <ion-item>
+    <ion-label>Event Name</ion-label>
+    <ion-input [(ngModel)]="eventname" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Event Date</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="eventdate"></ion-datetime>
+  </ion-item>
+  <button ion-button (click)="createEvent()" class="create-event">Create Event</button>
+
+</ion-content>

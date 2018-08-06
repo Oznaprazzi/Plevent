@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 
-import{ ListPage } from '../list/list';
+import{ EventPage } from '../events/events';
 import{ SignupPage } from '../signup/signup';
 
 import { Storage } from '@ionic/storage';
@@ -12,18 +12,23 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  username = "";
-  password = "";
   error_message = '';
+  username = '';
+  password = '';
+  userid: number = -1;
   //show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
     // Or to get a key/value pair
-    this.storage.get('loggedIn').then((val) => {
-      if(val){
-        this.navCtrl.push(ListPage,{
 
-        });
-      }
+    this.storage.get('userid').then((data)=>{
+      this.userid = data;
+      this.storage.get('loggedIn').then((val) => {
+        if(val){
+          this.navCtrl.setRoot(EventPage,{
+            userid: this.userid
+          });
+        }
+      });
     });
   }
 
@@ -35,17 +40,18 @@ export class HomePage {
       {
         headers: { 'Content-Type': 'application/json' }
       })
-      .subscribe(res => {
-        if (!res){
+      .subscribe((res : {valid, user}) => {
+        if (!res.valid){
           this.error_message = "Username or password incorrect";
-
         }else{
           this.error_message = '';
           this.username = '';
           this.password = '';
+          this.storage.set('userid', res.user._id);
           this.storage.set('loggedIn', true);
-          this.navCtrl.push(ListPage,{
 
+          this.navCtrl.push(EventPage,{
+              userid: res.user._id
           });
         }
 
