@@ -6,7 +6,7 @@ import { HttpClient} from '@angular/common/http';
   selector: 'page-addAccommodation',
   templateUrl: 'addAccommodation.html'
 })
-export class addAccommodationPage {
+export class AddAccommodationPage {
   title: string;
   street: string;
   state: string;
@@ -17,6 +17,7 @@ export class addAccommodationPage {
   price: number;
   guests: number;
   error_message = '';
+
   constructor(public navCtrl: NavController, public http: HttpClient) {
 
   }
@@ -37,7 +38,7 @@ export class addAccommodationPage {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
-
+        console.log(res);
         /*this.error_message = '';
         this.navCtrl.push(HomePage, {});*/
 
