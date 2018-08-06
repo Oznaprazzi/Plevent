@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 
 
@@ -15,9 +15,16 @@ export class CreateEventPage {
   eventname = "";
   eventdate = "";
   error_message = '';
+  toppings: Array<string>;
   //show_error_message= false;
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
-
+  userid: number = -1;
+  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage,public navParams: NavParams) {
+    this.toppings = ['bacon', 'xcheese'];
+    // this.storage.get('userid').then((data)=> {
+    //   this.userid = data;
+    // });
+    //
+    this.userid = navParams.get('userif');
   }
 
   createEvent() {
@@ -42,4 +49,6 @@ export class CreateEventPage {
 
       });
   }
+
+
 }
