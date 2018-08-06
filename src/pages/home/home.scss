@@ -1,9 +1,12 @@
 page-home {
-  .login-button{
+  .login-button {
     width: 40%;
     margin-top: 10px;
     margin-left: 30%;
     margin-right: 30%;
   }
 
+  ion-title {
+    min-height: 56px;
+  }
 }
