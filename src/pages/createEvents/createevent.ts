@@ -6,7 +6,6 @@ import {HttpClient} from '@angular/common/http';
 import {Storage} from '@ionic/storage';
 import {EventPage} from "../events/events";
 
-
 @Component({
   selector: 'page-createevent',
   templateUrl: 'createevent.html'
@@ -15,9 +14,16 @@ export class CreateEventPage {
   eventname = "";
   eventdate = "";
   error_message = '';
-  //show_error_message= false;
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
+  users: any;
+  username: string = "";
+  userid: any;
 
+  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
+    storage.get('userObject').then((data)=> {
+      this.username = data.username;
+      this.userid = data._id;
+      this.updateUsers();
+    });
   }
 
   createEvent() {
@@ -25,7 +31,7 @@ export class CreateEventPage {
     this.http.post('http://localhost:8080/events/add_event', {
         eventName: this.eventname,
         eventDate: this.eventdate,
-        users: "5b5c05f2b9db8e34f046ffd5"
+        users: this.userid
 
       },
       {
@@ -41,5 +47,14 @@ export class CreateEventPage {
         this.error_message = "Try again ";
 
       });
+  }
+
+  updateUsers(){
+    this.http.get(`http://localhost:8080/users`).subscribe(res => {
+      this.users  = res as Array<Object>;
+    }, (err) => {
+      console.log("error"+ err);
+    });
+
   }
 }

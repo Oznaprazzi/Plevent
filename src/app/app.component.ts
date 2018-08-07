@@ -8,6 +8,8 @@ import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityp
 import { GroceriesPage } from '../pages/groceries/groceries';
 import { EventPage } from '../pages/events/events';
 
+
+
 @Component({
   templateUrl: 'app.html'
 })

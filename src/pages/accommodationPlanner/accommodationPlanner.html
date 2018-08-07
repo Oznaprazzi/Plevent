@@ -10,10 +10,14 @@
 <ion-content padding>
   <h1>Accommodation List</h1>
   <ion-list>
-    <ion-item>
-      <h2>Finn</h2>
+    <ion-item *ngFor="let accommo of accommodations">
+      <h2>{{accommo.title}}</h2>
       <h3>Don't Know What To Do!</h3>
       <p>I've had a pretty messed up day. If we just...</p>
     </ion-item>
   </ion-list>
+
+  <ion-fab bottom right >
+    <button ion-fab (click)="addAccomo()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
