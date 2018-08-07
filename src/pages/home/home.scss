@@ -1,20 +1,22 @@
 page-home {
     .toolbar-title-md{
       font-size: 4rem;
-      color: #282828;
+      color: #52b1b1;
     }
     .login-content {
-    background: #52b1b1;
+    background: #282828;
 
     .logo-row {
       padding-top: 50px;
       padding-bottom: 20px;
     }
+      .logo-row img{
+        padding-bottom: 20px;
+      }
 
     .login-box {
       background: #282828;
       padding: 20px 20px 0px 20px;
-      margin-top: 30px;
     }
 
     .signup-col {

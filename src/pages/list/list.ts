@@ -4,8 +4,6 @@ import { Storage } from '@ionic/storage';
 
 import{ HomePage } from '../home/home';
 
-import{ AddAccommodationPage } from '../addAccommodation/addAccommodation'
-
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -51,9 +49,5 @@ export class ListPage {
     });
   }
 
-  addAccomo(){
-    this.navCtrl.push(AddAccommodationPage,{
 
-    });
-  }
 }
