@@ -1,27 +1,28 @@
 page-home {
-    .toolbar-title-md{
-      font-size: 4rem;
-      color: #52b1b1;
-    }
-    .login-content {
+  .toolbar-title-md{
+    font-size: 4rem;
+    color: #52b1b1;
+  }
+
+  .login-content {
     background: #282828;
 
-    .logo-row {
-      padding-top: 50px;
-      padding-bottom: 20px;
+    .scroll-content{
+      padding: 30px 16px !important;
     }
-      .logo-row img{
-        padding-bottom: 20px;
+    .logo-row {
+      padding-top: 10px;
+      img {
+        padding-bottom: 10px;
       }
+    }
 
     .login-box {
       background: #282828;
-      padding: 20px 20px 0px 20px;
     }
 
     .signup-col {
       margin: 0px 16px 0px 16px;
-      padding-bottom: 20px;
     }
 
     .item-inner {
@@ -34,16 +35,15 @@ page-home {
       border-radius: 10px !important;
       border: 1px solid #ffffff;
     }
-      .submit-btn:hover{
-        background:  #ea9448;
-      }
 
     .register-btn {
       color: #ffffff;
       font-size: 0.8em;
+      padding-top: 5px;
     }
-      .register-btn:hover{
-        color: #52b1b1;
-      }
+
+    .label-md{
+      margin: unset;
+    }
   }
 }
