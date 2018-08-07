@@ -16,7 +16,7 @@ import { EventPage } from '../pages/events/events';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = GroceriesPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
