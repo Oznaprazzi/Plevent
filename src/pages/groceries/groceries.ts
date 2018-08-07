@@ -25,10 +25,6 @@ export class GroceriesPage {
 
   updateList() {
     this.http.get('http://localhost:8080/grocery').subscribe(res=> {
-      let items = res as Array<Object>;
-      for(var item of items){
-        item['selected'] = false;
-      }
       this.groceries = res;
     });
   }
