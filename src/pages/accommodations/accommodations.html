@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Accommodations</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let accommo of accommodations">
+      <h2>{{accommo.title}}</h2>
+      <h3>Address</h3>
+      <p>{{accommo.street}}</p>
+      <p>{{accommo.state}}</p>
+      <p>{{accommo.city}}</p>
+      <p>{{accommo.country}}</p>
+      <h3>From</h3>
+      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="accommo.fromDate"></ion-datetime>
+      <h3>To</h3>
+      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="accommo.toDate"></ion-datetime>
+      <h3>Price</h3>
+      <p>{{accommo.price}}</p>
+      <h3>Guests</h3>
+      <p>{{accommo.guests}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab bottom right >
+    <button ion-fab (click)="addAccomo()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>
