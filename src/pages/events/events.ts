@@ -11,10 +11,11 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: 'events.html'
 })
 export class EventPage {
+
   userid: number = -1;
   events: any
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
-
+    
     storage.get('userid').then((data)=> {
       this.userid = data;
       this.getUser();

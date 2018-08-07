@@ -19,7 +19,6 @@ export class CreateEventPage {
   userid: any;
 
   constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
-
     storage.get('userObject').then((data)=> {
       this.username = data.username;
       this.userid = data._id;

@@ -14,6 +14,26 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@font-face {
+  font-family: Noturnal;
+  src: url("../assets/fonts/Noturnal_Hand.woff") format('woff'),
+  url("../assets/fonts/Noturnal_Hand.ttf")  format('truetype');
+}
+
+h1, h2, h3, h4, h5, ion-title{
+  font-family: Noturnal;
+}
+
+.fab-md{
+  background-color: #e57d21;
+  border: 1px solid white;
+}
+
+.fab-md:hover{
+  background-color: #ea9448;
+}
+
 ion-row {
   align-items: center;
   text-align: center;

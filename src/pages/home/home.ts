@@ -18,7 +18,7 @@ export class HomePage {
   password = '';
   userid: number = -1;
   //show_error_message= false;
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: HttpClient, private storage: Storage) {
     // Or to get a key/value pair
 
     this.storage.get('userid').then((data)=>{

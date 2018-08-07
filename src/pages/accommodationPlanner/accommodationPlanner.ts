@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
+import { AddAccommodationPage } from "../addAccommodation/addAccommodation"
 
 @Component({
   selector: 'page-accommodationPlanner',
@@ -16,6 +17,12 @@ export class AccommodationPlannerPage {
 
     }, (err) => {
       //this.error_message = "Please fill in all the fields";
+    });
+  }
+
+  addAccomo(){
+    this.navCtrl.push(AddAccommodationPage,{
+
     });
   }
 

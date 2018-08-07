@@ -10,6 +10,7 @@ import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityp
 import { AccommodationPlannerPage } from "../pages/accommodationPlanner/accommodationPlanner"
 import { AddAccommodationPage } from "../pages/addAccommodation/addAccommodation"
 import { SignupPage } from '../pages/signup/signup';
+import { GroceriesPage } from '../pages/groceries/groceries';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -26,6 +27,7 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
     AddAccommodationPage,
     AccommodationPlannerPage,
     SignupPage,
+    GroceriesPage,
     CreateEventPage
   ],
   imports: [
@@ -43,6 +45,7 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
     AddAccommodationPage,
     AccommodationPlannerPage,
     SignupPage,
+    GroceriesPage,
     CreateEventPage
   ],
   providers: [
