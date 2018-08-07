@@ -1,9 +1,10 @@
 <ion-header>
   <ion-navbar hideBackButton>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+    <ion-title float-left>Events</ion-title>
+
+    <button ion-button float-right>
+      <ion-icon name="log-out" (click)="signout()"></ion-icon>
     </button>
-    <ion-title>Events</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -24,7 +25,6 @@
   <ion-fab bottom right >
     <button ion-fab (click)="addEvent()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
-  <button ion-button (click)="signout()" class="login-button">Sign Out</button>
 
 </ion-content>
 

@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
 import { GroceriesPage } from '../pages/groceries/groceries';
 import { EventPage } from '../pages/events/events';
+import { AccommodationsPage } from "../pages/accommodations/accommodations"
 
 
 
@@ -27,7 +28,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Events', component: EventPage },
-      { title: 'Availability Planner', component: AvalibilityplannerPage},
+      { title: 'Accommodation Planner', component: AccommodationsPage },
+      { title: 'Availability Planner', component: AvalibilityplannerPage },
       { title: 'Groceries', component: GroceriesPage }
     ];
 
