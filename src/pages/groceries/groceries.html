@@ -12,9 +12,9 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content class="grocery-content" padding>
   <ion-list>
-    <ion-item *ngFor="let grocery of groceries" (click)="deleteItem(grocery)">
+    <ion-item *ngFor="let grocery of groceries" (swipe)="deleteItem(grocery)">
       <ion-icon name="cart"></ion-icon>
       {{grocery.description}}
     </ion-item>

@@ -57,7 +57,8 @@ export class GroceriesPage {
             // Close Prompt
           }
         }
-      ]
+      ],
+      cssClass: 'custom-alert'
     });
     prompt.present();
   }
