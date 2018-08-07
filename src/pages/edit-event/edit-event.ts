@@ -1,16 +1,16 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import {Storage} from '@ionic/storage';
 import {HttpClient} from '@angular/common/http';
 
-
-import {Storage} from '@ionic/storage';
-import {EventPage} from "../events/events";
+import{EventPage} from '../events/events';
 
 @Component({
-  selector: 'page-createevent',
-  templateUrl: 'createevent.html'
+  selector: 'page-edit-event',
+  templateUrl: 'edit-event.html',
 })
-export class CreateEventPage {
+export class EditEventPage {
+
   eventname = "";
   eventdate = "";
   error_message = '';
@@ -18,7 +18,7 @@ export class CreateEventPage {
   username: string = "";
   userid: any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient,  public storage: Storage) {
     storage.get('userObject').then((data)=> {
       this.username = data.username;
       this.userid = data._id;
@@ -26,19 +26,18 @@ export class CreateEventPage {
     });
   }
 
-  createEvent() {
-
-    this.http.post('http://localhost:8080/events/add_event', {
+  editEvent() {
+    var id =this.navParams.get('id');
+    console.log(id);
+    this.http.post(`http://localhost:8080/events/edit_event/${id}`, {
         eventName: this.eventname,
         eventDate: this.eventdate,
         users: this.userid
-
       },
       {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
-
         this.error_message = '';
         this.navCtrl.push(EventPage, {});
 
@@ -56,4 +55,5 @@ export class CreateEventPage {
       console.log("error"+ err);
     });
   }
+
 }

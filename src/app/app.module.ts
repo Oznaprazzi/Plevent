@@ -16,7 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
 import {CreateEventPage} from "../pages/createEvents/createevent";
-
+import {EditEventPage} from "../pages/edit-event/edit-event";
+import {EventDetailPage} from "../pages/event-detail/event-detail";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
     AccommodationPlannerPage,
     SignupPage,
     GroceriesPage,
-    CreateEventPage
+    CreateEventPage,
+    EditEventPage,
+    EventDetailPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,9 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
     AccommodationPlannerPage,
     SignupPage,
     GroceriesPage,
-    CreateEventPage
+    CreateEventPage,
+    EditEventPage,
+    EventDetailPage
   ],
   providers: [
     StatusBar,

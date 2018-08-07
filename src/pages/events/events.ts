@@ -3,6 +3,8 @@ import {NavController, NavParams} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 
 import{HomePage} from '../home/home';
+import{EditEventPage} from '../edit-event/edit-event';
+import{EventDetailPage} from '../event-detail/event-detail';
 import {CreateEventPage} from "../createEvents/createevent";
 import {HttpClient} from "@angular/common/http";
 
@@ -62,7 +64,16 @@ export class EventPage {
     });
   }
 
-  editEvent() {
+  editEvent(eventID) {
+    this.navCtrl.push(EditEventPage,{
+      id:eventID
 
+    });
   }
+  tapped(eventObject){
+    this.navCtrl.push(EventDetailPage,{
+      eventObject: eventObject
+    });
+  }
+
 }
