@@ -3,8 +3,24 @@ page-events {
     position: fixed;
     z-index: 100;
   }
-  #temp{
-    color: #0b2e13;
+  .toolbar-background {
+    background-color: #2C2C2C;
   }
 
+  .toolbar-title-md {
+    font-size: 3rem;
+    color: #ffff;
+  }
+
+  .event-content {
+    background: #686666;
+  }
+
+  .label {
+    margin: 0;
+  }
+
+  .item-block {
+    margin-bottom: 2px !important;
+  }
 }

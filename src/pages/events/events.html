@@ -7,9 +7,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="event-content">
   <ion-item *ngFor="let event of events" color="black">
+
     {{event.eventName}}
+    <ion-icon name="md-trash" item-right padding-right="10px" (click)="deleteEvent(event._id)"></ion-icon>
+    <ion-icon name="md-create" item-right padding-right="3px" (click)="editEvent()"></ion-icon>
   </ion-item>
 
   <ion-fab bottom right >
