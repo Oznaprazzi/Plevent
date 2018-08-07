@@ -11,10 +11,6 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: 'events.html'
 })
 export class EventPage {
-  // selectedItem: any;
-  // icons: string[];
-  // items: Array<{title: string, note: string, icon: string}>;
-
   userid: number = -1;
   events: any
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
@@ -24,30 +20,8 @@ export class EventPage {
       this.getUser();
       this.getAllEvents();
     });
-
-    // If we navigated to this page, we will have an item available as a nav param
-    //
-    //
-    // // Let's populate this page with some filler content for funzies
-    // this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    // 'american-football', 'boat', 'bluetooth', 'build'];
-    //
-    // this.items = [];
-    // for (let i = 1; i < 11; i++) {
-    //   this.items.push({
-    //     title: 'Item ' + i,
-    //     note: 'This is item #' + i,
-    //     icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-    //   });
-    // }
   }
 
-  // itemTapped(event, item) {
-  //   // That's right, we're pushing to ourselves!
-  //   this.navCtrl.push(EventPage, {
-  //     item: item
-  //   });
-  // }
   addEvent() {
     this.navCtrl.push(CreateEventPage, {});
   }
@@ -59,9 +33,12 @@ export class EventPage {
   }
 
   getAllEvents() {
-      
+
     this.http.get(`http://localhost:8080/events/event/${this.userid}`).subscribe(res => {
-    console.log(res);
+      this.events  = res as Array<Object>;
+      console.log(this.events);
+    }, (err) => {
+      console.log("error"+ err);
     });
   }
 
