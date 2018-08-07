@@ -16,14 +16,14 @@ export class EventPage {
   // items: Array<{title: string, note: string, icon: string}>;
 
   userid: number = -1;
+  events: any
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
 
-    this.getAllEvents();
     storage.get('userid').then((data)=> {
       this.userid = data;
       this.getUser();
+      this.getAllEvents();
     });
-
 
     // If we navigated to this page, we will have an item available as a nav param
     //
@@ -49,9 +49,7 @@ export class EventPage {
   //   });
   // }
   addEvent() {
-    this.navCtrl.push(CreateEventPage, {
-      userid : this.userid
-    });
+    this.navCtrl.push(CreateEventPage, {});
   }
 
   signout() {
@@ -61,21 +59,10 @@ export class EventPage {
   }
 
   getAllEvents() {
-    this.http.post('http://localhost:8080/get_events', {
-        username: "dipen"
-      },
-      {
-        headers: {'Content-Type': 'application/json'}
-      })
-      .subscribe(res => {
-        if (!res) {
-
-
-        }
-
-      }, (err) => {
-
-      });
+      
+    this.http.get(`http://localhost:8080/events/event/${this.userid}`).subscribe(res => {
+    console.log(res);
+    });
   }
 
   getUser(){
