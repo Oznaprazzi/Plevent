@@ -12,7 +12,10 @@
   <ion-item *ngFor="let event of events">
     <ion-grid>
       <ion-row no-margin>
-        <ion-col (tap)="tapped(event)" text-left>
+        <ion-col text-left col-auto>
+          <ion-icon name="md-calendar"  item-start padding-right="10px"></ion-icon>
+        </ion-col>
+        <ion-col (tap)="tapped(event)" text-left >
           <p><strong>{{event.eventName}}</strong></p>
           <p id="event_date">{{event.eventDate | date: 'dd MMM yyyy'}}</p>
         </ion-col>
