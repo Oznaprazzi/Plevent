@@ -14,14 +14,6 @@ export class AccommodationsPage {
     this.http.get('http://localhost:8080/accommo/getAccommo')
       .subscribe(res => {
       this.accommodations = res;
-        for(let accommo of this.accommodations) {
-          this.datepipe.transform(accommo.fromDate, 'dd-MM-yyyy');
-          this.datepipe.transform(accommo.toDate, 'dd-MM-yyyy');
-        }
-
-
-
-
     }, (err) => {
       //this.error_message = "Please fill in all the fields";
     });
