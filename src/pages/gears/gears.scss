@@ -1,6 +1,6 @@
-page-groceries {
+page-gears {
     .toolbar-background {
-        background-color: #2C2C2C;
+        background-color: #2C2c2c;
     }
 
     .toolbar-title-md {
@@ -8,7 +8,7 @@ page-groceries {
         color: #ffff;
     }
 
-    .grocery-content {
+    .page-content {
         background: #686666;
     }
 
@@ -20,9 +20,8 @@ page-groceries {
         margin-bottom: 2px !important;
     }
 
-    .grocery-list {
+    .gear-list {
         max-height: 76vh;
         overflow-y: scroll;
     }
 }
-
