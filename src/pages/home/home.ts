@@ -7,6 +7,7 @@ import{ SignupPage } from '../signup/signup';
 
 import { Storage } from '@ionic/storage';
 
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -18,7 +19,7 @@ export class HomePage {
   password = '';
   userid: number = -1;
   //show_error_message= false;
-  constructor(public navCtrl: NavController, public http: HttpClient, private storage: Storage) {
+  constructor(public navCtrl: NavController, public http: HttpClient, private storage: Storage, public events: Events) {
     // Or to get a key/value pair
 
     this.storage.get('userid').then((data)=>{
@@ -26,6 +27,7 @@ export class HomePage {
       console.log(data);
       this.storage.get('loggedIn').then((val) => {
         if(val){
+          this.events.publish('eventsPage:outside');
           this.navCtrl.setRoot(EventPage,{});
         }
       });
@@ -51,8 +53,8 @@ export class HomePage {
           this.password = '';
           this.storage.set('userid', res.user._id);
           this.storage.set('loggedIn', true);
-
-          this.navCtrl.push(EventPage,{
+          this.events.publish('eventsPage:outside');
+          this.navCtrl.setRoot(EventPage,{
               userid: res.user._id
           });
           //this.global.userid = res.user._id;
