@@ -7,6 +7,7 @@ import {Storage} from '@ionic/storage';
 import { HomePage } from '../pages/home/home';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
 import { GroceriesPage } from '../pages/groceries/groceries';
+import { GearsPage } from '../pages/gears/gears';
 import { EventPage } from '../pages/events/events';
 import { AccommodationsPage } from "../pages/accommodations/accommodations"
 
@@ -38,10 +39,10 @@ export class MyApp {
         { title: 'Events', component: EventPage },
         { title: 'Accommodation Planner', component: AccommodationsPage },
         { title: 'Availability Planner', component: AvalibilityplannerPage },
-        { title: 'Groceries', component: GroceriesPage }
+        { title: 'Groceries', component: GroceriesPage },
+        { title: 'Gears', component: GearsPage }
       ];
     });
-
   }
 
   initializeApp() {

@@ -3,6 +3,8 @@ import {NavController, NavParams} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 
 import{HomePage} from '../home/home';
+import{EditEventPage} from '../edit-event/edit-event';
+import{EventDetailPage} from '../event-detail/event-detail';
 import {CreateEventPage} from "../createEvents/createevent";
 import {HttpClient} from "@angular/common/http";
 
@@ -16,8 +18,6 @@ export class EventPage {
   events: any
 
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
-
-
     storage.get('userid').then((data) => {
       this.userid = data;
       this.getUser();
@@ -62,7 +62,19 @@ export class EventPage {
     });
   }
 
-  editEvent() {
+  editEvent(eventObject) {
+    console.log("edit event");
 
+    this.navCtrl.push(EditEventPage,{
+      eventObject:eventObject
+
+    });
   }
+  tapped(eventObject){
+    console.log("tapped event");
+    this.navCtrl.push(EventDetailPage,{
+      eventObject: eventObject
+    });
+  }
+
 }

@@ -8,15 +8,27 @@
 </ion-header>
 
 <ion-content class="event-content">
-  <ion-item *ngFor="let event of events" color="black">
-
-    {{event.eventName}}
-    <ion-icon name="md-trash" item-right padding-right="10px" (click)="deleteEvent(event._id)"></ion-icon>
-    <ion-icon name="md-create" item-right padding-right="3px" (click)="editEvent()"></ion-icon>
+  <ion-item *ngFor="let event of events">
+    <ion-grid>
+      <ion-row no-margin>
+        <ion-col text-left col-auto>
+          <ion-icon name="md-calendar"  item-start padding-right="10px"></ion-icon>
+        </ion-col>
+        <ion-col (tap)="tapped(event)" text-left >
+          <p><strong>{{event.eventName}}</strong></p>
+          <p id="event_date">{{event.eventDate | date: 'dd MMM yyyy'}}</p>
+        </ion-col>
+        <ion-col text-right>
+          <ion-icon name="md-trash"  item-end padding-right="10px" (tap)="deleteEvent(event._id)"></ion-icon>
+          <ion-icon name="md-create"  item-end padding-right="3px" (tap)="editEvent(event)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-item>
-
-  <ion-fab bottom right >
-    <button ion-fab (click)="addEvent()"><ion-icon name="add"></ion-icon></button>
+  <ion-fab bottom right>
+    <button ion-fab (click)="addEvent()">
+      <ion-icon name="add"></ion-icon>
+    </button>
   </ion-fab>
 
 </ion-content>
