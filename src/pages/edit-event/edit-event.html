@@ -12,11 +12,11 @@
   <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
   <ion-item>
     <ion-label>Event Name</ion-label>
-    <ion-input [(ngModel)]="eventname" required></ion-input>
+    <ion-input [(ngModel)]="eventObject.eventName" required></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Event Date</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="eventdate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="eventObject.eventDate"></ion-datetime>
   </ion-item>
 
   <ion-item>

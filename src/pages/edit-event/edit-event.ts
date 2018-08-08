@@ -17,6 +17,7 @@ export class EditEventPage {
   users: any;
   username: string = "";
   userid: any;
+  eventObject:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient,  public storage: Storage) {
     storage.get('userObject').then((data)=> {
@@ -24,15 +25,15 @@ export class EditEventPage {
       this.userid = data._id;
       this.updateUsers();
     });
+    this.eventObject = this.navParams.get('eventObject');
+    console.log(this.eventObject);
   }
 
   editEvent() {
-    var id =this.navParams.get('id');
-    console.log(id);
-    this.http.post(`http://localhost:8080/events/edit_event/${id}`, {
-        eventName: this.eventname,
-        eventDate: this.eventdate,
-        users: this.userid
+    this.http.post(`http://localhost:8080/events/edit_event/${this.eventObject._id}`, {
+        eventName: this.eventObject.eventName,
+        eventDate: this.eventObject.eventDate,
+        users: this.eventObject.users
       },
       {
         headers: {'Content-Type': 'application/json'}

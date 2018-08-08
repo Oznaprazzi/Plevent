@@ -18,8 +18,6 @@ export class EventPage {
   events: any
 
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
-
-
     storage.get('userid').then((data) => {
       this.userid = data;
       this.getUser();
@@ -64,13 +62,16 @@ export class EventPage {
     });
   }
 
-  editEvent(eventID) {
+  editEvent(eventObject) {
+    console.log("edit event");
+
     this.navCtrl.push(EditEventPage,{
-      id:eventID
+      eventObject:eventObject
 
     });
   }
   tapped(eventObject){
+    console.log("tapped event");
     this.navCtrl.push(EventDetailPage,{
       eventObject: eventObject
     });
