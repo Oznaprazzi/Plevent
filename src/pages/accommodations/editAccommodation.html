@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Edit or Delete
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
+  <ion-item>
+    <ion-label color="primary">Title</ion-label>
+    <ion-input placeholder="Enter title" [(ngModel)]="accommo.title"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Street</ion-label>
+    <ion-input placeholder="Enter street number" [(ngModel)]="accommo.street"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">State</ion-label>
+    <ion-input  placeholder="Enter state" [(ngModel)]="accommo.state"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">City</ion-label>
+    <ion-input placeholder="Enter state" [(ngModel)]="accommo.city"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Country</ion-label>
+    <ion-input placeholder="Enter Country" [(ngModel)]="accommo.country"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>From</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="accommo.fromDate"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>To</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDate" [(ngModel)]="accommo.toDate"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Price</ion-label>
+    <ion-input type="number" placeholder="Accomodation price" [(ngModel)]="accommo.price"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Guests</ion-label>
+    <ion-input type="number" placeholder="Number of guests" [(ngModel)]="accommo.guests"></ion-input>
+  </ion-item>
+
+  <button ion-button (click)="updateAccommo()" id="signup-button">Update Accommodation</button>
+</ion-content>
