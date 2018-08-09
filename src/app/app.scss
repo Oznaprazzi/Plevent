@@ -30,10 +30,6 @@ h1, h2, h3, h4, h5, ion-title{
   border: 1px solid white;
 }
 
-.fab-md:hover{
-  background-color: #ea9448;
-}
-
 ion-row {
   align-items: center;
   text-align: center;
@@ -54,5 +50,27 @@ ion-item {
 }
 
 ion-navbar ion-title{
-  margin: 7px 0;
+  margin: 2px 0;
+}
+
+#fab-add-button{
+  position: fixed;
+  z-index: 100;
+}
+
+.toolbar-background {
+  background-color: #2C2C2C;
+}
+
+.toolbar-title-md {
+  font-size: 3rem;
+  color: #52b1b1;
+}
+
+.label {
+  margin: 0;
+}
+
+.item-block {
+  margin-bottom: 2px !important;
 }

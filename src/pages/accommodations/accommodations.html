@@ -11,19 +11,31 @@
   <ion-list>
     <ion-item *ngFor="let accommo of accommodations">
       <h2>{{accommo.title}}</h2>
-      <h3>Address</h3>
-      <p>{{accommo.street}}</p>
-      <p>{{accommo.state}}</p>
-      <p>{{accommo.city}}</p>
-      <p>{{accommo.country}}</p>
-      <h3>From</h3>
-      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="accommo.fromDate"></ion-datetime>
-      <h3>To</h3>
-      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="accommo.toDate"></ion-datetime>
-      <h3>Price</h3>
-      <p>{{accommo.price}}</p>
-      <h3>Guests</h3>
-      <p>{{accommo.guests}}</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p> <ion-icon name="pin"></ion-icon> {{accommo.street}}, {{accommo.state}}, {{accommo.city}}, {{accommo.country}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h3>From</h3>
+            <p>{{ accommo.fromDate | date: 'dd MMM yyyy'}}</p>
+          </ion-col>
+          <ion-col>
+            <h3>To</h3>
+            <p>{{ accommo.toDate | date: 'dd MMM yyyy'}}</p>
+          </ion-col>
+          <ion-col>
+            <h3>Price $</h3>
+            <p>{{accommo.price}}</p>
+          </ion-col>
+          <ion-col>
+            <h3>Guests <ion-icon name="people"></ion-icon> </h3>
+            <p>{{accommo.guests}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 

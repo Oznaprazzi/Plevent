@@ -2,11 +2,11 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 
-import{HomePage} from '../home/home';
 import{EditEventPage} from '../edit-event/edit-event';
 import{EventDetailPage} from '../event-detail/event-detail';
 import {CreateEventPage} from "../createEvents/createevent";
 import {HttpClient} from "@angular/common/http";
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-events',
@@ -15,9 +15,9 @@ import {HttpClient} from "@angular/common/http";
 export class EventPage {
 
   userid: number = -1;
-  events: any
+  eventsList: any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage, public events: Events) {
     storage.get('userid').then((data) => {
       this.userid = data;
       this.getUser();
@@ -29,17 +29,11 @@ export class EventPage {
     this.navCtrl.push(CreateEventPage, {});
   }
 
-  signout() {
-    this.storage.set('loggedIn', false);
-
-    this.navCtrl.push(HomePage, {});
-  }
-
   getAllEvents() {
 
     this.http.get(`http://localhost:8080/events/event/${this.userid}`).subscribe(res => {
-      this.events = res as Array<Object>;
-      console.log(this.events);
+      this.eventsList = res as Array<Object>;
+      console.log(this.eventsList);
     }, (err) => {
       console.log("error" + err);
     });
@@ -72,6 +66,7 @@ export class EventPage {
   }
   tapped(eventObject){
     console.log("tapped event");
+    this.events.publish('eventsPage:inside');
     this.navCtrl.push(EventDetailPage,{
       eventObject: eventObject
     });

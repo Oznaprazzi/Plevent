@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {Storage} from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
@@ -10,31 +11,50 @@ import { GearsPage } from '../pages/gears/gears';
 import { EventPage } from '../pages/events/events';
 import { AccommodationsPage } from "../pages/accommodations/accommodations"
 
-
+import { Events } from 'ionic-angular';
+import {EventDetailPage} from "../pages/event-detail/event-detail";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
+  
   rootPage: any = AvalibilityplannerPage;
+
+//  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events, public storage: Storage) {
     this.initializeApp();
+    this.storage.get('loggedIn').then((val) => {
+      if(val){
+        this.events.publish('eventsPage:outside');
+        this.nav.setRoot(EventPage);
+      }else{
+        this.nav.setRoot(HomePage);
+      }
+    });
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Events', component: EventPage },
-      { title: 'Accommodation Planner', component: AccommodationsPage },
-      { title: 'Availability Planner', component: AvalibilityplannerPage },
-      { title: 'Groceries', component: GroceriesPage },
-      { title: 'Gears', component: GearsPage }
-    ];
+    this.events.subscribe('eventsPage:outside',()=>{
+      this.pages = [
+        {title:'Home', component: EventPage},
+        //{title:'My Account', component: MyAccountPage},
+        {title:'Logout', component: HomePage}
+      ];
+    });
 
+    this.events.subscribe('eventsPage:inside',()=>{
+      this.pages = [
+        { title: 'Home', component: EventPage },
+        { title: 'Event Details', component: EventDetailPage },
+        { title: 'Accommodation Planner', component: AccommodationsPage },
+        { title: 'Availability Planner', component: AvalibilityplannerPage },
+        { title: 'Groceries', component: GroceriesPage },
+        { title: 'Gears', component: GearsPage }
+      ];
+    });
   }
 
   initializeApp() {
@@ -50,5 +70,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+    this.events.publish('eventsPage:outside');
+    if(page.title == 'Logout'){
+      this.storage.set('loggedIn', false);
+    }
   }
 }
