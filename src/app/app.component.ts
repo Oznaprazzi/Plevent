@@ -18,7 +18,7 @@ import { AccommodationsPage } from "../pages/accommodations/accommodations"
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = AvalibilityplannerPage;
 
   pages: Array<{title: string, component: any}>;
 
