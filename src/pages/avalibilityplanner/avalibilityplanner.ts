@@ -8,7 +8,7 @@ import {AlertController} from 'ionic-angular';
 })
 export class AvalibilityplannerPage {
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private datePicker: DatePicker) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
 
