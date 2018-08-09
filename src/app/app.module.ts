@@ -20,6 +20,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import {CreateEventPage} from "../pages/createEvents/createevent";
 import {EditEventPage} from "../pages/edit-event/edit-event";
 import {EventDetailPage} from "../pages/event-detail/event-detail";
+import { ExpenseListPage } from '../pages/expense-list/expense-list';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {EventDetailPage} from "../pages/event-detail/event-detail";
     CreateEventPage,
     EditEventPage,
     EventDetailPage,
-    GearsPage
+    GearsPage,
+    ExpenseListPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import {EventDetailPage} from "../pages/event-detail/event-detail";
     CreateEventPage,
     EditEventPage,
     EventDetailPage,
-    GearsPage
+    GearsPage,
+    ExpenseListPage
   ],
   providers: [
     StatusBar,
