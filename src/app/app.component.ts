@@ -19,8 +19,9 @@ import {EventDetailPage} from "../pages/event-detail/event-detail";
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  
-  rootPage: any = AvalibilityplannerPage;
+
+
+  rootPage: any
 
 //  rootPage: any;
 
@@ -31,7 +32,7 @@ export class MyApp {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(EventPage);
+        this.nav.setRoot(AvalibilityplannerPage);
       }else{
         this.nav.setRoot(HomePage);
       }
