@@ -12,6 +12,7 @@ import { EventPage } from '../pages/events/events';
 import { AccommodationsPage } from "../pages/accommodations/accommodations"
 
 import { Events } from 'ionic-angular';
+import {EventDetailPage} from "../pages/event-detail/event-detail";
 
 @Component({
   templateUrl: 'app.html'
@@ -19,24 +20,33 @@ import { Events } from 'ionic-angular';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, events: Events, public storage: Storage) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events, public storage: Storage) {
     this.initializeApp();
+    this.storage.get('loggedIn').then((val) => {
+      if(val){
+        this.events.publish('eventsPage:outside');
+        this.nav.setRoot(EventPage);
+      }else{
+        this.nav.setRoot(HomePage);
+      }
+    });
 
-    events.subscribe('eventsPage:outside',()=>{
+    this.events.subscribe('eventsPage:outside',()=>{
       this.pages = [
-        {title:'Events', component: EventPage},
+        {title:'Home', component: EventPage},
         //{title:'My Account', component: MyAccountPage},
         {title:'Logout', component: HomePage}
       ];
     });
 
-    events.subscribe('eventsPage:inside',()=>{
+    this.events.subscribe('eventsPage:inside',()=>{
       this.pages = [
-        { title: 'Events', component: EventPage },
+        { title: 'Home', component: EventPage },
+        { title: 'Event Details', component: EventDetailPage },
         { title: 'Accommodation Planner', component: AccommodationsPage },
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },

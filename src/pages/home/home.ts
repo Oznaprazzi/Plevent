@@ -22,16 +22,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public http: HttpClient, private storage: Storage, public events: Events) {
     // Or to get a key/value pair
 
-    this.storage.get('userid').then((data)=>{
-      this.userid = data;
-      console.log(data);
-      this.storage.get('loggedIn').then((val) => {
-        if(val){
-          this.events.publish('eventsPage:outside');
-          this.navCtrl.setRoot(EventPage,{});
-        }
-      });
-    });
+
 
 
   }
