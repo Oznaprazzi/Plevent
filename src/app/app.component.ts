@@ -71,8 +71,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
-    this.events.publish('eventsPage:outside');
+    this.events.publish('eventsPage:inside');
     if(page.title == 'Logout'){
+      this.events.publish('eventsPage:outside');
       this.storage.set('loggedIn', false);
     }
   }
