@@ -14,7 +14,7 @@ export class AccommodationsPage {
   accommodations:any;
   constructor(public navCtrl: NavController, public http: HttpClient, public datepipe: DatePipe, public modalCtrl: ModalController) {
 
-    this.http.get('http://localhost:8080/accommo/getAccommo')
+    this.http.get('http://localhost:8080/accommo/get_accommo')
       .subscribe(res => {
       this.accommodations = res;
     }, (err) => {
@@ -22,9 +22,9 @@ export class AccommodationsPage {
     });
   }
 
-  openModal() {
+  openModal(accommo) {
 
-    let modal = this.modalCtrl.create(ModalContentPage, {"accommo": accommo});
+    let modal = this.modalCtrl.create(ModalAccommodationPage, {"accommo": accommo});
     modal.present();
   }
 
@@ -36,13 +36,14 @@ export class AccommodationsPage {
 }
 
 @Component({
-  templateURL: 'editAccommodation.html'
+  templateUrl: 'editAccommodation.html'
 })
-export class ModalContentPage {
+export class ModalAccommodationPage {
   accommo: any;
+  error_message = '';
 
-  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController) {
-    accommo = params.get('accommo');
+  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient) {
+    this.accommo = params.get('accommo');
   }
 
   dismiss() {
