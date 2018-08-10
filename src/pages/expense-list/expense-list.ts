@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, ModalController, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 /**
@@ -25,7 +25,7 @@ export class ExpenseListPage {
   expenses: Array<Expense>;
   categories: any = []; 
 
-  constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient,public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController) {
     this.updateList();
   }
 
@@ -36,6 +36,87 @@ export class ExpenseListPage {
     }
     let modal = this.modalCtrl.create(ExpenseModalPage, params);
     modal.present();
+  }
+
+  doAddPrompt(){
+    let prompt = this.alertCtrl.create({
+      title: 'Create Expense',
+      inputs:[
+        {
+          name: 'title', placeholder: 'Expense Title'
+        },
+        {
+          name: 'category', placeholder: 'Expense Category'
+        },
+        {
+          name: 'amount', placeholder: 'Price'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Add',
+          handler: (data: {title, category, amount}) => {
+            // Do validity checks
+            if(!data.title || !data.category || !data.amount) {
+              this.notifyError('Title, category, and amount must filled in.');
+              return;
+            }
+            var amount = parseFloat(data.amount);
+            if(isNaN(amount)){
+              this.notifyError('Amount must be a number.');
+              return;
+            }
+            // Add item to DB
+            this.addItem(data);
+          }
+        },
+        {
+          text: 'Cancel'
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  private notifyError(msg: string){
+    const alert = this.alertCtrl.create({
+      title: 'Oh no!',
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  private addItem(item: {title, category, amount}){
+    this.http.post('http://localhost:8080/expenses/expense', item).subscribe(res => {
+      this.updateList();
+    });
+  }
+
+  doDeletePrompt(item){
+    const confirm = this.alertCtrl.create({
+      title: 'Delete this expense?',
+      message: 'This item may be important!',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteItem(item);
+          }
+        },
+        {
+          text: 'No'
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  private deleteItem(item){
+    var id = item._id;
+    this.http.delete(`http://localhost:8080/expenses/expense/${id}`).subscribe(res => {
+      this.updateList();
+    });
   }
 
   private updateList() {
@@ -70,6 +151,7 @@ export class ExpenseModalPage{
   categories;
 
   constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController){
+    this.expense = this.params.get('expense');
     this.categories = this.params.get('categories');
   }
 

@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-title class="modalTitle">Expense Details</ion-title>
-        <ion-buttons start>
+        <ion-buttons end>
             <button ion-button (click)="dismiss()">
                 <span ion-text color="primary" showWhen="ios">Cancel</span>
                 <ion-icon name="md-close" showWhen="android,windows" color="primary"></ion-icon>
@@ -10,14 +10,11 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="page-content">
-    <ion-list>
-        <ion-item>
-            <ion-label>Category</ion-label>
-            <ion-select [(ngModel)]="category">
-                <ion-option *ngFor="let categ of categories" [value]="categ">{{categ}}</ion-option>
-                <ion-option>Create New...</ion-option>
-            </ion-select>
-        </ion-item>
-    </ion-list>
+<ion-content class="page-content" padding>
+    <ion-fab top right>
+        <button ion-fab mini color="primary"><ion-icon name="create"></ion-icon></button>
+    </ion-fab>
+    <h1 class="expense-amount" text-center>${{expense.amount}}</h1>
+    <h2 class="expense-title" text-center>{{expense.title}}</h2>
+    <h3 class="expense-category" text-center>{{expense.category}}</h3>
 </ion-content>
