@@ -60,6 +60,7 @@ export class ExpenseListPage {
 }
 
 @Component({
+  selector: 'page-expense-modal',
   templateUrl: 'expense.modal.html'
 })
 
