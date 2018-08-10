@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Chart } from 'chart.js';
+import { ExpenseListPage } from '../expense-list/expense-list';
 
 /**
  * Generated class for the ExpenseDashboardPage page.
@@ -36,6 +37,10 @@ export class ExpenseDashboardPage {
 
   }
 
+  toExpenseDetails(){
+      this.navCtrl.push(ExpenseListPage, {});
+  }
+
   private updateList() {
     this.http.get('http://localhost:8080/expenses').subscribe((res: Array < Expense > ) => {
       this.total = 0;
@@ -50,7 +55,6 @@ export class ExpenseDashboardPage {
       }
       this.expenses = res;
       this.constructChart();
-      console.log(this.pieCanvas);
     });
   }
 
@@ -59,7 +63,6 @@ export class ExpenseDashboardPage {
         type: 'pie',
         data: this.constructData()
     });
-    console.log(this.pieChart);
   }
 
   private constructData(){
