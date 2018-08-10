@@ -4,60 +4,58 @@
       <ion-icon name="md-close"></ion-icon>
     </button>
     <ion-title class="modalTitle">
-      Add Accommodation
+      Edit Accommodation
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content padding>
+<ion-content>
   <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
   <ion-item>
     <ion-label color="primary">Title</ion-label>
-    <ion-input placeholder="Enter title" [(ngModel)]="title"></ion-input>
+    <ion-input placeholder="Enter title" [(ngModel)]="accommo.title"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Street</ion-label>
-    <ion-input placeholder="Enter street number" [(ngModel)]="street"></ion-input>
+    <ion-input placeholder="Enter street number" [(ngModel)]="accommo.street"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">State</ion-label>
-    <ion-input  placeholder="Enter state" [(ngModel)]="state"></ion-input>
+    <ion-input  placeholder="Enter state" [(ngModel)]="accommo.state"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">City</ion-label>
-    <ion-input placeholder="Enter state" [(ngModel)]="city"></ion-input>
+    <ion-input placeholder="Enter state" [(ngModel)]="accommo.city"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Country</ion-label>
-    <ion-input placeholder="Enter Country" [(ngModel)]="country"></ion-input>
+    <ion-input placeholder="Enter Country" [(ngModel)]="accommo.country"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>From</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="fromDate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="accommo.fromDate"></ion-datetime>
   </ion-item>
 
   <ion-item>
     <ion-label>To</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDate" [(ngModel)]="toDate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDate" [(ngModel)]="accommo.toDate"></ion-datetime>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Price</ion-label>
-    <ion-input type="number" placeholder="Accomodation price" [(ngModel)]="price"></ion-input>
+    <ion-input type="number" placeholder="Accomodation price" [(ngModel)]="accommo.price"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Guests</ion-label>
-    <ion-input type="number" placeholder="Number of guests" [(ngModel)]="guests"></ion-input>
+    <ion-input type="number" placeholder="Number of guests" [(ngModel)]="accommo.guests"></ion-input>
   </ion-item>
 
   <div text-center>
-    <button ion-button (click)="addAccommo()">Add Accommodation</button>
+    <button ion-button (click)="updateAccommo()">Update Accommodation</button>
   </div>
-
 </ion-content>

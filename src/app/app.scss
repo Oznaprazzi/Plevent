@@ -74,3 +74,19 @@ ion-navbar ion-title{
 .item-block {
   margin-bottom: 2px !important;
 }
+
+.dismiss{
+  background-color: transparent;
+  box-shadow: none;
+  position: relative;
+  top: -8px;
+  height: 2.3rem;
+}
+
+.modalTitle div, ion-title.modalTitle{
+  display: inline;
+}
+
+ion-item{
+  padding: 5px !important;
+}

@@ -8,7 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { EventPage } from '../pages/events/events';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
-import { AccommodationsPage } from "../pages/accommodations/accommodations"
+import { AccommodationsPage, ModalAccommodationPage } from "../pages/accommodations/accommodations"
 import { AddAccommodationPage } from "../pages/addAccommodation/addAccommodation"
 import { SignupPage } from '../pages/signup/signup';
 import { GroceriesPage } from '../pages/groceries/groceries';
@@ -38,7 +38,9 @@ import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense
     EventDetailPage,
     GearsPage,
     ExpenseListPage,
-    ExpenseModalPage
+    ExpenseModalPage,
+    ModalAccommodationPage,
+    GearsPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,9 @@ import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense
     EventDetailPage,
     GearsPage,
     ExpenseListPage,
-    ExpenseModalPage
+    ExpenseModalPage,
+    ModalAccommodationPage,
+    GearsPage
   ],
   providers: [
     StatusBar,
