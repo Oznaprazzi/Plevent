@@ -30,7 +30,7 @@ export class MyApp {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(GroceriesPage);
+        this.nav.setRoot(ExpenseListPage);
       }else{
         this.nav.setRoot(HomePage);
       }

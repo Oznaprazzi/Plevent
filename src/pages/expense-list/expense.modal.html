@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Details</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android,windows" color="primary"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>Category</ion-label>
+            <ion-select [(ngModel)]="category">
+                <ion-option *ngFor="let categ of categories" [value]="categ">{{categ}}</ion-option>
+                <ion-option>Create New...</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+</ion-content>
