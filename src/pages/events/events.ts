@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {AlertController, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 
-import{EditEventPage} from '../edit-event/edit-event';
+import{EditEventPage} from './edit-event';
 import{EventDetailPage} from '../event-detail/event-detail';
 import {CreateEventPage} from "../createEvents/createevent";
 import {HttpClient} from "@angular/common/http";
@@ -17,7 +17,7 @@ export class EventPage {
   userid: number = -1;
   eventsList: any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage, public events: Events) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage, public events: Events, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     storage.get('userid').then((data) => {
       this.userid = data;
       this.getUser();
@@ -47,25 +47,39 @@ export class EventPage {
     });
   }
 
-  deleteEvent(eventID ) {
-    var id = eventID;
-    console.log(id);
-    this.http.delete(`http://localhost:8080/events/delete_event/${id}`).subscribe(res => {
-      console.log(res);
+  deleteEvent(eventID) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this event?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.http.delete(`http://localhost:8080/events/delete_event/${eventID}`).subscribe(res => {
+              this.getAllEvents();
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  openModal(eventObject) {
+    let modal = this.modalCtrl.create(EditEventPage, {"eventObject": eventObject});
+    modal.present();
+    modal.onDidDismiss(() => {
       this.getAllEvents();
     });
   }
-
-  editEvent(eventObject) {
-    console.log("edit event");
-
-    this.navCtrl.push(EditEventPage,{
-      eventObject:eventObject
-
-    });
-  }
   tapped(eventObject){
-    console.log("tapped event");
     this.events.publish('eventsPage:inside');
     this.navCtrl.push(EventDetailPage,{
       eventObject: eventObject

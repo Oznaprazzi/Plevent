@@ -72,7 +72,7 @@ ion-navbar ion-title{
 }
 
 .item-block {
-  margin-bottom: 2px !important;
+  margin-bottom: 0px !important;
 }
 
 .dismiss{
@@ -85,4 +85,12 @@ ion-navbar ion-title{
 
 .modalTitle div, ion-title.modalTitle{
   display: inline;
+}
+
+.list-md ion-item-options{
+  border: none;
+}
+
+.lastcol{
+  width: 25px;
 }

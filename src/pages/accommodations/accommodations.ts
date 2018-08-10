@@ -1,11 +1,9 @@
 import {AlertController, NavController} from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
-import { DatePipe } from '@angular/common'
 
 import { Component } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { AddAccommodationPage } from "./addAccommodation";
-import { ItemSliding } from 'ionic-angular';
 
 @Component({
   selector: 'page-accommodationPlanner',
@@ -13,7 +11,7 @@ import { ItemSliding } from 'ionic-angular';
 })
 export class AccommodationsPage {
   accommodations:any;
-  constructor(public navCtrl: NavController, public http: HttpClient, public datepipe: DatePipe, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     this.updateList();
   }
 
@@ -60,10 +58,6 @@ export class AccommodationsPage {
       ]
     });
     alert.present();
-  }
-
-  share(slidingItem: ItemSliding) {
-    slidingItem.close();
   }
 }
 
