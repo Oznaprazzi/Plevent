@@ -13,7 +13,6 @@ import { AccommodationsPage } from "../pages/accommodations/accommodations";
 
 import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
-import { ExpenseListPage } from '../pages/expense-list/expense-list';
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 
 @Component({
@@ -53,7 +52,6 @@ export class MyApp {
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
-        { title: 'Expenses', component: ExpenseListPage },
         { title: 'Dashboard', component: ExpenseDashboardPage }
       ];
     });

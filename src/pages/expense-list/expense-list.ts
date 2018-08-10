@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController, ModalController, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { ExpenseDashboardPage } from '../expense-dashboard/expense-dashboard';
 
 /**
  * Generated class for the ExpenseListPage page.
@@ -27,6 +28,10 @@ export class ExpenseListPage {
 
   constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController) {
     this.updateList();
+  }
+
+  toDashboard(){
+    this.navCtrl.push(ExpenseDashboardPage, {});
   }
 
   openModal(expense){

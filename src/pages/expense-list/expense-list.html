@@ -6,10 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+  <ion-navbar hideBackButton>
     <ion-title>Expenses</ion-title>
   </ion-navbar>
 </ion-header>
@@ -22,6 +19,9 @@
       <h1 item-end>${{expense.amount}}</h1>
     </ion-item>
   </ion-list>
+  <ion-fab center bottom>
+    <button ion-fab color="primary" (click)="toDashboard()"><ion-icon name="home"></ion-icon></button>
+  </ion-fab>
   <ion-fab right bottom>
     <button ion-fab color="danger" (click)="doAddPrompt()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
