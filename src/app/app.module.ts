@@ -21,8 +21,6 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
 import {EditEventPage} from "../pages/events/edit-event";
 import {EventDetailPage} from "../pages/event-detail/event-detail";
 import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense-list';
-import {UtilityService} from "./utilityService";
-
 
 @NgModule({
   declarations: [
@@ -73,7 +71,6 @@ import {UtilityService} from "./utilityService";
     HomePage,
     SplashScreen,
     DatePipe,
-    UtilityService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

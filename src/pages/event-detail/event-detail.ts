@@ -9,8 +9,7 @@ import { Storage } from '@ionic/storage';
 })
 export class EventDetailPage {
   event:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public util: UtilityService, public storage: Storage) {
-    //this.event = util.getEvent(storage);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
     storage.get('tappedEventObject').then((data) => {
       this.event = data;
       console.log(this.event);
