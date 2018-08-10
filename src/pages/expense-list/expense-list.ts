@@ -9,8 +9,9 @@ import { HttpClient } from '@angular/common/http';
  * Ionic pages and navigation.
  */
 interface Expense {
-  title: String,
-  category: String,
+  _id? : string,
+  title: string,
+  category: string,
   amount: number
 }
 
@@ -122,16 +123,13 @@ export class ExpenseListPage {
   private updateList() {
     this.http.get('http://localhost:8080/expenses').subscribe((res: Array<Expense>) => {
       for(var item of res){
-        this.addCategory(item.category); 
+        var category = item.category;
+        if(!this.categories.includes(category)){
+          this.categories.push(category);
+        }
       }
       this.expenses = res;
     });
-  }
-
-  private addCategory(category){
-    if(!this.categories.includes(category)){
-      this.categories.push(category);
-    }
   }
 
   ionViewDidLoad() {
@@ -147,12 +145,84 @@ export class ExpenseListPage {
 
 export class ExpenseModalPage{
   expense : Expense;
-  category;
   categories;
 
-  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController){
+  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public alertCtrl: AlertController){
     this.expense = this.params.get('expense');
     this.categories = this.params.get('categories');
+  }
+
+  doEditPrompt(){
+    let prompt = this.alertCtrl.create({
+      title: 'Edit Expense',
+      subTitle: 'Only edit the fields you want to change',
+      inputs:[
+        {
+          name: 'title', placeholder: 'Expense Title'
+        },
+        {
+          name: 'category', placeholder: 'Expense Category'
+        },
+        {
+          name: 'amount', placeholder: 'Price'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Edit',
+          handler: (data: {title, category, amount}) => {
+            this.editExpense(data);
+          }
+        },
+        {
+          text: 'Cancel'
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  private notifyError(msg: string){
+    const alert = this.alertCtrl.create({
+      title: 'Oh no!',
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+
+  private editExpense(data: any){
+    var request = this.constructRequest(data);
+    var id = this.expense._id;
+    this.http.post(`http://localhost:8080/expenses/expense/${id}`, request).subscribe(res => {
+      this.overwriteModel(request);
+    });
+  }
+
+  private overwriteModel(data){
+    for(var key of Object.keys(data)){
+      this.expense[key] = data[key];
+    }
+  }
+
+  private constructRequest(data: any){
+    var reqDat = {}; // request data
+    if(data.title){
+      reqDat['title'] = data.title;
+    }
+    if(data.category){
+      reqDat['category'] = data.category;
+    }
+    if(data.amount){
+      var amount = parseFloat(data.amount);
+      if(isNaN(amount)){
+        this.notifyError('Amount must be a number.');
+        return;
+      }
+      reqDat['amount'] = amount;
+    }
+    return reqDat;
   }
 
   dismiss(){
