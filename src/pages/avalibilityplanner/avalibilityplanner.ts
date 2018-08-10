@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {AlertController} from 'ionic-angular';
+import {Platform, NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
+
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'page-avalibilityplanner',
@@ -8,10 +9,34 @@ import {AlertController} from 'ionic-angular';
 })
 export class AvalibilityplannerPage {
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
-
+  constructor(public navCtrl: NavController, public http: HttpClient, public modalCtrl: ModalController) {
+    this.openModal();
   }
 
+  openModal() {
+
+    let modal = this.modalCtrl.create(ModalSelectDatePage, {});
+    modal.present();
+  }
+
+}
 
 
+@Component({
+  templateUrl: 'selectDateModal.html'
+})
+export class ModalSelectDatePage {
+
+  error_message = '';
+
+  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient) {
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  updateAccommo(){
+  console.log("button pushed");
+  }
 }

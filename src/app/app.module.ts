@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { EventPage } from '../pages/events/events';
-import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
+import { AvalibilityplannerPage, ModalSelectDatePage } from '../pages/avalibilityplanner/avalibilityplanner';
 import { AccommodationsPage, ModalAccommodationPage } from "../pages/accommodations/accommodations"
 import { AddAccommodationPage } from "../pages/addAccommodation/addAccommodation"
 import { SignupPage } from '../pages/signup/signup';
@@ -36,6 +36,7 @@ import { EventDetailPage } from "../pages/event-detail/event-detail";
     EditEventPage,
     EventDetailPage,
     ModalAccommodationPage,
+    ModalSelectDatePage,
     GearsPage
   ],
   imports: [
@@ -58,6 +59,7 @@ import { EventDetailPage } from "../pages/event-detail/event-detail";
     EditEventPage,
     EventDetailPage,
     ModalAccommodationPage,
+    ModalSelectDatePage,
     GearsPage
   ],
   providers: [
