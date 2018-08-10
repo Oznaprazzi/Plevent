@@ -10,13 +10,13 @@
 <ion-content class="page-content">
   <ion-list>
     <ion-item-sliding *ngFor="let event of eventsList">
-      <ion-item>
+      <ion-item (tap)="tapped(event)" >
         <ion-grid>
           <ion-row no-margin>
             <ion-col text-left col-auto>
               <ion-icon name="md-calendar"  item-start padding-right="10px"></ion-icon>
             </ion-col>
-            <ion-col (tap)="tapped(event)" text-left>
+            <ion-col text-left>
               <p><strong>{{event.eventName}}</strong></p>
               <p id="event_date">{{event.eventDate | date: 'dd MMM yyyy'}}</p>
             </ion-col>
