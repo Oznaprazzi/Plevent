@@ -12,8 +12,9 @@ import { EventPage } from '../pages/events/events';
 import { AccommodationsPage } from "../pages/accommodations/accommodations";
 
 import { Events } from 'ionic-angular';
-import {EventDetailPage} from "../pages/event-detail/event-detail";
+import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseListPage } from '../pages/expense-list/expense-list';
+import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +31,7 @@ export class MyApp {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(ExpenseListPage);
+        this.nav.setRoot(ExpenseDashboardPage);
       }else{
         this.nav.setRoot(HomePage);
       }
@@ -52,7 +53,8 @@ export class MyApp {
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
-        { title: 'Expenses', component: ExpenseListPage }
+        { title: 'Expenses', component: ExpenseListPage },
+        { title: 'Dashboard', component: ExpenseDashboardPage }
       ];
     });
   }

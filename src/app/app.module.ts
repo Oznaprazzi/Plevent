@@ -21,6 +21,7 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
 import {EditEventPage} from "../pages/edit-event/edit-event";
 import {EventDetailPage} from "../pages/event-detail/event-detail";
 import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense-list';
+import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense
     ExpenseListPage,
     ExpenseModalPage,
     ModalAccommodationPage,
-    GearsPage
+    GearsPage,
+    ExpenseDashboardPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense
     ExpenseListPage,
     ExpenseModalPage,
     ModalAccommodationPage,
-    GearsPage
+    GearsPage,
+    ExpenseDashboardPage
   ],
   providers: [
     StatusBar,
