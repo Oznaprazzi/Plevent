@@ -30,7 +30,7 @@ export class MyApp {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(ExpenseDashboardPage);
+        this.nav.setRoot(EventPage);
       }else{
         this.nav.setRoot(HomePage);
       }
@@ -52,7 +52,7 @@ export class MyApp {
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
-        { title: 'Dashboard', component: ExpenseDashboardPage }
+        { title: 'Expenses', component: ExpenseDashboardPage }
       ];
     });
   }
