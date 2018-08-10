@@ -9,15 +9,16 @@ import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityp
 import { GroceriesPage } from '../pages/groceries/groceries';
 import { GearsPage } from '../pages/gears/gears';
 import { EventPage } from '../pages/events/events';
-import { AccommodationsPage } from "../pages/accommodations/accommodations"
+import { AccommodationsPage } from "../pages/accommodations/accommodations";
 
 import { Events } from 'ionic-angular';
 import {EventDetailPage} from "../pages/event-detail/event-detail";
+import { ExpenseListPage } from '../pages/expense-list/expense-list';
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class Plevent {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any;
@@ -50,7 +51,8 @@ export class MyApp {
         { title: 'Accommodation Planner', component: AccommodationsPage },
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },
-        { title: 'Gears', component: GearsPage }
+        { title: 'Gears', component: GearsPage },
+        { title: 'Expenses', component: ExpenseListPage }
       ];
     });
   }

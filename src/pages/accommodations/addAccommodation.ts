@@ -4,7 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-addAccommodation',
+  selector: 'page-accommodationPlanner',
   templateUrl: 'addAccommodation.html'
 })
 export class AddAccommodationPage {
@@ -28,7 +28,7 @@ export class AddAccommodationPage {
   }
 
   addAccommo(){
-    this.http.post('http://localhost:8080/accommo/addAccommo', {
+    this.http.post('http://localhost:8080/accommo/add_accommo', {
       title: this.title,
       street: this.street,
       state: this.state,
@@ -44,26 +44,12 @@ export class AddAccommodationPage {
       })
       .subscribe(res => {
         let alert = this.alertCtrl.create({
-          title: 'Low battery',
-          subTitle: '10% of battery remaining',
-          buttons: ['Dismiss']
+          title: 'Successfully added new accommodation',
+          buttons: ['Ok']
         });
         alert.present();
-        console.log(res);
-        /*this.error_message = '';
-        this.navCtrl.push(HomePage, {});*/
+        this.dismiss();
 
-
-      }, (err) => {
-        this.error_message = "Please fill in all the fields";
-      });
-  }
-
-  getAccommo(){
-    this.http.get('http://localhost:8080/accommo/getAccommo')
-      .subscribe(res => {
-        //this.accomodations = res;
-        console.log(res);
       }, (err) => {
         this.error_message = "Please fill in all the fields";
       });

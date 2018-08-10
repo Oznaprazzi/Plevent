@@ -22,7 +22,7 @@ export class GearsPage {
     this.updateList();
   }
 
-  updateList() {
+  private updateList() {
     this.http.get('http://localhost:8080/gears').subscribe(res => {
       this.gears = res;
     });

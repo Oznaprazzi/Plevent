@@ -1,10 +1,11 @@
-import { NavController } from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
-import { AddAccommodationPage } from "../addAccommodation/addAccommodation"
 import { DatePipe } from '@angular/common'
 
 import { Component } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
+import { AddAccommodationPage } from "./addAccommodation";
+import { ItemSliding } from 'ionic-angular';
 
 @Component({
   selector: 'page-accommodationPlanner',
@@ -12,29 +13,62 @@ import { ModalController, Platform, NavParams, ViewController } from 'ionic-angu
 })
 export class AccommodationsPage {
   accommodations:any;
-  constructor(public navCtrl: NavController, public http: HttpClient, public datepipe: DatePipe, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public datepipe: DatePipe, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+    this.updateList();
+  }
 
+  updateList(){
     this.http.get('http://localhost:8080/accommo/get_accommo')
       .subscribe(res => {
-      this.accommodations = res;
-    }, (err) => {
-      //this.error_message = "Please fill in all the fields";
-    });
+        this.accommodations = res;
+      });
   }
 
   openModal(accommo) {
-
     let modal = this.modalCtrl.create(ModalAccommodationPage, {"accommo": accommo});
     modal.present();
+    modal.onDidDismiss(() => {
+      this.updateList();
+    });
   }
 
   addAccomo(){
     let modal = this.modalCtrl.create(AddAccommodationPage);
     modal.present();
   }
+
+  deleteAccommo(accommo){
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Are you sure you want to delete this accommodation?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.http.delete(`http://localhost:8080/accommo/delete_accommo/${accommo._id}`).subscribe(res => {
+              this.updateList();
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  share(slidingItem: ItemSliding) {
+    slidingItem.close();
+  }
 }
 
 @Component({
+  selector: 'page-accommodationPlanner',
   templateUrl: 'editAccommodation.html'
 })
 export class ModalAccommodationPage {
