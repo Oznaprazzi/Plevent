@@ -49,6 +49,7 @@ export class ExpenseDashboardPage {
         this.total += item.amount;
       }
       this.expenses = res;
+      this.constructChart();
       console.log(this.pieCanvas);
     });
   }
@@ -76,14 +77,14 @@ export class ExpenseDashboardPage {
     }
     var result = {
         labels,
-        dataset: [dataset]
+        datasets: [dataset]
     }
     return result;
   }
 
   ionViewDidLoad() {
     this.updateList();
-    this.constructChart();
+    // this.constructChart();
     console.log('ionViewDidLoad ExpenseDashboardPage');
   }
 
