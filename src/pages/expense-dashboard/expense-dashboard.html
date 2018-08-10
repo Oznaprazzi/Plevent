@@ -7,12 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>expense-dashboard</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Expenses</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="page-content" padding>
+  <h1 class="expense-total" text-center>${{total}}</h1>
+  <p class="total-label" text-center>Total Expenses</p>
 </ion-content>

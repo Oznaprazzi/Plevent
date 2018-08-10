@@ -24,7 +24,6 @@ interface Expense {
 
 export class ExpenseListPage {
   expenses: Array<Expense>;
-  categories: any = []; 
 
   constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController) {
     this.updateList();
@@ -33,7 +32,6 @@ export class ExpenseListPage {
   openModal(expense){
     const params = {
       expense,
-      categories: this.categories
     }
     let modal = this.modalCtrl.create(ExpenseModalPage, params);
     modal.present();
@@ -122,12 +120,6 @@ export class ExpenseListPage {
 
   private updateList() {
     this.http.get('http://localhost:8080/expenses').subscribe((res: Array<Expense>) => {
-      for(var item of res){
-        var category = item.category;
-        if(!this.categories.includes(category)){
-          this.categories.push(category);
-        }
-      }
       this.expenses = res;
     });
   }
@@ -145,11 +137,9 @@ export class ExpenseListPage {
 
 export class ExpenseModalPage{
   expense : Expense;
-  categories;
 
   constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public alertCtrl: AlertController){
     this.expense = this.params.get('expense');
-    this.categories = this.params.get('categories');
   }
 
   doEditPrompt(){
