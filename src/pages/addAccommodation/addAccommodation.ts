@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {NavController, ViewController} from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 
@@ -19,8 +19,12 @@ export class AddAccommodationPage {
   guests: number;
   error_message = '';
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public viewCtrl: ViewController) {
 
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
   addAccommo(){

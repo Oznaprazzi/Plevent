@@ -1,14 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+  <ion-toolbar>
+    <button ion-button (click)="dismiss()" class="dismiss">
+      <ion-icon name="md-close"></ion-icon>
     </button>
-    <ion-title>Plevent Add Accommodation</ion-title>
-  </ion-navbar>
+    <ion-title class="modalTitle">
+      Add Accommodation
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <h1>Add Accommodation</h1>
   <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
   <ion-item>
     <ion-label color="primary">Title</ion-label>
@@ -55,7 +56,8 @@
     <ion-input type="number" placeholder="Number of guests" [(ngModel)]="guests"></ion-input>
   </ion-item>
 
-  <button ion-button (click)="addAccommo()" id="signup-button">Add Accommodation</button>
-  <button ion-button (click)="getAccommo()" id="signup-button">Get Accommodation</button>
+  <div text-center>
+    <button ion-button (click)="addAccommo()">Add Accommodation</button>
+  </div>
 
 </ion-content>
