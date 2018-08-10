@@ -1,10 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <button ion-button left (click)="dismiss()" class="dismiss">
-      <span ion-text color="primary" showWhen="ios">Cancel</span>
-      <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+    <button ion-button (click)="dismiss()" class="dismiss">
+      <ion-icon name="md-close"></ion-icon>
     </button>
-    <ion-title>
+    <ion-title class="modalTitle">
       Edit Accommodation
     </ion-title>
   </ion-toolbar>
@@ -57,6 +56,6 @@
   </ion-item>
 
   <div text-center>
-    <button ion-button (click)="updateAccommo()" id="signup-button">Update Accommodation</button>
+    <button ion-button (click)="updateAccommo()">Update Accommodation</button>
   </div>
 </ion-content>

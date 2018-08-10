@@ -29,9 +29,8 @@ export class AccommodationsPage {
   }
 
   addAccomo(){
-    this.navCtrl.push(AddAccommodationPage,{
-
-    });
+    let modal = this.modalCtrl.create(AddAccommodationPage);
+    modal.present();
   }
 }
 
