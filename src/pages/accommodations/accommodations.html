@@ -7,12 +7,16 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="page-content" padding>
   <ion-list>
     <ion-item-sliding *ngFor="let accommo of accommodations">
       <ion-item>
-        <h2>{{accommo.title}}</h2>
         <ion-grid>
+          <ion-row>
+            <ion-col>
+              <h2>{{accommo.title}}</h2>
+            </ion-col>
+          </ion-row>
           <ion-row>
             <ion-col>
               <p> <ion-icon name="pin"></ion-icon> {{accommo.street}}, {{accommo.state}}, {{accommo.city}}, {{accommo.country}}</p>

@@ -80,10 +80,13 @@ export class EventPage {
     });
   }
   tapped(eventObject){
+    console.log("tapped event");
     this.events.publish('eventsPage:inside');
     this.navCtrl.push(EventDetailPage,{
       eventObject: eventObject
+
     });
+    this.storage.set('tappedEventObject', eventObject);
   }
 
 }
