@@ -21,6 +21,7 @@ import { CreateEventPage } from "../pages/createEvents/createevent";
 import { EditEventPage } from "../pages/edit-event/edit-event";
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import {DayPilotModule} from "daypilot-pro-angular";
+import { AmChartsModule} from "@amcharts/amcharts3-angular";
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {DayPilotModule} from "daypilot-pro-angular";
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     DayPilotModule,
+    AmChartsModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

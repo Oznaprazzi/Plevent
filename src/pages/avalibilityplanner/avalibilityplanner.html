@@ -1,4 +1,6 @@
+
 <ion-header>
+
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -8,5 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-  <daypilot-gantt [config]="config"></daypilot-gantt>
+  <div id="chartdiv" [style.width.%]="100" [style.height.px]="500"></div>
 </ion-content>
+
+

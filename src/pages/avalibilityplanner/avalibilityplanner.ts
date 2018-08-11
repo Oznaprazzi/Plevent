@@ -1,27 +1,179 @@
 import {Component} from '@angular/core';
 import {Platform, NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
-import {DayPilot } from "daypilot-pro-angular";
+//import {DayPilot } from "daypilot-pro-angular";
 
-
+import { AmChartsService, AmChart } from "@amcharts/amcharts3-angular";
 import {HttpClient} from "@angular/common/http";
 import {Storage} from '@ionic/storage';
 @Component({
-  template: '<daypilot-gantt [config]="config"></daypilot-gantt>',
   selector: 'page-avalibilityplanner',
   templateUrl: 'avalibilityplanner.html'
 })
 export class AvalibilityplannerPage {
   avalPlanner: any;
   eventObject: any;
-
-  constructor(public navCtrl: NavController, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController) {
+  private chart: AmChart;
+  constructor(private AmCharts: AmChartsService,public navCtrl: NavController, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController) {
     storage.get('tappedEventObject').then((data) => {
       this.eventObject = data;
       if (!this.eventObject.hasAvalibilityPlanner) {
         this.openModal(this.eventObject);
       }
       this.getEventPeriodDates();
+
     });
+
+  }
+
+  ngAfterViewInit() {
+    this.chart = this.AmCharts.makeChart("chartdiv", {
+      "type": "gantt",
+      "theme": "light",
+      "marginRight": 70,
+      "period": "DD",
+      "dataDateFormat": "YYYY-MM-DD",
+      "columnWidth": 0.5,
+      "valueAxis": {
+        "type": "date"
+      },
+      "brightnessStep": 7,
+      "graph": {
+        "fillAlphas": 1,
+        "lineAlpha": 1,
+        "lineColor": "#fff",
+        "fillAlphas": 0.85,
+        "balloonText": "<b>[[task]]</b>:<br />[[open]] -- [[value]]"
+      },
+      "rotate": true,
+      "categoryField": "category",
+      "segmentsField": "segments",
+      "colorField": "color",
+      "startDateField": "start",
+      "endDateField": "end",
+      "dataProvider": [ {
+        "category": "Module #1",
+        "segments": [ {
+          "start": "2015-01-01",
+          "end": "2016-01-14",
+          "color": "#b9783f",
+          "task": "Gathering requirements"
+        }, {
+          "start": "2016-01-16",
+          "end": "2016-01-27",
+          "task": "Producing specifications"
+        }, {
+          "start": "2016-02-05",
+          "end": "2016-04-18",
+          "task": "Development"
+        }, {
+          "start": "2016-04-18",
+          "end": "2016-04-30",
+          "task": "Testing and QA"
+        } ]
+      }, {
+        "category": "Module #2",
+        "segments": [ {
+          "start": "2016-01-08",
+          "end": "2016-01-10",
+          "color": "#cc4748",
+          "task": "Gathering requirements"
+        }, {
+          "start": "2016-01-12",
+          "end": "2016-01-15",
+          "task": "Producing specifications"
+        }, {
+          "start": "2016-01-16",
+          "end": "2016-02-05",
+          "task": "Development"
+        }, {
+          "start": "2016-02-10",
+          "end": "2016-02-18",
+          "task": "Testing and QA"
+        } ]
+      }, {
+        "category": "Module #3",
+        "segments": [ {
+          "start": "2016-01-02",
+          "end": "2016-01-08",
+          "color": "#cd82ad",
+          "task": "Gathering requirements"
+        }, {
+          "start": "2016-01-08",
+          "end": "2016-01-16",
+          "task": "Producing specifications"
+        }, {
+          "start": "2016-01-19",
+          "end": "2016-03-01",
+          "task": "Development"
+        }, {
+          "start": "2016-03-12",
+          "end": "2016-04-05",
+          "task": "Testing and QA"
+        } ]
+      }, {
+        "category": "Module #4",
+        "segments": [ {
+          "start": "2016-01-01",
+          "end": "2016-01-19",
+          "color": "#2f4074",
+          "task": "Gathering requirements"
+        }, {
+          "start": "2016-01-19",
+          "end": "2016-02-03",
+          "task": "Producing specifications"
+        }, {
+          "start": "2016-03-20",
+          "end": "2016-04-25",
+          "task": "Development"
+        }, {
+          "start": "2016-04-27",
+          "end": "2016-05-15",
+          "task": "Testing and QA"
+        } ]
+      }, {
+        "category": "Module #5",
+        "segments": [ {
+          "start": "2016-01-01",
+          "end": "2016-01-12",
+          "color": "#448e4d",
+          "task": "Gathering requirements"
+        }, {
+          "start": "2016-01-12",
+          "end": "2016-01-19",
+          "task": "Producing specifications"
+        }, {
+          "start": "2016-01-19",
+          "end": "2016-03-01",
+          "task": "Development"
+        }, {
+          "start": "2016-03-08",
+          "end": "2016-03-30",
+          "task": "Testing and QA"
+        } ]
+      } ],
+      "valueScrollbar": {
+        "autoGridCount": true
+      },
+      "chartCursor": {
+        "cursorColor": "#55bb76",
+        "valueBalloonsEnabled": false,
+        "cursorAlpha": 0,
+        "valueLineAlpha": 0.5,
+        "valueLineBalloonEnabled": true,
+        "valueLineEnabled": true,
+        "zoomable": false,
+        "valueZoomable": true
+      },
+      "export": {
+        "enabled": true
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.chart) {
+      this.AmCharts.destroyChart(this.chart);
+    }
   }
 
   openModal(event) {
@@ -38,92 +190,6 @@ export class AvalibilityplannerPage {
       console.log("error" + err);
     });
   }
-
-
-
-  config: any = {
-    locale: "en-us",
-    days: DayPilot.Date.today().daysInMonth(),
-    startDate: DayPilot.Date.today().firstDayOfMonth(),
-    timeHeaders: [
-      {
-        "groupBy": "Month"
-      },
-      {
-        "groupBy": "Day",
-        "format": "d"
-      }
-    ],
-    scale: "Day",
-    showNonBusiness: true,
-    businessBeginsHour: 9,
-    businessEndsHour: 17,
-    businessWeekends: false,
-    cellWidthSpec: "Fixed",
-    cellWidth: 40,
-    crosshairType: "Header",
-    autoScroll: "Drag",
-    eventHeight: 30,
-    floatingEvents: true,
-    eventMovingStartEndEnabled: false,
-    eventResizingStartEndEnabled: false,
-    timeRangeSelectingStartEndEnabled: false,
-    allowEventOverlap: true,
-    groupConcurrentEvents: false,
-    eventStackingLineHeight: 100,
-
-    timeRangeSelectedHandling: "Enabled",
-    onTimeRangeSelected: function (args) {
-      var dp = this;
-      DayPilot.Modal.prompt("Create a new event:", "Event 1").then(function(modal) {
-        dp.clearSelection();
-        if (!modal.result) { return; }
-        dp.events.add(new DayPilot.Event({
-          start: args.start,
-          end: args.end,
-          id: DayPilot.guid(),
-          text: modal.result
-        }));
-      });
-    },
-    tasks: [
-      {
-        "id": 1,
-        "start": "2018-08-04T00:00:00",
-        "end": "2018-08-08T00:00:00",
-        "text": "Event 1"
-      },
-      {
-        "id": 2,
-        "start": "2018-08-06T00:00:00",
-        "end": "2018-08-11T00:00:00",
-        "text": "Event 2"
-      }
-    ],
-    eventMoveHandling: "Update",
-    onEventMoved: function (args) {
-      this.message("Event moved");
-    },
-    eventResizeHandling: "Resize",
-    onEventResized: function (args) {
-      this.message("Event resized");
-    },
-    eventDeleteHandling: "Deleted",
-    onEventDeleted: function (args) {
-      this.message("Event deleted");
-    },
-
-    eventCreateHandling: "Create",
-    onEventDeleted: function (args) {
-      this.message("Event Created");
-    },
-    eventClickHandling: "Disabled",
-    eventHoverHandling: "Disabled",
-    linkCreateHandling: "Disabled"
-
-  }
-
-
 
 }
 
