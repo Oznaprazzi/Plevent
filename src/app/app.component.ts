@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
@@ -14,6 +14,7 @@ import { AccommodationsPage } from "../pages/accommodations/accommodations";
 import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
+import { ChatbotPage } from '../pages/chatbot/chatbot';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +31,7 @@ export class Plevent {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(EventPage);
+        this.nav.setRoot(ChatbotPage);
       }else{
         this.nav.setRoot(HomePage);
       }
@@ -52,7 +53,8 @@ export class Plevent {
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
-        { title: 'Expenses', component: ExpenseDashboardPage }
+        { title: 'Expenses', component: ExpenseDashboardPage },
+        { title: 'Plive: Chatbot', component: ChatbotPage }
       ];
     });
   }
