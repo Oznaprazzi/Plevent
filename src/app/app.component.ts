@@ -14,6 +14,7 @@ import { AccommodationsPage } from "../pages/accommodations/accommodations";
 import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
+import { ExpenseListPage } from '../pages/expense-list/expense-list';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +31,7 @@ export class MyApp {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(EventPage);
+        this.nav.setRoot(ExpenseListPage);
       }else{
         this.nav.setRoot(HomePage);
       }
