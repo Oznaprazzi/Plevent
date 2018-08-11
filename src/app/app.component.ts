@@ -12,8 +12,8 @@ import { EventPage } from '../pages/events/events';
 import { AccommodationsPage } from "../pages/accommodations/accommodations";
 
 import { Events } from 'ionic-angular';
-import {EventDetailPage} from "../pages/event-detail/event-detail";
-import { ExpenseListPage } from '../pages/expense-list/expense-list';
+import { EventDetailPage } from "../pages/event-detail/event-detail";
+import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 
 @Component({
   templateUrl: 'app.html'
@@ -52,7 +52,7 @@ export class Plevent {
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
-        { title: 'Expenses', component: ExpenseListPage }
+        { title: 'Expenses', component: ExpenseDashboardPage }
       ];
     });
   }

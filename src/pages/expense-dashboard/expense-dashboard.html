@@ -1,0 +1,30 @@
+<!--
+  Generated template for the ExpenseDashboardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Expenses</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="page-content" padding>
+  <h1 class="expense-total" text-center>${{total}}</h1>
+  <p class="total-label" text-center>Total Expenses</p>
+  <h2 class="stats-label" text-center>Expenses by Category</h2>
+  <canvas #pieCanvas></canvas>
+  <ion-fab right bottom>
+    <button ion-fab color="danger"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab mini color="primary" (click)="toExpenseDetails()"><ion-icon name="clipboard"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

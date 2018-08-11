@@ -6,21 +6,25 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>Expenses</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="page-content" padding>
   <ion-list>
-    <ion-item *ngFor="let expense of expenses" (click)="openModal(expense)">
+    <ion-item *ngFor="let expense of expenses" (tap)="openModal(expense)" (swipe)="doDeletePrompt(expense)">
       <h2>{{expense.title}}</h2>
       <p>{{expense.category}}</p>
       <h1 item-end>${{expense.amount}}</h1>
     </ion-item>
   </ion-list>
   <ion-fab right bottom>
-    <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="danger"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+        <button ion-fab color="primary" (click)="doAddPrompt()"><ion-icon name="add"></ion-icon></button>
+        <button ion-fab color="primary" (click)="toDashboard()"><ion-icon name="home"></ion-icon></button>
+    </ion-fab-list>
   </ion-fab>
   
 </ion-content>
