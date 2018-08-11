@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 
 import { Plevent } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -21,6 +20,7 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
 import {EditEventPage} from "../pages/events/edit-event";
 import {EventDetailPage} from "../pages/event-detail/event-detail";
 import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense-list';
+import {UtilityService} from "./UtilityService";
 
 @NgModule({
   declarations: [
@@ -70,7 +70,7 @@ import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense
     StatusBar,
     HomePage,
     SplashScreen,
-    DatePipe,
+    UtilityService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

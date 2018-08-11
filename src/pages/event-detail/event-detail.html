@@ -17,6 +17,19 @@
 
 
 <ion-content class="page-content"  padding>
-  <h1 *ngIf="event != undefined">{{event.eventName}}</h1>
-
+  <div *ngIf="event != undefined">
+    <h1>{{event.eventName}}</h1>
+    <p>Date: {{event.eventDate | date: 'dd MMM yyyy'}}</p>
+    <p>No. people </p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <h2>Accommodations</h2>
+            <p></p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

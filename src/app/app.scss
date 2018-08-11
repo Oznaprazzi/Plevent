@@ -98,6 +98,7 @@ ion-navbar ion-title{
 ion-content{
   background-color: #ffffff;
 }
+
 .page-content, ion-item-sliding.item-md{
   background-color: #3B3B3B;
 }
@@ -107,6 +108,6 @@ ion-content{
   box-shadow: none;
 }
 
-
-
-
+.list-md ion-item-sliding{
+  background-color: transparent;
+}

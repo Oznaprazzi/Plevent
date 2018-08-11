@@ -4,34 +4,36 @@ import { HttpClient} from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { AddAccommodationPage } from "./addAccommodation";
+import {UtilityService} from "../../app/UtilityService";
 
 @Component({
   selector: 'page-accommodationPlanner',
   templateUrl: 'accommodations.html'
 })
+
 export class AccommodationsPage {
   accommodations:any;
-  constructor(public navCtrl: NavController, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController, public util: UtilityService) {
     this.updateList();
   }
 
   updateList(){
-    this.http.get('http://localhost:8080/accommo/get_accommo')
-      .subscribe(res => {
-        this.accommodations = res;
-      });
+    this.accommodations = this.util.updateAccommodations();
   }
 
-  openModal(accommo) {
+  editModal(accommo) {
     let modal = this.modalCtrl.create(ModalAccommodationPage, {"accommo": accommo});
-    modal.present();
     modal.onDidDismiss(() => {
       this.updateList();
     });
+    modal.present();
   }
 
   addAccomo(){
     let modal = this.modalCtrl.create(AddAccommodationPage);
+    modal.onDidDismiss(() => {
+      this.updateList();
+    });
     modal.present();
   }
 

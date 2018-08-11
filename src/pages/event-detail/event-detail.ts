@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
-import {UtilityService} from "../../app/utilityService";
 import { Storage } from '@ionic/storage';
+import {UtilityService} from "../../app/UtilityService";
 
 @Component({
   selector: 'page-event-detail',
@@ -9,10 +9,11 @@ import { Storage } from '@ionic/storage';
 })
 export class EventDetailPage {
   event:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+  accommodations:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public util: UtilityService) {
     storage.get('tappedEventObject').then((data) => {
       this.event = data;
-      console.log(this.event);
+      this.accommodations = this.util.updateAccommodations();
     });
   }
 

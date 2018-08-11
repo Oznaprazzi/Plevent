@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="page-content" padding>
+<ion-content class="page-content">
   <ion-list>
     <ion-item-sliding *ngFor="let accommo of accommodations">
       <ion-item>
@@ -51,7 +51,7 @@
         </ion-grid>
       </ion-item>
       <ion-item-options>
-        <button ion-button color="primary" icon-left (click)="openModal(accommo)">
+        <button ion-button color="primary" icon-left (click)="editModal(accommo)">
           <ion-icon name="ios-create"></ion-icon>
           Edit
         </button>
