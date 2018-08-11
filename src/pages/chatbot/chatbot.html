@@ -16,6 +16,34 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="page-content" padding>
+  <ion-list>
+    <ion-item *ngFor="let chat of chats" no-lines>
+      <ng-template #message>
+        <div class="chat-message" text-right *ngIf="chat.user==='User'">
+          <div class="right-bubble">
+            <span class="msg-name">Me</span>
+            <p text-wrap>{{chat.message}}</p>
+          </div>
+        </div>
+        <div class="chat-message" text-left *ngIf="chat.user!=='User'">
+          <div class="left-bubble">
+            <span class="msg-name">Plive</span>
+            <p text-wrap>{{chat.message}}</p>
+          </div>
+        </div>
+      </ng-template>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-input type="text" class="msg-box" placeholder="Type 'what can you do' to check Plive's function" [(ngModel)]="message" name="message"></ion-input>
+      <!-- <ion-fab right bottom> -->
+        <button ion-fab color="danger"><ion-icon name="paper-plane"></ion-icon></button>
+      <!-- </ion-fab> -->
+    </ion-row>
+  </ion-grid>
+</ion-footer>
