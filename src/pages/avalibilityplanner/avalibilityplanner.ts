@@ -38,9 +38,11 @@ export class AvalibilityplannerPage {
       console.log("error" + err);
     });
   }
+
+
+
   config: any = {
-    cellWidthSpec: "Fixed",
-    cellWidth: 40,
+    locale: "en-us",
     days: DayPilot.Date.today().daysInMonth(),
     startDate: DayPilot.Date.today().firstDayOfMonth(),
     timeHeaders: [
@@ -53,66 +55,72 @@ export class AvalibilityplannerPage {
       }
     ],
     scale: "Day",
-    taskHeight: 30,
-    rowHeaderHideIconEnabled: false,
-    rowMoveHandling: "Update",
-    onRowMoved: function (args) {
-      this.message("Row moved");
+    showNonBusiness: true,
+    businessBeginsHour: 9,
+    businessEndsHour: 17,
+    businessWeekends: false,
+    cellWidthSpec: "Fixed",
+    cellWidth: 40,
+    crosshairType: "Header",
+    autoScroll: "Drag",
+    eventHeight: 30,
+    floatingEvents: true,
+    eventMovingStartEndEnabled: false,
+    eventResizingStartEndEnabled: false,
+    timeRangeSelectingStartEndEnabled: false,
+    allowEventOverlap: true,
+    groupConcurrentEvents: false,
+    eventStackingLineHeight: 100,
+
+    timeRangeSelectedHandling: "Enabled",
+    onTimeRangeSelected: function (args) {
+      var dp = this;
+      DayPilot.Modal.prompt("Create a new event:", "Event 1").then(function(modal) {
+        dp.clearSelection();
+        if (!modal.result) { return; }
+        dp.events.add(new DayPilot.Event({
+          start: args.start,
+          end: args.end,
+          id: DayPilot.guid(),
+          text: modal.result
+        }));
+      });
     },
-    rowCreateHandling: "Enabled",
-    onRowCreate: function (args) {
-      this.tasks.add(new DayPilot.Task({
-        id: DayPilot.guid(),
-        text: args.text,
-        start: new DayPilot.Date().getDatePart(),
-        end: new DayPilot.Date().getDatePart().addDays(1)
-      }));
-    },
-    taskMoveHandling: "Update",
-    onTaskMoved: function (args) {
-      this.message("Task moved");
-    },
-    linkCreateHandling: "Disabled",
-    onLinkCreated: "Disabled",
     tasks: [
       {
         "id": 1,
-        "text": "Group 1",
-        "complete": 35,
-        "children": [
-          {
-            "id": 2,
-            "start": "2018-08-04T00:00:00",
-            "end": "2018-08-11T00:00:00",
-            "text": "Task 1",
-            "complete": 60
-          },
-          {
-            "id": 3,
-            "start": "2018-08-11T00:00:00",
-            "end": "2018-08-16T00:00:00",
-            "text": "Task 2",
-            "complete": 0
-          },
-          {
-            "id": 4,
-            "start": "2018-08-16T00:00:00",
-            "type": "Milestone",
-            "text": "Milestone 1",
-            "end": "2018-08-16T00:00:00"
-          }
-        ],
         "start": "2018-08-04T00:00:00",
-        "end": "2018-08-16T00:00:00"
+        "end": "2018-08-08T00:00:00",
+        "text": "Event 1"
+      },
+      {
+        "id": 2,
+        "start": "2018-08-06T00:00:00",
+        "end": "2018-08-11T00:00:00",
+        "text": "Event 2"
       }
     ],
-    links: [
-      {
-        "from": 2,
-        "to": 3,
-        "type": "FinishToStart"
-      }
-    ]
+    eventMoveHandling: "Update",
+    onEventMoved: function (args) {
+      this.message("Event moved");
+    },
+    eventResizeHandling: "Resize",
+    onEventResized: function (args) {
+      this.message("Event resized");
+    },
+    eventDeleteHandling: "Deleted",
+    onEventDeleted: function (args) {
+      this.message("Event deleted");
+    },
+
+    eventCreateHandling: "Create",
+    onEventDeleted: function (args) {
+      this.message("Event Created");
+    },
+    eventClickHandling: "Disabled",
+    eventHoverHandling: "Disabled",
+    linkCreateHandling: "Disabled"
+
   }
 
 
