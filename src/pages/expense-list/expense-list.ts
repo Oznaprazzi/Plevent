@@ -9,12 +9,6 @@ import { ExpenseDashboardPage } from '../expense-dashboard/expense-dashboard';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-interface Expense {
-  _id? : string,
-  title: string,
-  category: string,
-  amount: number
-}
 
 @IonicPage()
 @Component({
@@ -24,7 +18,7 @@ interface Expense {
 
 
 export class ExpenseListPage {
-  expenses: Array<Expense>;
+  expenses: any;
 
   constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController) {
     this.updateList();
@@ -118,13 +112,13 @@ export class ExpenseListPage {
 
   private deleteItem(item){
     var id = item._id;
-    this.http.delete(`http://localhost:8080/expenses/expense/${id}`).subscribe(res => {
+    this.http.delete(`http://localhost:808s0/expenses/expense/${id}`).subscribe(res => {
       this.updateList();
     });
   }
 
   private updateList() {
-    this.http.get('http://localhost:8080/expenses').subscribe((res: Array<Expense>) => {
+    this.http.get('http://localhost:8080/expenses').subscribe(res => {
       this.expenses = res;
     });
   }
@@ -141,7 +135,7 @@ export class ExpenseListPage {
 })
 
 export class ExpenseModalPage{
-  expense : Expense;
+  expense : any;
 
   constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public alertCtrl: AlertController){
     this.expense = this.params.get('expense');

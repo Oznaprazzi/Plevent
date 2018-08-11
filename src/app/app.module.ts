@@ -20,7 +20,6 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
 import {EditEventPage} from "../pages/events/edit-event";
 import {EventDetailPage} from "../pages/event-detail/event-detail";
 import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense-list';
-import {UtilityService} from "./UtilityService";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 
 @NgModule({
@@ -73,7 +72,6 @@ import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboa
     StatusBar,
     HomePage,
     SplashScreen,
-    UtilityService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

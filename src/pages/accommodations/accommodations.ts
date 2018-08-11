@@ -4,7 +4,6 @@ import { HttpClient} from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { AddAccommodationPage } from "./addAccommodation";
-import {UtilityService} from "../../app/UtilityService";
 
 @Component({
   selector: 'page-accommodationPlanner',
@@ -13,12 +12,14 @@ import {UtilityService} from "../../app/UtilityService";
 
 export class AccommodationsPage {
   accommodations:any;
-  constructor(public navCtrl: NavController, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController, public util: UtilityService) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     this.updateList();
   }
 
   updateList(){
-    this.accommodations = this.util.updateAccommodations();
+    this.http.get('http://localhost:8080/accommo/get_accommo').subscribe(res => {
+      this.accommodations = res;
+    });
   }
 
   editModal(accommo) {

@@ -17,7 +17,7 @@
 
 
 <ion-content class="page-content"  padding>
-  <div *ngIf="event != undefined">
+  <div *ngIf="event != undefined && accommodations != undefined">
     <h1>{{event.eventName}}</h1>
     <p>Date: {{event.eventDate | date: 'dd MMM yyyy'}}</p>
     <p>No. people </p>
@@ -26,6 +26,12 @@
         <ion-col>
           <ion-item>
             <h2>Accommodations</h2>
+            <!--<p>{{accommodations.length()}}</p>-->
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <h2>Total Expenses $</h2>
             <p></p>
           </ion-item>
         </ion-col>
