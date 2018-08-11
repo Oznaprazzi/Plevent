@@ -6,7 +6,7 @@ import{EditEventPage} from '../edit-event/edit-event';
 import{EventDetailPage} from '../event-detail/event-detail';
 import {CreateEventPage} from "../createEvents/createevent";
 import {HttpClient} from "@angular/common/http";
-import { Events } from 'ionic-angular';
+import {Events} from 'ionic-angular';
 
 @Component({
   selector: 'page-events',
@@ -33,7 +33,6 @@ export class EventPage {
 
     this.http.get(`http://localhost:8080/events/event/${this.userid}`).subscribe(res => {
       this.eventsList = res as Array<Object>;
-      console.log(this.eventsList);
     }, (err) => {
       console.log("error" + err);
     });
@@ -47,9 +46,8 @@ export class EventPage {
     });
   }
 
-  deleteEvent(eventID ) {
+  deleteEvent(eventID) {
     var id = eventID;
-    console.log(id);
     this.http.delete(`http://localhost:8080/events/delete_event/${id}`).subscribe(res => {
       console.log(res);
       this.getAllEvents();
@@ -57,19 +55,18 @@ export class EventPage {
   }
 
   editEvent(eventObject) {
-    console.log("edit event");
-
-    this.navCtrl.push(EditEventPage,{
-      eventObject:eventObject
+    this.navCtrl.push(EditEventPage, {
+      eventObject: eventObject
 
     });
   }
-  tapped(eventObject){
-    console.log("tapped event");
+
+  tapped(eventObject) {
     this.events.publish('eventsPage:inside');
-    this.navCtrl.push(EventDetailPage,{
+    this.navCtrl.push(EventDetailPage, {
       eventObject: eventObject
     });
+    this.storage.set('tappedEventObject', eventObject);
   }
 
 }

@@ -20,6 +20,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { CreateEventPage } from "../pages/createEvents/createevent";
 import { EditEventPage } from "../pages/edit-event/edit-event";
 import { EventDetailPage } from "../pages/event-detail/event-detail";
+import {DayPilotModule} from "daypilot-pro-angular";
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { EventDetailPage } from "../pages/event-detail/event-detail";
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
+    DayPilotModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
