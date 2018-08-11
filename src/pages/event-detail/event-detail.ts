@@ -11,6 +11,8 @@ import {ExpenseDashboardPage} from "../expense-dashboard/expense-dashboard";
 })
 export class EventDetailPage {
   event:any;
+  accommodations:any;
+  expenses:any;
   accommoL = 0;
   totalExpenses = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient) {
@@ -23,15 +25,15 @@ export class EventDetailPage {
 
   getAccommo(){
     this.http.get('http://localhost:8080/accommo/get_accommo').subscribe(res => {
-      var accommodations:any = res;
-      accommoL = accommodations.length;
+      this.accommodations = res;
+      this.accommoL = this.accommodations.length;
     });
   }
 
   getEvents(){
     this.http.get('http://localhost:8080/expenses').subscribe(res => {
-      var expenses:any = res;
-      for(var item of expenses){
+      this.expenses = res;
+      for(var item of this.expenses){
         this.totalExpenses += item.amount;
       }
     });
