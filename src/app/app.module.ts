@@ -44,7 +44,11 @@ import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboa
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(Plevent),
+    IonicModule.forRoot(Plevent,{
+      backButtonIcon: "md-arrow-back",
+      iconMode: "md",
+      mode:'md'
+    }),
     HttpClientModule,
     IonicStorageModule.forRoot()
   ],
