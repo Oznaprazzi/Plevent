@@ -7,41 +7,63 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="page-content">
   <ion-list>
-    <ion-item *ngFor="let accommo of accommodations">
-      <h2>{{accommo.title}}</h2>
-      <ion-grid (click)="openModal(accommo)">
-        <ion-row>
-          <ion-col>
-            <p> <ion-icon name="pin"></ion-icon> {{accommo.street}}, {{accommo.state}}, {{accommo.city}}, {{accommo.country}}</p>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <h3>From</h3>
-            <p>{{ accommo.fromDate | date: 'dd MMM yyyy'}}</p>
-          </ion-col>
-          <ion-col>
-            <h3>To</h3>
-            <p>{{ accommo.toDate | date: 'dd MMM yyyy'}}</p>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <h3>Price $</h3>
-            <p>{{accommo.price}}</p>
-          </ion-col>
-          <ion-col>
-            <h3>Guests <ion-icon name="people"></ion-icon> </h3>
-            <p>{{accommo.guests}}</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+    <ion-item-sliding *ngFor="let accommo of accommodations">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <h2>{{accommo.title}}</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p> <ion-icon name="pin"></ion-icon> {{accommo.street}}, {{accommo.state}}, {{accommo.city}}, {{accommo.country}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h3>From</h3>
+              <p>{{ accommo.fromDate | date: 'dd MMM yyyy'}}</p>
+            </ion-col>
+            <ion-col>
+              <h3>To</h3>
+              <p>{{ accommo.toDate | date: 'dd MMM yyyy'}}</p>
+            </ion-col>
+            <ion-col col-auto>
+              <ion-icon name="arrow-dropright" class="lastcol"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h3>Price $</h3>
+              <p>{{accommo.price}}</p>
+            </ion-col>
+            <ion-col>
+              <h3>Guests <ion-icon name="people"></ion-icon> </h3>
+              <p>{{accommo.guests}}</p>
+            </ion-col>
+            <ion-col col-auto>
+              <ion-icon class="lastcol"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="primary" icon-left (click)="editModal(accommo)">
+          <ion-icon name="ios-create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger" icon-left (click)="deleteAccommo(accommo)">
+          <ion-icon name="ios-trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <ion-fab bottom right >
-    <button ion-fab (click)="addAccomo()"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="danger" (click)="addAccomo()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

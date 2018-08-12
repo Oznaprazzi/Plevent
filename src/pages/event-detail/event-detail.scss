@@ -1,3 +1,25 @@
 page-event-detail {
+  h1{
+    color: #E07A24;
+  }
 
+  p{
+    color: #54ABAB;
+    font-size: 2rem;
+    font-family: Noturnal;
+  }
+
+  ion-item{
+    padding: 25px 5px !important;
+    text-align: center !important;
+  }
+
+  .item-md.item-block .item-inner{
+    border: none;
+    padding: 0px;
+  }
+
+  .item-md h2{
+    color: white;
+  }
 }

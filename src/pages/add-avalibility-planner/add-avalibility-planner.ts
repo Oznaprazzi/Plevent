@@ -13,14 +13,14 @@ export class AddAvalibilityPlannerPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage) {
     storage.get('tappedEventObject').then((data) => {
-      this.eventObject = data;
+      this.eventObject = data
+
     });
   }
 
 
-  openModal(eventObject) {
-  console.log(eventObject);
-    let modal = this.modalCtrl.create(ModalSelectDatePage, {"eventObject": eventObject});
+  openModal() {
+    let modal = this.modalCtrl.create(ModalSelectDatePage, {"eventObject": this.eventObject});
     modal.present();
   }
 

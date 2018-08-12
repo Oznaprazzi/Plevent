@@ -1,14 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <button ion-button (click)="dismiss()" class="dismiss">
-      <ion-icon name="md-close"></ion-icon>
-    </button>
-    <ion-title class="modalTitle">
-      Edit Accommodation
-    </ion-title>
+    <ion-title class="modalTitle">Edit Accommodation</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows" color="primary"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="page-content" >
   <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
   <ion-item>
     <ion-label color="primary">Title</ion-label>

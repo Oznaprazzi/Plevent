@@ -1,14 +1,17 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Edit Event</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar>
+    <ion-title class="modalTitle">Edit Event</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows" color="primary"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="page-content"  padding>
   <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
   <ion-item>
     <ion-label>Event Name</ion-label>
@@ -26,5 +29,8 @@
       <ion-option *ngFor="let user of users"  value={{user._id}}>{{user.username}}</ion-option>
     </ion-select>
   </ion-item>
- <button ion-button (click)="editEvent()" class="login-button">Update Event</button>
+
+  <div text-center>
+    <button ion-button (click)="editEvent()" class="login-button">Update Event</button>
+  </div>
 </ion-content>

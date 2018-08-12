@@ -2,22 +2,24 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { AvalibilityplannerPage } from '../pages/avalibilityplanner/avalibilityplanner';
 import { GroceriesPage } from '../pages/groceries/groceries';
 import { GearsPage } from '../pages/gears/gears';
 import { EventPage } from '../pages/events/events';
-import { AccommodationsPage } from "../pages/accommodations/accommodations"
+import { AccommodationsPage } from "../pages/accommodations/accommodations";
 
 import { Events } from 'ionic-angular';
-import {EventDetailPage} from "../pages/event-detail/event-detail";
+import { EventDetailPage } from "../pages/event-detail/event-detail";
+import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
+import { ChatbotPage } from '../pages/chatbot/chatbot';
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class Plevent {
   @ViewChild(Nav) nav: Nav;
 
 
@@ -53,7 +55,9 @@ export class MyApp {
         { title: 'Accommodation Planner', component: AccommodationsPage },
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },
-        { title: 'Gears', component: GearsPage }
+        { title: 'Gears', component: GearsPage },
+        { title: 'Expenses', component: ExpenseDashboardPage },
+        { title: 'Talk to Plive', component: ChatbotPage }
       ];
     });
   }
@@ -70,11 +74,13 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
     this.events.publish('eventsPage:inside');
     if(page.title == 'Logout'){
       this.events.publish('eventsPage:outside');
       this.storage.set('loggedIn', false);
+    }else if(page.title == 'Home'){
+      this.events.publish('eventsPage:outside');
     }
+    this.nav.setRoot(page.component);
   }
 }

@@ -17,8 +17,8 @@
 
 @font-face {
   font-family: Noturnal;
-  src: url("../assets/fonts/Noturnal_Hand.woff") format('woff'),
-  url("../assets/fonts/Noturnal_Hand.ttf")  format('truetype');
+  src: url("../assets/fonts/Romanica.woff") format('woff'),
+  url("../assets/fonts/Romanica.ttf")  format('truetype');
 }
 
 h1, h2, h3, h4, h5, ion-title{
@@ -26,7 +26,6 @@ h1, h2, h3, h4, h5, ion-title{
 }
 
 .fab-md{
-  background-color: #e57d21;
   border: 1px solid white;
 }
 
@@ -72,7 +71,7 @@ ion-navbar ion-title{
 }
 
 .item-block {
-  margin-bottom: 2px !important;
+  margin-bottom: 0px !important;
 }
 
 .dismiss{
@@ -87,6 +86,28 @@ ion-navbar ion-title{
   display: inline;
 }
 
-ion-item{
-  padding: 5px !important;
+.list-md ion-item-options{
+  border: none;
 }
+
+.lastcol{
+  width: 25px;
+}
+
+ion-content{
+  background-color: #ffffff;
+}
+
+.page-content, ion-item-sliding.item-md{
+  background-color: #3B3B3B;
+}
+
+.menu-close{
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.list-md ion-item-sliding{
+  background-color: transparent;
+}
+

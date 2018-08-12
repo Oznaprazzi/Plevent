@@ -1,3 +1,9 @@
 page-accommodationplanner {
+  ion-item{
+    padding: 0px 5px !important;
+    .item-inner{
+      box-shadow: none !important;
+    }
+  }
 
 }

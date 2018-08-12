@@ -21,10 +21,6 @@ export class HomePage {
   //show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient, private storage: Storage, public events: Events) {
     // Or to get a key/value pair
-
-
-
-
   }
 
   login() {

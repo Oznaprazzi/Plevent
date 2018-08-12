@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import {NavController, ViewController} from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'page-addAccommodation',
+  selector: 'page-accommodationPlanner',
   templateUrl: 'addAccommodation.html'
 })
 export class AddAccommodationPage {
@@ -17,10 +18,13 @@ export class AddAccommodationPage {
   toDate: any;
   price: number;
   guests: number;
+  event : any;
   error_message = '';
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public viewCtrl: ViewController) {
-
+  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public viewCtrl: ViewController, public storage: Storage) {
+    storage.get('tappedEventObject').then((data) => {
+      this.event = data;
+    });
   }
 
   dismiss() {
@@ -28,7 +32,7 @@ export class AddAccommodationPage {
   }
 
   addAccommo(){
-    this.http.post('http://localhost:8080/accommo/addAccommo', {
+    this.http.post('http://localhost:8080/accommo/add_accommo', {
       title: this.title,
       street: this.street,
       state: this.state,
@@ -37,33 +41,20 @@ export class AddAccommodationPage {
       fromDate: this.fromDate,
       toDate: this.toDate,
       price: this.price,
-      guests: this.guests
+      guests: this.guests,
+      event: this.event._id
       },
       {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
         let alert = this.alertCtrl.create({
-          title: 'Low battery',
-          subTitle: '10% of battery remaining',
-          buttons: ['Dismiss']
+          title: 'Successfully added new accommodation',
+          buttons: ['Ok']
         });
         alert.present();
-        console.log(res);
-        /*this.error_message = '';
-        this.navCtrl.push(HomePage, {});*/
+        this.dismiss();
 
-
-      }, (err) => {
-        this.error_message = "Please fill in all the fields";
-      });
-  }
-
-  getAccommo(){
-    this.http.get('http://localhost:8080/accommo/getAccommo')
-      .subscribe(res => {
-        //this.accomodations = res;
-        console.log(res);
       }, (err) => {
         this.error_message = "Please fill in all the fields";
       });
