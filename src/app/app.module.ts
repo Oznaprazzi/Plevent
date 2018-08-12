@@ -22,11 +22,13 @@ import {EventDetailPage} from "../pages/event-detail/event-detail";
 import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense-list';
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
+import {UserDetailsPage} from "../pages/user-details/user-details";
 
 @NgModule({
   declarations: [
     Plevent,
     HomePage,
+    UserDetailsPage,
     EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
@@ -58,6 +60,7 @@ import { ChatbotPage } from '../pages/chatbot/chatbot';
   entryComponents: [
     Plevent,
     HomePage,
+    UserDetailsPage,
     EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,

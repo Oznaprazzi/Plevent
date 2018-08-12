@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content padding>
-  <h2> Sign Up</h2>
   <ion-label class="alert alert-danger" *ngIf="show_error_message">{{error_message}}</ion-label>
   <ion-item>
     <ion-label color="primary">Username</ion-label>
@@ -21,10 +20,10 @@
     <ion-input type= "password" placeholder="Re-enter password" [(ngModel)]="repassword"></ion-input>
   </ion-item>
 
-  <ion-item>
+  <!--<ion-item>
     <ion-label color="primary">Email Address</ion-label>
     <ion-input type="email" placeholder="someone@email.com" [(ngModel)]="email"></ion-input>
-  </ion-item>
+  </ion-item>-->
 
   <ion-item>
     <ion-label color="primary">First Name</ion-label>

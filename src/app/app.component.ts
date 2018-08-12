@@ -15,6 +15,7 @@ import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
+import { UserDetailsPage } from "../pages/user-details/user-details";
 
 @Component({
   templateUrl: 'app.html'
@@ -39,22 +40,24 @@ export class Plevent {
 
     this.events.subscribe('eventsPage:outside',()=>{
       this.pages = [
-        {title:'Home', component: EventPage},
-        //{title:'My Account', component: MyAccountPage},
+        {title:'Events', component: EventPage},
+        {title:'My Account', component: UserDetailsPage},
         {title:'Logout', component: HomePage}
       ];
     });
 
     this.events.subscribe('eventsPage:inside',()=>{
       this.pages = [
-        { title: 'Home', component: EventPage },
+        { title: 'Events', component: EventPage },
+        { title: 'My Account', component: UserDetailsPage },
         { title: 'Event Details', component: EventDetailPage },
         { title: 'Accommodation Planner', component: AccommodationsPage },
         { title: 'Availability Planner', component: AvalibilityplannerPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
-        { title: 'Talk to Plive', component: ChatbotPage }
+        { title: 'Talk to Plive', component: ChatbotPage },
+        {title:'Logout', component: HomePage}
       ];
     });
   }
@@ -75,7 +78,7 @@ export class Plevent {
     if(page.title == 'Logout'){
       this.events.publish('eventsPage:outside');
       this.storage.set('loggedIn', false);
-    }else if(page.title == 'Home'){
+    }else if(page.title == 'Events'){
       this.events.publish('eventsPage:outside');
     }
     this.nav.setRoot(page.component);

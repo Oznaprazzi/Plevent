@@ -18,7 +18,8 @@
             </ion-item>
 
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>
+              <ion-input type="{{type}}" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>
+              <button ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="{{eye_icon}}"></ion-icon></button>
             </ion-item>
 
           </ion-list>
