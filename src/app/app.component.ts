@@ -31,7 +31,7 @@ export class Plevent {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(ChatbotPage);
+        this.nav.setRoot(EventPage);
       }else{
         this.nav.setRoot(HomePage);
       }
