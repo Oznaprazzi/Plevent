@@ -21,6 +21,7 @@ import {EditEventPage} from "../pages/events/edit-event";
 import {EventDetailPage} from "../pages/event-detail/event-detail";
 import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense-list';
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
+import { ChatbotPage } from '../pages/chatbot/chatbot';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboa
     ExpenseModalPage,
     ModalAccommodationPage,
     GearsPage,
-    ExpenseDashboardPage
+    ExpenseDashboardPage,
+    ChatbotPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboa
     ExpenseModalPage,
     ModalAccommodationPage,
     GearsPage,
-    ExpenseDashboardPage
+    ExpenseDashboardPage,
+    ChatbotPage
   ],
   providers: [
     StatusBar,
