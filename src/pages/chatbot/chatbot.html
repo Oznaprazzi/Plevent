@@ -28,7 +28,7 @@
       <div class="chat-message" text-left *ngIf="chat.user!=data.user">
         <div class="left-bubble">
           <span class="msg-name">Plive</span>
-          <p class="msg" text-wrap>{{chat.message}}</p>
+          <p class="msg" text-wrap>{{chat.message}}<a class="link" [href]="chat.url" *ngIf="chat.url!=null" >Click here!</a></p>
         </div>
       </div>
     </ion-item>

@@ -15,6 +15,12 @@ interface User {
   lname: string
 }
 
+interface Chat {
+  user: string,
+  message: string,
+  url: string
+}
+
 @IonicPage()
 @Component({
   selector: 'page-chatbot',
@@ -25,9 +31,10 @@ export class ChatbotPage {
   @ViewChild(Content) contentArea: Content;
   @ViewChild(List, {read: ElementRef}) chatList: ElementRef;
 
-  data = {
+  data : Chat = {
     user: null,
-    message: null
+    message: null,
+    url: null
   }
   user: User;
   chats: any = [];
@@ -44,8 +51,8 @@ export class ChatbotPage {
     }
     this.chats.push(message);
     // send message to server
-    this.http.post('http://localhost:8080/chatbot', message).subscribe(res => {
-      var reply = res;
+    this.http.post('http://localhost:8080/chatbot', message).subscribe((res : Chat) => {
+      var reply = this.processMessage(res);
       this.chats.push(reply);
     });
     this.data.message = null;
@@ -57,9 +64,23 @@ export class ChatbotPage {
       this.user = data;
       this.data = {
         user: `${this.user.fname} ${this.user.lname}`,
-        message: null
+        message: null,
+        url: null
       }
     }).catch(err => console.log(err));
+  }
+
+  private processMessage(chat: Chat) : Chat {
+    var message = chat.message;
+    var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    var regex = new RegExp(expression);
+    var urls = message.match(regex);
+    message = message.replace(regex, '');
+    return {
+      user: chat.user,
+      message,
+      url: urls ? urls[0] : null
+    }
   }
 
   ionViewDidLoad() {
