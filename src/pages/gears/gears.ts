@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import {Storage} from '@ionic/storage';
 
 /**
  * Generated class for the GearsPage page.
@@ -17,13 +18,17 @@ import { HttpClient } from '@angular/common/http';
 export class GearsPage {
 
   gears: any;
+  event: any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController,public navParams: NavParams) {
-    this.updateList();
+  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController,public navParams: NavParams, public storage: Storage) {
+    storage.get('tappedEventObject').then((data) => {
+      this.event = data;
+      this.updateList();
+    });
   }
 
   private updateList() {
-    this.http.get('http://localhost:8080/gears').subscribe(res => {
+    this.http.get(`http://localhost:8080/gears/${this.event._id}`).subscribe(res => {
       this.gears = res;
     });
   }
@@ -81,7 +86,8 @@ export class GearsPage {
 
   private addItem(item: {name}){
     var data = {
-      description: item.name
+      description: item.name,
+      event: this.event._id
     }
     this.http.post('http://localhost:8080/gears/item', data).subscribe(res => {
       this.updateList();

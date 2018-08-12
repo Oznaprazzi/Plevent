@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController, ModalController, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { ExpenseDashboardPage } from '../expense-dashboard/expense-dashboard';
+import {Storage} from '@ionic/storage';
 
 /**
  * Generated class for the ExpenseListPage page.
@@ -19,9 +20,13 @@ import { ExpenseDashboardPage } from '../expense-dashboard/expense-dashboard';
 
 export class ExpenseListPage {
   expenses: any;
+  event:any;
 
-  constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController) {
-    this.updateList();
+  constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
+    storage.get('tappedEventObject').then((data) => {
+      this.event = data;
+      this.updateList();
+    });
   }
 
   toDashboard(){
@@ -53,7 +58,7 @@ export class ExpenseListPage {
       buttons: [
         {
           text: 'Add',
-          handler: (data: {title, category, amount}) => {
+          handler: (data: {title, category, amount, event}) => {
             // Do validity checks
             if(!data.title || !data.category || !data.amount) {
               this.notifyError('Title, category, and amount must filled in.');
@@ -85,7 +90,8 @@ export class ExpenseListPage {
     alert.present();
   }
 
-  private addItem(item: {title, category, amount}){
+  private addItem(item: {title, category, amount, event}){
+    item.event = this.event._id;
     this.http.post('http://localhost:8080/expenses/expense', item).subscribe(res => {
       this.updateList();
     });
@@ -118,7 +124,7 @@ export class ExpenseListPage {
   }
 
   private updateList() {
-    this.http.get('http://localhost:8080/expenses').subscribe(res => {
+    this.http.get(`http://localhost:8080/expenses/${this.event._id}`).subscribe(res => {
       this.expenses = res;
     });
   }

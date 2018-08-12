@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Chart } from 'chart.js';
 import { ExpenseListPage } from '../expense-list/expense-list';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ExpenseDashboardPage page.
@@ -31,10 +32,14 @@ export class ExpenseDashboardPage {
   categories: any = {};
   data: any;
   colours: any;
-  
+  event: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public storage: Storage) {
+    storage.get('tappedEventObject').then((data) => {
+      this.event = data;
+      this.updateList();
+    });
   }
 
   toExpenseDetails(){
@@ -42,7 +47,7 @@ export class ExpenseDashboardPage {
   }
 
   private updateList() {
-    this.http.get('http://localhost:8080/expenses').subscribe((res: Array < Expense > ) => {
+    this.http.get(`http://localhost:8080/expenses${this.event._id}`).subscribe((res: Array < Expense > ) => {
       this.total = 0;
       for (var item of res) {
         var categoryPrice = this.categories[item.category];
@@ -83,12 +88,6 @@ export class ExpenseDashboardPage {
         datasets: [dataset]
     }
     return result;
-  }
-
-  ionViewDidLoad() {
-    this.updateList();
-    // this.constructChart();
-    console.log('ionViewDidLoad ExpenseDashboardPage');
   }
 
   // ---------------------------------
