@@ -1,9 +1,94 @@
 page-chatbot {
     .page-content {
         background-color: #3B3B3B;
+        overflow: hidden; 
+        .item-md {
+            background: none;
+        }
+        .item-ios {
+            background: none;
+        }
+    }
+
+    ion-item {
+        padding-left: 0px !important;
+    }
+
+    ion-label {
+        padding-bottom: 3px !important;
     }
 
     .msg-box {
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
         background-color: white;
+    }
+
+    .chat-message {
+        width: 80%;
+        min-height: 40px;
+        .right-bubble {
+            position: relative;
+            background: #fcf88d;
+            border-top-left-radius: .4em;
+            border-bottom-left-radius: .4em;
+            border-bottom-right-radius: .4em;
+            padding: 5px 15px 10px;
+            left: 15%;
+            span.msg-name {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #2c2c2c;
+            }
+            p.msg {
+                color: #2c2c2c;
+            }
+        }
+        .right-bubble:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 0;
+            height: 0;
+            border: 27px solid transparent;
+            border-left-color:#fcf88d;
+            border-right: 0;
+            border-top: 0;
+            margin-top: -13.5px;
+            margin-right: -27px;
+        }
+        .left-bubble {
+            position: relative;
+            background: #c39fe0;
+            border-top-right-radius: .4em;
+            border-bottom-left-radius: .4em;
+            border-bottom-right-radius: .4em;
+            padding: 5px 15px 10px;
+            left: 5%;
+            span.msg-name {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #2c2c2c;
+            }
+            p.msg {
+                color: #2c2c2c;
+            }
+        }
+        .left-bubble:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 0;
+            border: 27px solid transparent;
+            border-right-color: #c39fe0;
+            border-left: 0;
+            border-top: 0;
+            margin-top: -13.5px;
+            margin-left: -27px;
+        }
     }
 }

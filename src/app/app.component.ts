@@ -54,7 +54,7 @@ export class Plevent {
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
-        { title: 'Plive: Chatbot', component: ChatbotPage }
+        { title: 'Talk to Plive', component: ChatbotPage }
       ];
     });
   }

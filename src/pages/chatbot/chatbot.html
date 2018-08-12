@@ -10,40 +10,38 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Plive</ion-title>
+    <ion-title>Ask Plive</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="page-content" padding>
-  <ion-list>
+  <ion-list #messages>
     <ion-item *ngFor="let chat of chats" no-lines>
-      <ng-template #message>
-        <div class="chat-message" text-right *ngIf="chat.user==='User'">
-          <div class="right-bubble">
-            <span class="msg-name">Me</span>
-            <p text-wrap>{{chat.message}}</p>
-          </div>
+      <div class="chat-message" text-right *ngIf="chat.user==data.user">
+        <div class="right-bubble">
+          <span class="msg-name">Me</span>
+          <p class="msg" text-wrap>{{chat.message}}</p>
         </div>
-        <div class="chat-message" text-left *ngIf="chat.user!=='User'">
-          <div class="left-bubble">
-            <span class="msg-name">Plive</span>
-            <p text-wrap>{{chat.message}}</p>
-          </div>
+      </div>
+      <div class="chat-message" text-left *ngIf="chat.user!=data.user">
+        <div class="left-bubble">
+          <span class="msg-name">Plive</span>
+          <p class="msg" text-wrap>{{chat.message}}</p>
         </div>
-      </ng-template>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>
 
 <ion-footer>
-  <ion-grid>
-    <ion-row>
-      <ion-input type="text" class="msg-box" placeholder="Type 'what can you do' to check Plive's function" [(ngModel)]="message" name="message"></ion-input>
-      <!-- <ion-fab right bottom> -->
-        <button ion-fab color="danger"><ion-icon name="paper-plane"></ion-icon></button>
-      <!-- </ion-fab> -->
-    </ion-row>
-  </ion-grid>
+  <ion-toolbar>
+    <ion-input type="text" text-center class="msg-box" placeholder="Ask Plive what she can do..." [(ngModel)]="data.message" (keyup.enter)="send()"></ion-input>
+    <ion-buttons end>
+      <button ion-button icon-end color="danger" (click)="send()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-footer>
