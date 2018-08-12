@@ -1,27 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { HttpClientModule } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {HttpClientModule} from '@angular/common/http';
+import {DatePipe} from '@angular/common';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { EventPage } from '../pages/events/events';
-import { AvalibilityplannerPage, ModalSelectDatePage } from '../pages/avalibilityplanner/avalibilityplanner';
-import { AccommodationsPage, ModalAccommodationPage } from "../pages/accommodations/accommodations"
-import { AddAccommodationPage } from "../pages/addAccommodation/addAccommodation"
-import { SignupPage } from '../pages/signup/signup';
-import { GroceriesPage } from '../pages/groceries/groceries';
-import { GearsPage } from '../pages/gears/gears';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {MyApp} from './app.component';
+import {HomePage} from '../pages/home/home';
+import {EventPage} from '../pages/events/events';
+import {AvalibilityplannerPage} from '../pages/avalibilityplanner/avalibilityplanner';
+import {AccommodationsPage, ModalAccommodationPage} from "../pages/accommodations/accommodations"
+import {AddAccommodationPage} from "../pages/addAccommodation/addAccommodation"
+import {SignupPage} from '../pages/signup/signup';
+import {GroceriesPage} from '../pages/groceries/groceries';
+import {GearsPage} from '../pages/gears/gears';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { IonicStorageModule } from '@ionic/storage';
-import { CreateEventPage } from "../pages/createEvents/createevent";
-import { EditEventPage } from "../pages/edit-event/edit-event";
-import { EventDetailPage } from "../pages/event-detail/event-detail";
-import {DayPilotModule} from "daypilot-pro-angular";
-import { AmChartsModule} from "@amcharts/amcharts3-angular";
+import {IonicStorageModule} from '@ionic/storage';
+import {CreateEventPage} from "../pages/createEvents/createevent";
+import {EditEventPage} from "../pages/edit-event/edit-event";
+import {EventDetailPage} from "../pages/event-detail/event-detail";
+import {AmChartsModule} from "@amcharts/amcharts3-angular";
+import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avalibility-planner/add-avalibility-planner";
 
 
 @NgModule({
@@ -38,14 +38,14 @@ import { AmChartsModule} from "@amcharts/amcharts3-angular";
     EditEventPage,
     EventDetailPage,
     ModalAccommodationPage,
-    ModalSelectDatePage,
-    GearsPage
+    GearsPage,
+    AddAvalibilityPlannerPage,
+    ModalSelectDatePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    DayPilotModule,
     AmChartsModule,
     IonicStorageModule.forRoot()
   ],
@@ -63,8 +63,9 @@ import { AmChartsModule} from "@amcharts/amcharts3-angular";
     EditEventPage,
     EventDetailPage,
     ModalAccommodationPage,
-    ModalSelectDatePage,
-    GearsPage
+    GearsPage,
+    AddAvalibilityPlannerPage,
+    ModalSelectDatePage
   ],
   providers: [
     StatusBar,
@@ -74,4 +75,5 @@ import { AmChartsModule} from "@amcharts/amcharts3-angular";
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
