@@ -47,7 +47,7 @@ export class ExpenseDashboardPage {
   }
 
   private updateList() {
-    this.http.get(`http://localhost:8080/expenses${this.event._id}`).subscribe((res: Array < Expense > ) => {
+    this.http.get(`http://localhost:8080/expenses/${this.event._id}`).subscribe((res: Array < Expense > ) => {
       this.total = 0;
       for (var item of res) {
         var categoryPrice = this.categories[item.category];

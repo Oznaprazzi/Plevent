@@ -94,8 +94,4 @@ export class GearsPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GearsPage');
-  }
-
 }

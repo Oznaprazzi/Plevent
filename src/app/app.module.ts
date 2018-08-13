@@ -23,6 +23,7 @@ import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import {UserDetailsPage} from "../pages/user-details/user-details";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import {UserDetailsPage} from "../pages/user-details/user-details";
     StatusBar,
     HomePage,
     SplashScreen,
+    DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

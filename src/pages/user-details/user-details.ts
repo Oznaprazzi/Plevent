@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {HttpClient} from "@angular/common/http";
+import {DatePipe} from "@angular/common";
+
 
 /**
  * Generated class for the UserDetailsPage page.
@@ -19,7 +21,7 @@ export class UserDetailsPage {
   user:any;
   userid: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public datepipe: DatePipe) {
     storage.get('userid').then((data) => {
       this.userid = data;
       this.getUser();
@@ -83,28 +85,34 @@ export class UserDetailsPage {
   }
 
   edit_fname(){
-    this.showPrompt("Edit First Name", "fname", "Enter First Name", "fname");
+    this.showPrompt("Edit First Name", "fname", this.user.fname, "text", "fname");
   }
 
   edit_lname(){
-    this.showPrompt("Edit Last Name", "lname", "Enter Last Name", "lname");
+    this.showPrompt("Edit Last Name", "lname", this.user.lname, "text","lname");
   }
 
   edit_dob(){
-    this.showPrompt("Edit Date of Birth", "bdate", "Enter Date of Birth", "dob");
+    let dob =this.datepipe.transform(this.user.bdate, 'yyyy-MM-dd');
+    this.showPrompt("Edit Date of Birth", "bdate", dob, "date", "dob");
   }
 
   edit_username(){
-    this.showPrompt("Edit Username", "username", "Enter Username", "username");
+    this.showPrompt("Edit Username", "username", this.user.username, "text","username");
   }
 
-  showPrompt(title, name, placeholder, type) {
+  changePassword(){
+
+  }
+
+  showPrompt(title, name, value:any, datatype, type) {
     const prompt = this.alertCtrl.create({
       title: title,
       inputs: [
         {
           name: name,
-          placeholder: placeholder
+          value: value,
+          type: datatype
         },
       ],
       buttons: [
@@ -117,7 +125,6 @@ export class UserDetailsPage {
         {
           text: 'Save',
           handler: data => {
-            console.log(data);
             if(type == "fname"){
               this.saveFnameFunc(data);
             }else if(type == "lname"){
