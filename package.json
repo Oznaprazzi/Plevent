@@ -40,7 +40,6 @@
     "chart.js": "^2.7.2",
     "cordova-plugin-advanced-http": "^1.11.1",
     "cordova-plugin-calendar": "^5.1.2",
-    "daypilot-pro-angular": "https://npm.daypilot.org/daypilot-pro-angular/trial/2018.3.3353.tar.gz",
     "ionic": "^4.0.6",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
