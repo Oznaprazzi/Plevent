@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import {HttpClient} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
 import {PasswordModalPage} from "./password-modal";
+import {UsernameModalPage} from "./username-modal";
 
 
 /**
@@ -21,6 +22,7 @@ import {PasswordModalPage} from "./password-modal";
 export class UserDetailsPage {
   user:any;
   userid: any;
+  errorMessage = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public datepipe: DatePipe, public modalCtrl: ModalController) {
     storage.get('userid').then((data) => {
@@ -73,22 +75,6 @@ export class UserDetailsPage {
       });
   }
 
-  saveUesrnameFunc(data){
-    this.http.post(`http://localhost:8080/users/edit_username/${this.user._id}`, {
-        username: data.username
-      },
-      {
-        headers: {'Content-Type': 'application/json'}
-      })
-      .subscribe(res => {
-        if(!res){
-          this.errorMessage = "Username exists";
-        }else{
-          this.getUser();
-        }
-      });
-  }
-
   edit_fname(){
     this.showPrompt("Edit First Name", "fname", this.user.fname, "text", "fname");
   }
@@ -103,11 +89,15 @@ export class UserDetailsPage {
   }
 
   edit_username(){
-    this.showPrompt("Edit Username", "username", this.user.username, "text", "username");
+    let modal = this.modalCtrl.create(UsernameModalPage);
+    modal.onDidDismiss(() => {
+      this.getUser();
+    });
+    modal.present();
   }
 
   changePassword(){
-    let modal = this.modalCtrl.create(PasswordModalPage,{"user": this.user});
+    let modal = this.modalCtrl.create(PasswordModalPage);
     modal.onDidDismiss(() => {
       this.getUser();
     });
@@ -140,8 +130,6 @@ export class UserDetailsPage {
               this.saveLnameFunc(data);
             }else if(type == "dob"){
               this.savedobFunc(data);
-            }else if(type == "username"){
-              this.saveUesrnameFunc(data);
             }
           }
         }

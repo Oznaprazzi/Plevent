@@ -5,8 +5,8 @@ import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'page-accommodationPlanner',
-  templateUrl: 'addAccommodation.html'
+  selector: 'page-password-modal',
+  templateUrl: 'password-modal.html'
 })
 export class PasswordModalPage {
   cPassword: any;
@@ -44,23 +44,41 @@ export class PasswordModalPage {
           headers: { 'Content-Type': 'application/json' }
         })
         .subscribe((res : {valid, user}) => {
+        console.log(res);
           if (!res.valid){
-            this.error_message = "Password incorrect";
+            this.error_message = "Incorrect password";
           }else{
             if(this.password == this.rePassword) {
-
+              this.http.post(`http://localhost:8080/users/change_password/${this.user._id}`, {
+                  password: this.password
+                },
+                {
+                  headers: {'Content-Type': 'application/json'}
+                })
+                .subscribe(res => {
+                  this.getUser();
+                  this.dismiss();
+                  this.presentAlert();
+                });
+              this.error_message = '';
+              this.password = '';
+              this.cPassword = '';
+              this.rePassword = '';
             }else{
               this.error_message = "New passwords do not match";
             }
-            }
-            this.error_message = '';
-            this.password = '';
-            this.cPassword = '';
-            this.rePassword = '';
-
+          }
         }, (err) => {
 
         });
+  }
 
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Change password',
+      subTitle: 'Password changed successfully!',
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 }

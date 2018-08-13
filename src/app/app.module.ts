@@ -24,12 +24,16 @@ import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboa
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
+import {UsernameModalPage} from "../pages/user-details/username-modal";
+import {PasswordModalPage} from "../pages/user-details/password-modal";
 
 @NgModule({
   declarations: [
     Plevent,
     HomePage,
     UserDetailsPage,
+    UsernameModalPage,
+    PasswordModalPage,
     EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
@@ -62,6 +66,8 @@ import {DatePipe} from "@angular/common";
     Plevent,
     HomePage,
     UserDetailsPage,
+    UsernameModalPage,
+    PasswordModalPage,
     EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
