@@ -11,12 +11,18 @@ import {Storage} from '@ionic/storage';
 export class AddAvalibilityPlannerPage {
   eventObject: any;
   avalPlan: any;
+  user: any;
 
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage) {
     storage.get('tappedEventObject').then((data) => {
       this.eventObject = data
-      this.updateList();
+      storage.get('userObject').then((data) => {
+        this.user = data;
+        this.updateList();
+      });
+
     });
+
   }
 
 
@@ -26,7 +32,8 @@ export class AddAvalibilityPlannerPage {
   }
 
   updateList() {
-    this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}`).subscribe(res => {
+    console.log(this.user);
+    this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}/${this.user._id}`).subscribe(res => {
       //TODO: need to filter this by users
       this.avalPlan = res;
     });
@@ -52,7 +59,6 @@ export class ModalSelectDatePage {
     this.eventObject = params.get('eventObject');
     storage.get('userObject').then((data) => {
       this.user = data;
-      console.log(this.user);
 
     });
   }
@@ -62,11 +68,14 @@ export class ModalSelectDatePage {
   }
 
   setDates() {
+    var fullname = this.user.fname + " " + this.user.lname;
+    console.log(fullname);
     this.http.post('http://localhost:8080/availability/create_planner', {
         startDate: this.toDate,
         endDate: this.fromDate,
-        event: this.eventObject,
-        user: this.user
+        event: this.eventObject._id,
+        name: fullname,
+        user: this.user._id
       },
       {
         headers: {'Content-Type': 'application/json'}
@@ -81,7 +90,7 @@ export class ModalSelectDatePage {
   }
 
   private updateList() {
-    this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}`).subscribe(res => {
+    this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}/${this.user._id}`).subscribe(res => {
       this.avalPlan = res;
       this.navCtrl.push(AddAvalibilityPlannerPage, {});
     });

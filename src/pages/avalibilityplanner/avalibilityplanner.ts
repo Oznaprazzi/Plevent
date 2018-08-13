@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { NavController, ModalController} from 'ionic-angular';
+import {NavController, ModalController} from 'ionic-angular';
 
 import {AmChartsService, AmChart} from "@amcharts/amcharts3-angular";
 import {HttpClient} from "@angular/common/http";
@@ -15,8 +15,9 @@ export class AvalibilityplannerPage {
   eventObject: any;
   private chart: AmChart;
   user: any;
-  dataprovider =[];
-  constructor( private AmCharts: AmChartsService, public navCtrl: NavController, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController) {
+  dataprovider = [];
+
+  constructor(private AmCharts: AmChartsService, public navCtrl: NavController, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController) {
 
   }
 
@@ -62,22 +63,36 @@ export class AvalibilityplannerPage {
         "enabled": false
       }
     });
+    this.storage.get('userObject').then((data) => {
+      this.user = data;
+    this.storage.get('tappedEventObject').then((data) => {
+      this.eventObject = data;
+      this.http.get(`http://localhost:8080/availability/get_all_plan/${this.eventObject._id}`).subscribe(res => {
 
-    this.updateGanntChart();
+        this.avalPlanner = res;
+        console.log(this.avalPlanner);
+        this.updateGanntChart();
+      }, (err) => {
+        console.log("error" + err);
+      });
+    });
+    });
+
   }
 
   updateGanntChart() {
-    this.storage.get('userObject').then((data) => {
-      this.user = data;
+
 
       this.AmCharts.updateChart(this.chart, () => {
         // Change whatever properties you want
-        this.getEventPeriodDates();
-        var segment = [{"start": "2016-04-18", "end": "2016-04-30"}];
-        this.dataprovider.push({"category": "dipen", "segments": segment});
-        var segment = [{"start": "2016-04-17", "end": "2017-04-30"}];
-        this.dataprovider.push({"category": "casey", "segments": segment});
-        console.log(this.dataprovider);
+
+
+        // var segment = [{"start": "2016-04-18", "end": "2016-04-30"}];
+        // this.dataprovider.push({"category": "dipen", "segments": segment});
+        // var segment = [{"start": "2016-04-17", "end": "2017-04-30"}];
+        // this.dataprovider.push({"category": "casey", "segments": segment});
+
+        this.parseData();
         this.chart.dataProvider = this.dataprovider;
         // this.chart.dataProvider = [{
         //   "category": "Casey",
@@ -96,39 +111,50 @@ export class AvalibilityplannerPage {
         //   }]
         // }]
       });
-    });
 
 
   }
 
-  parseData(){
-    var category : string;
+
+  parseData() {
+    var category: string;
     var start: string;
     var end: string;
-
-    var segment = [{"start": "2016-04-18", "end": "2016-04-30"}];
+//TODO: need to update the models to also store the userid so we cna comapare here
+    var segment = [];
 
     for (let avalPlanner of this.avalPlanner) {
-      if(category != undefined ){
+      if (category != undefined) {
 
-      }else {
-        category = avalPlanner.user.username;
-        category =  "tr";
-        // start = avalPlanner.startDate;
-        // end = avalPlanner.endDate;
-        // segment.push({"start": start, "end": end});
-        this.dataprovider.push({"category": "dip", "segments": segment});
-        console.log(this.dataprovider);
+        console.log(category === avalPlanner.name);
+        if (category == avalPlanner.name) {
+          start = avalPlanner.startDate;
+          end = avalPlanner.endDate;
+          this.dataprovider.find(i => i.category === category).segments.push({"start": start, "end": end});
+        }else if (category != avalPlanner.name){
+          segment = [];
+          category = avalPlanner.name;
+          start = avalPlanner.startDate;
+          end = avalPlanner.endDate;
+          segment.push({"start": start, "end": end});
+          this.dataprovider.push({"category": category, "segments": segment});
+        }
 
+      } else {
+        category = avalPlanner.name;
+        start = avalPlanner.startDate;
+        end = avalPlanner.endDate;
+        segment.push({"start": start, "end": end});
+        this.dataprovider.push({"category": category, "segments": segment});
       }
     }
+    console.log(this.dataprovider);
+
 
   }
 
   modifyAcalility() {
-    this.navCtrl.push(AddAvalibilityPlannerPage, {
-    });
-    this.updateGanntChart();
+    this.navCtrl.push(AddAvalibilityPlannerPage, {});
   }
 
 
@@ -139,19 +165,6 @@ export class AvalibilityplannerPage {
   }
 
 
-  getEventPeriodDates() {
-    this.storage.get('tappedEventObject').then((data) => {
-      this.eventObject = data;
-      this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}`).subscribe(res => {
-
-        this.avalPlanner = res;
-        this.parseData();
-      }, (err) => {
-        console.log("error" + err);
-      });
-    });
-
-  }
 
 }
 
