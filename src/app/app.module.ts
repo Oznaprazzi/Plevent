@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -22,10 +23,14 @@ import {EventDetailPage} from "../pages/event-detail/event-detail";
 import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense-list';
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
+import {AmChartsModule} from "@amcharts/amcharts3-angular";
+import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avalibility-planner/add-avalibility-planner";
+import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
 import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
 import {UsernameModalPage} from "../pages/user-details/username-modal";
 import {PasswordModalPage} from "../pages/user-details/password-modal";
+
 
 @NgModule({
   declarations: [
@@ -48,8 +53,12 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     ExpenseModalPage,
     ModalAccommodationPage,
     GearsPage,
+    AddAvalibilityPlannerPage,
+    ModalSelectDatePage,
     ExpenseDashboardPage,
-    ChatbotPage
+    ChatbotPage,
+    EditAvalPage
+
   ],
   imports: [
     BrowserModule,
@@ -59,6 +68,7 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
       mode:'md'
     }),
     HttpClientModule,
+    AmChartsModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -82,8 +92,12 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     ExpenseModalPage,
     ModalAccommodationPage,
     GearsPage,
+    AddAvalibilityPlannerPage,
+    ModalSelectDatePage,
     ExpenseDashboardPage,
-    ChatbotPage
+    ChatbotPage,
+    EditAvalPage
+
   ],
   providers: [
     StatusBar,
@@ -93,4 +107,5 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

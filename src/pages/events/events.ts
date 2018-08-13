@@ -6,7 +6,7 @@ import{EditEventPage} from './edit-event';
 import{EventDetailPage} from '../event-detail/event-detail';
 import {CreateEventPage} from "../createEvents/createevent";
 import {HttpClient} from "@angular/common/http";
-import { Events } from 'ionic-angular';
+import {Events} from 'ionic-angular';
 
 @Component({
   selector: 'page-events',
@@ -33,7 +33,6 @@ export class EventPage {
 
     this.http.get(`http://localhost:8080/events/event/${this.userid}`).subscribe(res => {
       this.eventsList = res as Array<Object>;
-      console.log(this.eventsList);
     }, (err) => {
       console.log("error" + err);
     });
@@ -48,6 +47,7 @@ export class EventPage {
   }
 
   deleteEvent(eventID) {
+
     let alert = this.alertCtrl.create({
       title: 'Confirm Delete',
       message: 'Are you sure you want to delete this event?',
@@ -68,9 +68,11 @@ export class EventPage {
           }
         }
       ]
+
     });
     alert.present();
   }
+
 
   openModal(eventObject) {
     let modal = this.modalCtrl.create(EditEventPage, {"eventObject": eventObject});
@@ -80,12 +82,14 @@ export class EventPage {
     });
   }
   tapped(eventObject){
+
     this.storage.set('tappedEventObject', eventObject);
     this.storage.set('isInsideDets', true);
     this.events.publish('eventsPage:inside');
     this.navCtrl.setRoot(EventDetailPage,{
       eventObject: eventObject
     });
+    this.storage.set('tappedEventObject', eventObject);
   }
 
 }
