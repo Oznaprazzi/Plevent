@@ -14,9 +14,9 @@ export class AvalibilityplannerPage {
   avalPlanner: any;
   eventObject: any;
   private chart: AmChart;
-
+  user: any;
+  dataprovider =[];
   constructor( private AmCharts: AmChartsService, public navCtrl: NavController, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController) {
-
 
   }
 
@@ -62,33 +62,67 @@ export class AvalibilityplannerPage {
         "enabled": false
       }
     });
+
+    this.updateGanntChart();
   }
 
   updateGanntChart() {
-    this.AmCharts.updateChart(this.chart, () => {
-      // Change whatever properties you want
-      this.chart.dataProvider = [{
-        "category": "Module #1",
-        "segments": [{
-          "start": "2016-01-01",
-          "end": "2016-01-14",
-          "color": "#b9783f",
-          "task": "Gathering requirements"
-        }, {
-          "start": "2016-01-16",
-          "end": "2016-01-27",
-          "task": "Producing specifications"
-        }, {
-          "start": "2016-02-05",
-          "end": "2016-04-18",
-          "task": "Development"
-        }, {
-          "start": "2016-04-18",
-          "end": "2016-04-30",
-          "task": "Testing and QA"
-        }]
-      }]
+    this.storage.get('userObject').then((data) => {
+      this.user = data;
+
+      this.AmCharts.updateChart(this.chart, () => {
+        // Change whatever properties you want
+        this.getEventPeriodDates();
+        var segment = [{"start": "2016-04-18", "end": "2016-04-30"}];
+        this.dataprovider.push({"category": "dipen", "segments": segment});
+        var segment = [{"start": "2016-04-17", "end": "2017-04-30"}];
+        this.dataprovider.push({"category": "casey", "segments": segment});
+        console.log(this.dataprovider);
+        this.chart.dataProvider = this.dataprovider;
+        // this.chart.dataProvider = [{
+        //   "category": "Casey",
+        //   "segments": [{
+        //     "start": "2016-01-01",
+        //     "end": "2016-01-14",
+        //   }, {
+        //     "start": "2015-01-16",
+        //     "end": "2016-01-27",
+        //   }, {
+        //     "start": "2016-02-05",
+        //     "end": "2016-04-18",
+        //   }, {
+        //     "start": "2016-04-18",
+        //     "end": "2016-04-30",
+        //   }]
+        // }]
+      });
     });
+
+
+  }
+
+  parseData(){
+    var category : string;
+    var start: string;
+    var end: string;
+
+    var segment = [{"start": "2016-04-18", "end": "2016-04-30"}];
+
+    for (let avalPlanner of this.avalPlanner) {
+      if(category != undefined ){
+
+      }else {
+        category = avalPlanner.user.username;
+        category =  "tr";
+        // start = avalPlanner.startDate;
+        // end = avalPlanner.endDate;
+        // segment.push({"start": start, "end": end});
+        this.dataprovider.push({"category": "dip", "segments": segment});
+        console.log(this.dataprovider);
+
+      }
+    }
+
   }
 
   modifyAcalility() {
@@ -106,56 +140,18 @@ export class AvalibilityplannerPage {
 
 
   getEventPeriodDates() {
-    this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}`).subscribe(res => {
-      this.avalPlanner = res;
-    }, (err) => {
-      console.log("error" + err);
+    this.storage.get('tappedEventObject').then((data) => {
+      this.eventObject = data;
+      this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}`).subscribe(res => {
+
+        this.avalPlanner = res;
+        this.parseData();
+      }, (err) => {
+        console.log("error" + err);
+      });
     });
+
   }
 
 }
 
-// @Component({
-//   templateUrl: 'src/pages/add-avalibility-planner/selectDateModal.html'
-// })
-// export class ModalSelectDatePage {
-//
-//   error_message = '';
-//   toDate: Date;
-//   fromDate: Date;
-//   eventObject: any;
-//
-//   constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public storage: Storage) {
-//     this.eventObject = params.get('eventObject');
-//   }
-//
-//   dismiss() {
-//     this.viewCtrl.dismiss();
-//   }
-//
-//   setDates() {
-//     console.log("In Modal Evenet Object " + this.eventObject.eventName);
-//     this.http.post('http://localhost:8080/availability/create_planner', {
-//         toDate: this.toDate,
-//         fromDate: this.fromDate,
-//         event: this.eventObject
-//       },
-//       {
-//         headers: {'Content-Type': 'application/json'}
-//       })
-//       .subscribe(res => {
-//         this.http.post(`http://localhost:8080/events/add_aval_planner/${this.eventObject._id}`, {},
-//           {
-//             headers: {'Content-Type': 'application/json'}
-//           })
-//           .subscribe(res => {
-//           }, (err) => {
-//             this.error_message = "Error in updating event aval planner";
-//           });
-//         this.dismiss();
-//       }, (err) => {
-//         this.error_message = "Try again ";
-//
-//       });
-//   }
-// }
