@@ -22,9 +22,6 @@
   <h2 class="stats-label" text-center>Expenses by Category</h2>
   <canvas #pieCanvas></canvas>
   <ion-fab right bottom>
-    <button ion-fab color="danger"><ion-icon name="arrow-dropleft"></ion-icon></button>
-    <ion-fab-list side="left">
-      <button ion-fab mini color="primary" (click)="toExpenseDetails()"><ion-icon name="clipboard"></ion-icon></button>
-    </ion-fab-list>
+      <button ion-fab color="danger" (click)="toExpenseDetails()"><ion-icon name="clipboard"></ion-icon></button>
   </ion-fab>
 </ion-content>
