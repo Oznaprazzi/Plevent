@@ -13,7 +13,11 @@
         {{plan.startDate | date: 'dd MMM yyyy'}} {{plan.endDate | date: 'dd MMM yyyy'}}
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary" (click)="doDeletePrompt(gear)">
+        <button ion-button color="primary" icon-left (click)="openEditModal(plan,user)">
+          <ion-icon name="ios-create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="primary" (click)="doDeletePrompt(plan)">
           <ion-icon name="close"></ion-icon>
           Delete
         </button>

@@ -1,7 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
-import {Content, ModalController, NavController, NavParams, Platform, ViewController} from 'ionic-angular';
+import {
+  AlertController, Content, ModalController, NavController, NavParams, Platform,
+  ViewController
+} from 'ionic-angular';
 import {HttpClient} from "@angular/common/http";
 import {Storage} from '@ionic/storage';
+import {EditAvalPage} from "./edit-avalplan";
 
 
 @Component({
@@ -13,9 +17,9 @@ export class AddAvalibilityPlannerPage {
   avalPlan: any;
   user: any;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage) {
+  constructor( public alertCtrl: AlertController,public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage) {
     storage.get('tappedEventObject').then((data) => {
-      this.eventObject = data
+      this.eventObject = data;
       storage.get('userObject').then((data) => {
         this.user = data;
         this.updateList();
@@ -32,14 +36,47 @@ export class AddAvalibilityPlannerPage {
   }
 
   updateList() {
-    console.log(this.user);
     this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}/${this.user._id}`).subscribe(res => {
-      //TODO: need to filter this by users
+
       this.avalPlan = res;
     });
   }
 
+  doDeletePrompt(item){
+    const confirm = this.alertCtrl.create({
+      title: 'Delete this item?',
+      message: 'This item may be important!',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteItem(item);
+          }
+        },
+        {
+          text: 'No',
+          handler: () => {
+            // Close prompt
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 
+  private deleteItem(item){
+    var id = item._id;
+    this.http.delete(`http://localhost:8080/availability/delete_plan/${id}`).subscribe(res => {
+      this.updateList();
+    });
+  }
+  openEditModal(avalPlanObject, userObject) {
+    let modal = this.modalCtrl.create(EditAvalPage, {"avalPlanObject": avalPlanObject, "userObject": userObject, "eventObject": this.eventObject});
+    modal.present();
+    modal.onDidDismiss(() => {
+      this.updateList();
+    });
+  }
 }
 
 
@@ -55,7 +92,7 @@ export class ModalSelectDatePage {
   avalPlan: any;
   user: any;
 
-  constructor(public navCtrl: NavController, public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public storage: Storage) {
+  constructor( public navCtrl: NavController, public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public storage: Storage) {
     this.eventObject = params.get('eventObject');
     storage.get('userObject').then((data) => {
       this.user = data;
@@ -69,10 +106,10 @@ export class ModalSelectDatePage {
 
   setDates() {
     var fullname = this.user.fname + " " + this.user.lname;
-    console.log(fullname);
+
     this.http.post('http://localhost:8080/availability/create_planner', {
-        startDate: this.toDate,
-        endDate: this.fromDate,
+        startDate: this.fromDate,
+        endDate: this.toDate,
         event: this.eventObject._id,
         name: fullname,
         user: this.user._id
@@ -95,4 +132,6 @@ export class ModalSelectDatePage {
       this.navCtrl.push(AddAvalibilityPlannerPage, {});
     });
   }
+
+
 }

@@ -25,6 +25,7 @@ import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboa
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import {AmChartsModule} from "@amcharts/amcharts3-angular";
 import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avalibility-planner/add-avalibility-planner";
+import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avali
     AddAvalibilityPlannerPage,
     ModalSelectDatePage,
     ExpenseDashboardPage,
-    ChatbotPage
+    ChatbotPage,
+    EditAvalPage
 
   ],
   imports: [
@@ -83,7 +85,8 @@ import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avali
     AddAvalibilityPlannerPage,
     ModalSelectDatePage,
     ExpenseDashboardPage,
-    ChatbotPage
+    ChatbotPage,
+    EditAvalPage
 
   ],
   providers: [

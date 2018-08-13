@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="modalTitle">Edit Availability Planner</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows" color="primary"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="page-content"  padding>
+  <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
+  <ion-item>
+    <ion-label>Travel From</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="fromDate"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Travel To</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="toDate"></ion-datetime>
+  </ion-item>
+
+  <div text-center>
+    <button ion-button (click)="editAvalPlan()">Apply</button>
+  </div>
+</ion-content>
+
+
+
+
+

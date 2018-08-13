@@ -18,6 +18,9 @@ export class AvalibilityplannerPage {
   dataprovider = [];
 
   constructor(private AmCharts: AmChartsService, public navCtrl: NavController, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController) {
+    this.storage.get('userObject').then((data) => {
+      this.user = data;
+    });
 
   }
 
@@ -63,20 +66,19 @@ export class AvalibilityplannerPage {
         "enabled": false
       }
     });
-    this.storage.get('userObject').then((data) => {
-      this.user = data;
+
     this.storage.get('tappedEventObject').then((data) => {
       this.eventObject = data;
       this.http.get(`http://localhost:8080/availability/get_all_plan/${this.eventObject._id}`).subscribe(res => {
 
         this.avalPlanner = res;
-        console.log(this.avalPlanner);
+
         this.updateGanntChart();
       }, (err) => {
         console.log("error" + err);
       });
     });
-    });
+
 
   }
 
@@ -84,32 +86,9 @@ export class AvalibilityplannerPage {
 
 
       this.AmCharts.updateChart(this.chart, () => {
-        // Change whatever properties you want
-
-
-        // var segment = [{"start": "2016-04-18", "end": "2016-04-30"}];
-        // this.dataprovider.push({"category": "dipen", "segments": segment});
-        // var segment = [{"start": "2016-04-17", "end": "2017-04-30"}];
-        // this.dataprovider.push({"category": "casey", "segments": segment});
 
         this.parseData();
         this.chart.dataProvider = this.dataprovider;
-        // this.chart.dataProvider = [{
-        //   "category": "Casey",
-        //   "segments": [{
-        //     "start": "2016-01-01",
-        //     "end": "2016-01-14",
-        //   }, {
-        //     "start": "2015-01-16",
-        //     "end": "2016-01-27",
-        //   }, {
-        //     "start": "2016-02-05",
-        //     "end": "2016-04-18",
-        //   }, {
-        //     "start": "2016-04-18",
-        //     "end": "2016-04-30",
-        //   }]
-        // }]
       });
 
 
@@ -120,13 +99,12 @@ export class AvalibilityplannerPage {
     var category: string;
     var start: string;
     var end: string;
-//TODO: need to update the models to also store the userid so we cna comapare here
     var segment = [];
 
     for (let avalPlanner of this.avalPlanner) {
       if (category != undefined) {
 
-        console.log(category === avalPlanner.name);
+
         if (category == avalPlanner.name) {
           start = avalPlanner.startDate;
           end = avalPlanner.endDate;
@@ -148,7 +126,7 @@ export class AvalibilityplannerPage {
         this.dataprovider.push({"category": category, "segments": segment});
       }
     }
-    console.log(this.dataprovider);
+
 
 
   }
@@ -163,8 +141,6 @@ export class AvalibilityplannerPage {
       this.AmCharts.destroyChart(this.chart);
     }
   }
-
-
 
 }
 
