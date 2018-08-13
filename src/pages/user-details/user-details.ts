@@ -74,14 +74,18 @@ export class UserDetailsPage {
   }
 
   saveUesrnameFunc(data){
-    this.http.post(`http://localhost:8080/users/user/${this.user._id}`, {
+    this.http.post(`http://localhost:8080/users/edit_username/${this.user._id}`, {
         username: data.username
       },
       {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
-        this.getUser();
+        if(!res){
+          this.errorMessage = "Username exists";
+        }else{
+          this.getUser();
+        }
       });
   }
 
@@ -99,7 +103,7 @@ export class UserDetailsPage {
   }
 
   edit_username(){
-    this.showPrompt("Edit Username", "username", this.user.username, "text","username");
+    this.showPrompt("Edit Username", "username", this.user.username, "text", "username");
   }
 
   changePassword(){
