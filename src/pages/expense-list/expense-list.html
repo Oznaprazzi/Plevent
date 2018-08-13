@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar hideBackButton>
+  <ion-navbar>
     <ion-title>Expenses</ion-title>
   </ion-navbar>
 </ion-header>
@@ -20,11 +20,7 @@
     </ion-item>
   </ion-list>
   <ion-fab right bottom>
-    <button ion-fab color="danger"><ion-icon name="arrow-dropleft"></ion-icon></button>
-    <ion-fab-list side="left">
-        <button ion-fab color="primary" (click)="doAddPrompt()"><ion-icon name="add"></ion-icon></button>
-        <button ion-fab color="primary" (click)="toDashboard()"><ion-icon name="home"></ion-icon></button>
-    </ion-fab-list>
+    <button ion-fab color="danger" (click)="doAddPrompt()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
-  
+
 </ion-content>
