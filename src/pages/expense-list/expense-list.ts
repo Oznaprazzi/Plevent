@@ -14,7 +14,7 @@ import {Storage} from '@ionic/storage';
 interface  Expense {
   title: string
   category: string
-  amount: number
+  amount: any
   event: any
 }
 
