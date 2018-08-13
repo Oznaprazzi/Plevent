@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {HttpClient} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
+import {PasswordModalPage} from "./password-modal";
 
 
 /**
@@ -21,7 +22,7 @@ export class UserDetailsPage {
   user:any;
   userid: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public datepipe: DatePipe) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public datepipe: DatePipe, public modalCtrl: ModalController) {
     storage.get('userid').then((data) => {
       this.userid = data;
       this.getUser();
@@ -102,7 +103,11 @@ export class UserDetailsPage {
   }
 
   changePassword(){
-
+    let modal = this.modalCtrl.create(PasswordModalPage,{"user": this.user});
+    modal.onDidDismiss(() => {
+      this.getUser();
+    });
+    modal.present();
   }
 
   showPrompt(title, name, value:any, datatype, type) {
