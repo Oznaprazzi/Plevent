@@ -15,6 +15,7 @@ import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
+import { UserDetailsPage } from "../pages/user-details/user-details";
 
 @Component({
   templateUrl: 'app.html'
@@ -34,7 +35,8 @@ export class Plevent {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(AvalibilityplannerPage);
+        this.storage.set('isInsideDets', false);
+        this.nav.setRoot(EventPage);
       }else{
         this.nav.setRoot(HomePage);
       }
@@ -42,9 +44,10 @@ export class Plevent {
 
     this.events.subscribe('eventsPage:outside',()=>{
       this.pages = [
-        {title:'Home', component: EventPage},
-        //{title:'My Account', component: MyAccountPage},
-        {title:'Logout', component: HomePage}
+        {title: 'Home', component: EventPage},
+        { title: 'Ask Plive', component: ChatbotPage },
+        {title: 'My Account', component: UserDetailsPage},
+        {title: 'Logout', component: HomePage}
       ];
     });
 
@@ -57,7 +60,9 @@ export class Plevent {
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
-        { title: 'Talk to Plive', component: ChatbotPage }
+        { title: 'Ask Plive', component: ChatbotPage },
+        {title: 'My Account', component: UserDetailsPage},
+        {title: 'Logout', component: HomePage}
       ];
     });
   }
@@ -74,13 +79,28 @@ export class Plevent {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.events.publish('eventsPage:inside');
-    if(page.title == 'Logout'){
-      this.events.publish('eventsPage:outside');
-      this.storage.set('loggedIn', false);
-    }else if(page.title == 'Home'){
-      this.events.publish('eventsPage:outside');
+
+    if(page.title == 'Event Details') {
+      this.storage.set('isInsideDets', true);
     }
-    this.nav.setRoot(page.component);
+
+    if(page.title == 'Logout'){
+      this.storage.set('loggedIn', false);
+      this.storage.set('isInsideDets', false);
+    }else if(page.title == 'Home'){
+      this.storage.set('isInsideDets', false);
+    }
+
+    this.storage.ready().then(() => {
+      this.storage.get('isInsideDets').then((data) => {
+        if(data){
+          this.events.publish('eventsPage:inside');
+        }else{
+          this.events.publish('eventsPage:outside');
+        }
+      });
+
+      this.nav.setRoot(page.component);
+    });
   }
 }

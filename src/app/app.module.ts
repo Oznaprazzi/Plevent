@@ -26,12 +26,15 @@ import { ChatbotPage } from '../pages/chatbot/chatbot';
 import {AmChartsModule} from "@amcharts/amcharts3-angular";
 import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avalibility-planner/add-avalibility-planner";
 import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
+import {UserDetailsPage} from "../pages/user-details/user-details";
+import {DatePipe} from "@angular/common";
 
 
 @NgModule({
   declarations: [
     Plevent,
     HomePage,
+    UserDetailsPage,
     EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
@@ -68,6 +71,7 @@ import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
   entryComponents: [
     Plevent,
     HomePage,
+    UserDetailsPage,
     EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
@@ -93,6 +97,7 @@ import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
     StatusBar,
     HomePage,
     SplashScreen,
+    DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

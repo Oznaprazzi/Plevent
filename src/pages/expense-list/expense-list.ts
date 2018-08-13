@@ -11,6 +11,13 @@ import {Storage} from '@ionic/storage';
  * Ionic pages and navigation.
  */
 
+interface  Expense {
+  title: string
+  category: string
+  amount: any
+  event: any
+}
+
 @IonicPage()
 @Component({
   selector: 'page-expense-list',
@@ -58,17 +65,19 @@ export class ExpenseListPage {
       buttons: [
         {
           text: 'Add',
-          handler: (data: {title, category, amount, event}) => {
+          handler: (data: Expense) => {
             // Do validity checks
             if(!data.title || !data.category || !data.amount) {
               this.notifyError('Title, category, and amount must filled in.');
               return;
             }
+
             var amount = parseFloat(data.amount);
             if(isNaN(amount)){
               this.notifyError('Amount must be a number.');
               return;
             }
+            data.event = this.event._id;
             // Add item to DB
             this.addItem(data);
           }
@@ -90,8 +99,8 @@ export class ExpenseListPage {
     alert.present();
   }
 
-  private addItem(item: {title, category, amount, event}){
-    item.event = this.event._id;
+  private addItem(item: Expense){
+    console.log(item);
     this.http.post('http://localhost:8080/expenses/expense', item).subscribe(res => {
       this.updateList();
     });
@@ -125,12 +134,9 @@ export class ExpenseListPage {
 
   private updateList() {
     this.http.get(`http://localhost:8080/expenses/${this.event._id}`).subscribe(res => {
+      console.log(this.event._id);
       this.expenses = res;
     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ExpenseListPage');
   }
 
 }

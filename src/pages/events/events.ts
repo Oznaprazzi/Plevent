@@ -83,8 +83,10 @@ export class EventPage {
   }
   tapped(eventObject){
 
+    this.storage.set('tappedEventObject', eventObject);
+    this.storage.set('isInsideDets', true);
     this.events.publish('eventsPage:inside');
-    this.navCtrl.push(EventDetailPage, {
+    this.navCtrl.setRoot(EventDetailPage,{
       eventObject: eventObject
     });
     this.storage.set('tappedEventObject', eventObject);
