@@ -14,6 +14,8 @@ import { GroceriesPage } from '../pages/groceries/groceries';
 import { GearsPage } from '../pages/gears/gears';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 import { IonicStorageModule } from '@ionic/storage';
 import {CreateEventPage} from "../pages/createEvents/createevent";
@@ -23,6 +25,7 @@ import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense
 import {UtilityService} from "./UtilityService";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
+import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { ChatbotPage } from '../pages/chatbot/chatbot';
     ModalAccommodationPage,
     GearsPage,
     ExpenseDashboardPage,
-    ChatbotPage
+    ChatbotPage,
+    WaypointPlannerPage
   ],
   imports: [
     BrowserModule,
@@ -70,13 +74,16 @@ import { ChatbotPage } from '../pages/chatbot/chatbot';
     ModalAccommodationPage,
     GearsPage,
     ExpenseDashboardPage,
-    ChatbotPage
+    ChatbotPage,
+    WaypointPlannerPage
   ],
   providers: [
     StatusBar,
     HomePage,
     SplashScreen,
     UtilityService,
+    Geolocation,
+    NativeGeocoder,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -15,6 +15,7 @@ import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
+import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,7 +32,7 @@ export class Plevent {
     this.storage.get('loggedIn').then((val) => {
       if(val){
         this.events.publish('eventsPage:outside');
-        this.nav.setRoot(EventPage);
+        this.nav.setRoot(WaypointPlannerPage);
       }else{
         this.nav.setRoot(HomePage);
       }
@@ -51,6 +52,7 @@ export class Plevent {
         { title: 'Event Details', component: EventDetailPage },
         { title: 'Accommodation Planner', component: AccommodationsPage },
         { title: 'Availability Planner', component: AvalibilityplannerPage },
+        { title: 'Waypoint Planner', component: WaypointPlannerPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
