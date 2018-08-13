@@ -28,6 +28,8 @@ import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avali
 import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
 import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
+import {FriendslistPage} from "../pages/frends-list/friendslist";
+
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import {DatePipe} from "@angular/common";
     ModalSelectDatePage,
     ExpenseDashboardPage,
     ChatbotPage,
-    EditAvalPage
+    EditAvalPage,
+    FriendslistPage
 
   ],
   imports: [
@@ -90,7 +93,8 @@ import {DatePipe} from "@angular/common";
     ModalSelectDatePage,
     ExpenseDashboardPage,
     ChatbotPage,
-    EditAvalPage
+    EditAvalPage,
+    FriendslistPage
 
   ],
   providers: [
