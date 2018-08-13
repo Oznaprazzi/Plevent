@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, ViewController} from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-accommodationPlanner',
@@ -17,10 +18,13 @@ export class AddAccommodationPage {
   toDate: any;
   price: number;
   guests: number;
+  event : any;
   error_message = '';
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public viewCtrl: ViewController) {
-
+  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public viewCtrl: ViewController, public storage: Storage) {
+    storage.get('tappedEventObject').then((data) => {
+      this.event = data;
+    });
   }
 
   dismiss() {
@@ -37,7 +41,8 @@ export class AddAccommodationPage {
       fromDate: this.fromDate,
       toDate: this.toDate,
       price: this.price,
-      guests: this.guests
+      guests: this.guests,
+      event: this.event._id
       },
       {
         headers: {'Content-Type': 'application/json'}

@@ -22,15 +22,17 @@ import {CreateEventPage} from "../pages/createEvents/createevent";
 import {EditEventPage} from "../pages/events/edit-event";
 import {EventDetailPage} from "../pages/event-detail/event-detail";
 import { ExpenseListPage, ExpenseModalPage } from '../pages/expense-list/expense-list';
-import {UtilityService} from "./UtilityService";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
+import {UserDetailsPage} from "../pages/user-details/user-details";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
     Plevent,
     HomePage,
+    UserDetailsPage,
     EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
@@ -51,7 +53,11 @@ import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner'
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(Plevent),
+    IonicModule.forRoot(Plevent,{
+      backButtonIcon: "md-arrow-back",
+      iconMode: "md",
+      mode:'md'
+    }),
     HttpClientModule,
     IonicStorageModule.forRoot()
   ],
@@ -59,6 +65,7 @@ import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner'
   entryComponents: [
     Plevent,
     HomePage,
+    UserDetailsPage,
     EventPage,
     AvalibilityplannerPage,
     AddAccommodationPage,
@@ -81,9 +88,9 @@ import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner'
     StatusBar,
     HomePage,
     SplashScreen,
-    UtilityService,
     Geolocation,
     NativeGeocoder,
+    DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

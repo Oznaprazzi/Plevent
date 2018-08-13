@@ -17,16 +17,33 @@
 
 
 <ion-content class="page-content"  padding>
-  <div *ngIf="event != undefined">
+  <div *ngIf="event != undefined && accommodations != undefined && expenses != undefined">
     <h1>{{event.eventName}}</h1>
     <p>Date: {{event.eventDate | date: 'dd MMM yyyy'}}</p>
     <p>No. people </p>
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-item>
-            <h2>Accommodations</h2>
-            <p></p>
+          <ion-item style="background-color:#42bd82" (click)="toAccommoPage()">
+            <h2>{{accommoL}} Accommodation(s)</h2>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item style="background-color:#d6535d" (click)="toExpensePage()">
+            <h2>Total Expenses</h2>
+            <h2>${{totalExpenses}}</h2>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item style="background-color:#9b8af7" (click)="toWayPointsPage()">
+            <h2>{{accommoL}} Way Points(s)</h2>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item style="background-color:#c3b622" (click)="toTransportPage()">
+            <h2>{{accommoL}} Transport(s)</h2>
           </ion-item>
         </ion-col>
       </ion-row>

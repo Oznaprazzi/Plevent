@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import {UtilityService} from "../../app/UtilityService";
+import {HttpClient} from "@angular/common/http";
+import {AccommodationsPage} from "../accommodations/accommodations";
+import {ExpenseDashboardPage} from "../expense-dashboard/expense-dashboard";
 
 @Component({
   selector: 'page-event-detail',
@@ -10,11 +12,46 @@ import {UtilityService} from "../../app/UtilityService";
 export class EventDetailPage {
   event:any;
   accommodations:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public util: UtilityService) {
-    storage.get('tappedEventObject').then((data) => {
+  expenses:any;
+  accommoL = 0;
+  totalExpenses = 0;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient) {
+    this.storage.get('tappedEventObject').then((data) => {
       this.event = data;
-      this.accommodations = this.util.updateAccommodations();
+      this.getAccommo();
+      this.getExpenses();
     });
   }
 
+  getAccommo(){
+    this.http.get(`http://localhost:8080/accommo/get_accommo/${this.event._id}`).subscribe(res => {
+      this.accommodations = res;
+      this.accommoL = this.accommodations.length;
+    });
+  }
+
+  getExpenses(){
+    this.http.get(`http://localhost:8080/expenses/${this.event._id}`).subscribe(res => {
+      this.expenses = res;
+      for(var item of this.expenses){
+        this.totalExpenses += item.amount;
+      }
+    });
+  }
+
+  toAccommoPage(){
+    this.navCtrl.setRoot(AccommodationsPage);
+  }
+
+  toExpensePage(){
+    this.navCtrl.setRoot(ExpenseDashboardPage);
+  }
+
+  toWayPointsPage(){
+    //this.navCtrl.setRoot(ExpenseDashboardPage);
+  }
+
+  toTransportPage(){
+    //this.navCtrl.setRoot(ExpenseDashboardPage);
+  }
 }

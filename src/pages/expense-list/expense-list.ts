@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController, ModalController, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { ExpenseDashboardPage } from '../expense-dashboard/expense-dashboard';
+import {Storage} from '@ionic/storage';
 
 /**
  * Generated class for the ExpenseListPage page.
@@ -9,11 +10,12 @@ import { ExpenseDashboardPage } from '../expense-dashboard/expense-dashboard';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-interface Expense {
-  _id? : string,
-  title: string,
-  category: string,
-  amount: number
+
+interface  Expense {
+  title: string
+  category: string
+  amount: any
+  event: any
 }
 
 @IonicPage()
@@ -24,10 +26,14 @@ interface Expense {
 
 
 export class ExpenseListPage {
-  expenses: Array<Expense>;
+  expenses: any;
+  event:any;
 
-  constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController) {
-    this.updateList();
+  constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
+    storage.get('tappedEventObject').then((data) => {
+      this.event = data;
+      this.updateList();
+    });
   }
 
   toDashboard(){
@@ -59,17 +65,19 @@ export class ExpenseListPage {
       buttons: [
         {
           text: 'Add',
-          handler: (data: {title, category, amount}) => {
+          handler: (data: Expense) => {
             // Do validity checks
             if(!data.title || !data.category || !data.amount) {
               this.notifyError('Title, category, and amount must filled in.');
               return;
             }
+
             var amount = parseFloat(data.amount);
             if(isNaN(amount)){
               this.notifyError('Amount must be a number.');
               return;
             }
+            data.event = this.event._id;
             // Add item to DB
             this.addItem(data);
           }
@@ -91,7 +99,8 @@ export class ExpenseListPage {
     alert.present();
   }
 
-  private addItem(item: {title, category, amount}){
+  private addItem(item: Expense){
+    console.log(item);
     this.http.post('http://localhost:8080/expenses/expense', item).subscribe(res => {
       this.updateList();
     });
@@ -118,19 +127,16 @@ export class ExpenseListPage {
 
   private deleteItem(item){
     var id = item._id;
-    this.http.delete(`http://localhost:8080/expenses/expense/${id}`).subscribe(res => {
+    this.http.delete(`http://localhost:808s0/expenses/expense/${id}`).subscribe(res => {
       this.updateList();
     });
   }
 
   private updateList() {
-    this.http.get('http://localhost:8080/expenses').subscribe((res: Array<Expense>) => {
+    this.http.get(`http://localhost:8080/expenses/${this.event._id}`).subscribe(res => {
+      console.log(this.event._id);
       this.expenses = res;
     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ExpenseListPage');
   }
 
 }
@@ -141,7 +147,7 @@ export class ExpenseListPage {
 })
 
 export class ExpenseModalPage{
-  expense : Expense;
+  expense : any;
 
   constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public alertCtrl: AlertController){
     this.expense = this.params.get('expense');

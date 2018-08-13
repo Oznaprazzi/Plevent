@@ -18,6 +18,9 @@ export class HomePage {
   username = '';
   password = '';
   userid: number = -1;
+  showPass = false;
+  type = 'password';
+  eye_icon = "eye";
   //show_error_message= false;
   constructor(public navCtrl: NavController, public http: HttpClient, private storage: Storage, public events: Events) {
     // Or to get a key/value pair
@@ -57,5 +60,17 @@ export class HomePage {
 
   register(){
     this.navCtrl.push(SignupPage);
+  }
+
+  showPassword() {
+    this.showPass = !this.showPass;
+
+    if(this.showPass){
+      this.eye_icon = "eye-off";
+      this.type = 'text';
+    } else {
+      this.eye_icon = "eye";
+      this.type = 'password';
+    }
   }
 }
