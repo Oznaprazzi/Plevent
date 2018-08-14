@@ -25,7 +25,6 @@ export class TransportsPage {
   updateList(){
     this.http.get(`http://localhost:8080/transports/get_trans/${this.eventid._id}`).subscribe(res => {
       this.transports = res;
-      console.log(res);
     });
   }
 
