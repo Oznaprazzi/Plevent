@@ -78,9 +78,9 @@ export class AvalibilityplannerPage {
     this.storage.get('tappedEventObject').then((data) => {
       this.eventObject = data;
       this.http.get(`http://localhost:8080/availability/get_all_plan/${this.eventObject._id}`).subscribe(res => {
-
         this.avalPlanner = res;
-
+       this.chart.clear();
+       this.dataprovider = [];
         this.updateGanntChart();
       }, (err) => {
         console.log("error" + err);
@@ -91,10 +91,7 @@ export class AvalibilityplannerPage {
   }
 
   updateGanntChart() {
-
-
       this.AmCharts.updateChart(this.chart, () => {
-
         this.parseData();
         this.chart.dataProvider = this.dataprovider;
       });

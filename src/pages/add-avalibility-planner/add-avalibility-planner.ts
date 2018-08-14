@@ -116,8 +116,9 @@ export class ModalSelectDatePage {
 
   setDates() {
     var fullname = this.user.fname + " " + this.user.lname;
-    var date = moment().utc().format('YYYY-MM-DD').toString();
-    if (this.toDate < this.fromDate || this.toDate < date || this.fromDate < date) {
+    // var date = moment().utc().format('YYYY-MM-DD').toString();
+    //|| this.toDate < date || this.fromDate < date
+    if (this.toDate < this.fromDate) {
       this.error_message = "Available from Date must be greater then or equal to available to "
     } else {
       this.http.post('http://localhost:8080/availability/create_planner', {
