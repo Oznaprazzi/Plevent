@@ -18,6 +18,7 @@ export class EventDetailPage {
   accommoL = 0;
   totalExpenses = 0;
   transportsL = 0;
+  transports: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     this.storage.get('tappedEventObject').then((data) => {
@@ -37,8 +38,8 @@ export class EventDetailPage {
 
   getTrans(){
     this.http.get(`http://localhost:8080/transports/get_trans/${this.event._id}`).subscribe(res => {
-      var transports = res;
-      this.transportsL = transports.length;
+      this.transports = res;
+      this.transportsL = this.transports.length;
     });
   }
 
