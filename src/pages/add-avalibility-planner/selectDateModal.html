@@ -17,10 +17,8 @@
 
   <ion-item>
     <ion-label>Available To</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDate" [(ngModel)]="toDate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [min]="getMinDate()" [(ngModel)]="toDate"></ion-datetime>
   </ion-item>
-
-
 
   <div text-center>
     <button ion-button (click)="setDates()">Enter</button>

@@ -27,6 +27,13 @@ export class EditAvalPage {
     this.eventObject = this.navParams.get('eventObject');
   }
 
+  getMinDate(){
+    if(this.fromDate == undefined){
+      return this.fromDateMin;
+    }
+    return this.fromDate;
+  }
+
   dismiss() {
     this.viewCtrl.dismiss();
   }
