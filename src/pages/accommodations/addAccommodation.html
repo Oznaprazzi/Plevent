@@ -43,7 +43,7 @@
 
   <ion-item>
     <ion-label>To</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDate" [(ngModel)]="toDate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [min]="getMinDate()" [(ngModel)]="toDate"></ion-datetime>
   </ion-item>
 
   <ion-item>
