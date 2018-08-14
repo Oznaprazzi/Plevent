@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="modalTitle">Add Transportation</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows" color="primary"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content  class="page-content"  padding>
+  <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
+  <ion-item>
+    <ion-label color="primary">Title</ion-label>
+    <ion-input placeholder="Enter title" [(ngModel)]="title" text-right></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Owner</ion-label>
+    <ion-select [(ngModel)]="userid" cancelText="Close" okText="Ok">
+      <ion-option *ngFor="let user of users"  value={{user._id}}>{{user.username}}</ion-option>
+      <ion-option value={{-1}}>Other</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Seats</ion-label>
+    <ion-input type="number" placeholder="Enter number of seats" [(ngModel)]="people" text-right></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary">Fuel Type</ion-label>
+    <ion-select [(ngModel)]="fuel" cancelText="Close" okText="Ok">
+      <ion-option *ngFor="let fuel of fueltypes"  value={{fuel}}>{{fuel}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <div text-center>
+    <button ion-button (click)="addTrans()">Add Transport</button>
+  </div>
+
+</ion-content>

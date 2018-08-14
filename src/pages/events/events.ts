@@ -16,6 +16,7 @@ export class EventPage {
 
   userid: number = -1;
   eventsList: any;
+  usersList=[];
 
   constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage, public events: Events, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     storage.get('userid').then((data) => {
@@ -30,7 +31,6 @@ export class EventPage {
   }
 
   getAllEvents() {
-
     this.http.get(`http://localhost:8080/events/event/${this.userid}`).subscribe(res => {
       this.eventsList = res as Array<Object>;
     }, (err) => {

@@ -44,9 +44,8 @@ export class PasswordModalPage {
           headers: { 'Content-Type': 'application/json' }
         })
         .subscribe((res : {valid, user}) => {
-        console.log(res);
           if (!res.valid){
-            this.error_message = "Incorrect password";
+            this.error_message = "Password incorrect";
           }else{
             if(this.password == this.rePassword) {
               this.http.post(`http://localhost:8080/users/change_password/${this.user._id}`, {

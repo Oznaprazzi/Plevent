@@ -25,13 +25,12 @@
   <ion-item>
     <ion-label>Users</ion-label>
     <!--need to still do adding these users to table when click ok-->
-    <ion-select [(ngModel)]="userid"  multiple="true" cancelText="Close" okText="Ok">
+    <ion-select [(ngModel)]="usersList"  multiple="true" cancelText="Close" okText="Ok">
       <ion-option *ngFor="let user of users"  value={{user._id}}>{{user.username}}</ion-option>
     </ion-select>
   </ion-item>
 
   <div text-center>
-    <button ion-button (click)="editEvent()" class="login-button">Update Event</button>
+    <button ion-button (click)="editEvent()">Save</button>
   </div>
 </ion-content>
-<!---->

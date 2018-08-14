@@ -1,8 +1,7 @@
-import {AlertController, NavController} from 'ionic-angular';
+import {AlertController, NavController, ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 
 import { Component } from '@angular/core';
-import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { AddAccommodationPage } from "./addAccommodation";
 import { Storage } from '@ionic/storage';
 
@@ -103,9 +102,14 @@ export class ModalAccommodationPage {
       })
       .subscribe(res => {
         this.error_message = '';
+        let alert = this.alertCtrl.create({
+          title: 'Successfully updated accommodation details',
+          buttons: ['Ok']
+        });
+        alert.present();
         this.dismiss();
       }, (err) => {
-        this.error_message = "Try again ";
+        this.error_message = "Try again";
 
       });
   }

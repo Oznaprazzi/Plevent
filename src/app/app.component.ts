@@ -16,6 +16,7 @@ import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import { UserDetailsPage } from "../pages/user-details/user-details";
+import {TransportsPage} from "../pages/transports/transports";
 
 @Component({
   templateUrl: 'app.html'
@@ -24,9 +25,7 @@ export class Plevent {
   @ViewChild(Nav) nav: Nav;
 
 
-  rootPage: any
-
-//  rootPage: any;
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
@@ -60,6 +59,7 @@ export class Plevent {
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
+        { title: 'Transports', component: TransportsPage },
         { title: 'Ask Plive', component: ChatbotPage },
         {title: 'My Account', component: UserDetailsPage},
         {title: 'Logout', component: HomePage}

@@ -30,6 +30,9 @@ import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
 import {UsernameModalPage} from "../pages/user-details/username-modal";
 import {PasswordModalPage} from "../pages/user-details/password-modal";
+import {EditTransportModalPage} from "../pages/transports/edit-transport-modal";
+import {AddTransportModalPage} from "../pages/transports/add-transport-modal";
+import {TransportsPage} from "../pages/transports/transports";
 
 
 @NgModule({
@@ -41,6 +44,7 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     PasswordModalPage,
     EventPage,
     AvalibilityplannerPage,
+    EditAvalPage,
     AddAccommodationPage,
     AccommodationsPage,
     SignupPage,
@@ -57,7 +61,9 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     ModalSelectDatePage,
     ExpenseDashboardPage,
     ChatbotPage,
-    EditAvalPage
+    TransportsPage,
+    EditTransportModalPage,
+    AddTransportModalPage
 
   ],
   imports: [
@@ -80,6 +86,7 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     PasswordModalPage,
     EventPage,
     AvalibilityplannerPage,
+    EditAvalPage,
     AddAccommodationPage,
     AccommodationsPage,
     SignupPage,
@@ -96,7 +103,9 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     ModalSelectDatePage,
     ExpenseDashboardPage,
     ChatbotPage,
-    EditAvalPage
+    TransportsPage,
+    EditTransportModalPage,
+    AddTransportModalPage
 
   ],
   providers: [
