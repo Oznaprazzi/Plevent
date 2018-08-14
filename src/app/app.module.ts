@@ -28,7 +28,10 @@ import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avali
 import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
 import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
-import {FriendslistPage, Tab1, Tab2} from "../pages/friendslist/friendslist";
+import {FriendslistPage} from "../pages/friendslist-tabs/friendslist";
+import {FriendsPage} from "../pages/friends/friends";
+import {FindFriendsPage} from "../pages/find-friends/find-friends";
+import {BlockedFriendsPage} from "../pages/blocked-friends/blocked-friends";
 
 
 
@@ -57,8 +60,9 @@ import {FriendslistPage, Tab1, Tab2} from "../pages/friendslist/friendslist";
     ChatbotPage,
     EditAvalPage,
     FriendslistPage,
-    Tab1,
-    Tab2
+    FriendsPage,
+    FindFriendsPage,
+    BlockedFriendsPage
 
   ],
   imports: [
@@ -97,8 +101,10 @@ import {FriendslistPage, Tab1, Tab2} from "../pages/friendslist/friendslist";
     ChatbotPage,
     EditAvalPage,
     FriendslistPage,
-    Tab1,
-    Tab2
+    FriendslistPage,
+    FriendsPage,
+    FindFriendsPage,
+    BlockedFriendsPage
 
   ],
   providers: [

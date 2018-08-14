@@ -16,7 +16,7 @@ import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import { UserDetailsPage } from "../pages/user-details/user-details";
-import {FriendslistPage} from "../pages/friendslist/friendslist";
+import {FriendslistPage} from "../pages/friendslist-tabs/friendslist";
 
 @Component({
   templateUrl: 'app.html'
