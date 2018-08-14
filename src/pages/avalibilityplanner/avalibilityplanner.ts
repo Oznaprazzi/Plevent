@@ -24,7 +24,7 @@ export class AvalibilityplannerPage {
 
   }
 
-  ngAfterViewInit() {
+  ionViewWillEnter() {
     this.chart = this.AmCharts.makeChart("chartdiv", {
       "type": "gantt",
       "theme": "dark",
