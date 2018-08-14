@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {  NavController, NavParams } from 'ionic-angular';
+import {  NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {HttpClient} from "@angular/common/http";
 import {AccommodationsPage} from "../accommodations/accommodations";
 import {ExpenseDashboardPage} from "../expense-dashboard/expense-dashboard";
+import {EditEventPage} from "../events/edit-event";
 
 @Component({
   selector: 'page-event-detail',
@@ -15,7 +16,7 @@ export class EventDetailPage {
   expenses:any;
   accommoL = 0;
   totalExpenses = 0;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     this.storage.get('tappedEventObject').then((data) => {
       this.event = data;
       this.getAccommo();
@@ -39,6 +40,14 @@ export class EventDetailPage {
     });
   }
 
+  editEvent(eventObject){
+    let modal = this.modalCtrl.create(EditEventPage, {"eventObject": eventObject});
+    modal.present();
+    modal.onDidDismiss(() => {
+      this.getAllEvents();
+    });
+  }
+
   toAccommoPage(){
     this.navCtrl.setRoot(AccommodationsPage);
   }
@@ -53,5 +62,13 @@ export class EventDetailPage {
 
   toTransportPage(){
     //this.navCtrl.setRoot(ExpenseDashboardPage);
+  }
+
+  getAllEvents() {
+    this.http.get(`http://localhost:8080/events/event/${this.userid}`).subscribe(res => {
+      this.eventsList = res as Array<Object>;
+    }, (err) => {
+      console.log("error" + err);
+    });
   }
 }
