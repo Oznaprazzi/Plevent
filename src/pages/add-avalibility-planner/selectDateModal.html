@@ -4,19 +4,19 @@
       <ion-icon name="md-close"></ion-icon>
     </button>
     <ion-title class="modalTitle">
-      Select Event Period
+      Select Availiblity  Period
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
   <ion-item>
-    <ion-label>Travel From</ion-label>
+    <ion-label>Available From</ion-label>
     <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="fromDate"></ion-datetime>
   </ion-item>
 
   <ion-item>
-    <ion-label>Travel To</ion-label>
+    <ion-label>Available To</ion-label>
     <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="toDate"></ion-datetime>
   </ion-item>
 

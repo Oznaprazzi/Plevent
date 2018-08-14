@@ -43,7 +43,6 @@ export class AvalibilityplannerPage {
       "categoryAxis": {
         "gridColor": "#fff",
         "axisColor": "#fff",
-        "axisColor": "#fff",
       },
       "brightnessStep": 7,
       "graph": {
