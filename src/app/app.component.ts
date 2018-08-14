@@ -35,7 +35,7 @@ export class Plevent {
       if(val){
         this.events.publish('eventsPage:outside');
         this.storage.set('isInsideDets', false);
-        this.nav.setRoot(WaypointListPage);
+        this.nav.setRoot(EventPage);
       }else{
         this.nav.setRoot(HomePage);
       }
@@ -56,13 +56,14 @@ export class Plevent {
         { title: 'Event Details', component: EventDetailPage },
         { title: 'Accommodation Planner', component: AccommodationsPage },
         { title: 'Availability Planner', component: AvalibilityplannerPage },
-        { title: 'Waypoint Planner', component: WaypointPlannerPage },
+        { title: 'Waypoint Planner', component: WaypointListPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
         { title: 'Ask Plive', component: ChatbotPage },
-        {title: 'My Account', component: UserDetailsPage},
-        {title: 'Logout', component: HomePage}
+        { title: 'Your Location', component: WaypointPlannerPage },
+        { title: 'My Account', component: UserDetailsPage},
+        { title: 'Logout', component: HomePage}
       ];
     });
   }

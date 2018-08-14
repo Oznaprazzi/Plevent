@@ -41,7 +41,7 @@ export class WaypointPlannerPage {
     }).on('locationfound', e => {
       let markerGroup = leaflet.featureGroup();
       let marker: any = leaflet.marker([e.latitude, e.longitude]).on('click', () => {
-        this.doAlert('Location found!', 'Here is your current location');
+        this.doAlert('Information', 'This is your current location.');
       })
       markerGroup.addLayer(marker);
       this.map.addLayer(markerGroup);
