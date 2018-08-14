@@ -1,0 +1,28 @@
+<!--
+  Generated template for the WaypointListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Waypoint Planner</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="page-content" padding>
+  <ion-list>
+    <ion-item class="point" *ngFor="let point of waypoints" (click)="doEditPrompt(point)" (swipe)="doDeletePrompt(point)">
+      <h2>{{point.title}}</h2>
+      <p>{{point.address}}</p>
+    </ion-item>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="doAddPrompt()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

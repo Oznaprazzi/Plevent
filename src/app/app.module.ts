@@ -15,6 +15,8 @@ import { GroceriesPage } from '../pages/groceries/groceries';
 import { GearsPage } from '../pages/gears/gears';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 import { IonicStorageModule } from '@ionic/storage';
 import {CreateEventPage} from "../pages/createEvents/createevent";
@@ -30,7 +32,8 @@ import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
 import {UsernameModalPage} from "../pages/user-details/username-modal";
 import {PasswordModalPage} from "../pages/user-details/password-modal";
-
+import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
+import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,8 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     ModalSelectDatePage,
     ExpenseDashboardPage,
     ChatbotPage,
+    WaypointPlannerPage,
+    WaypointListPage,
     EditAvalPage
 
   ],
@@ -96,6 +101,8 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     ModalSelectDatePage,
     ExpenseDashboardPage,
     ChatbotPage,
+    WaypointPlannerPage,
+    WaypointListPage,
     EditAvalPage
 
   ],
@@ -103,6 +110,8 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
     StatusBar,
     HomePage,
     SplashScreen,
+    Geolocation,
+    NativeGeocoder,
     DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
