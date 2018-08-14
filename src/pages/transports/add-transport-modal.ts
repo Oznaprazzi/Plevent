@@ -16,6 +16,7 @@ export class AddTransportModalPage {
   event : any;
   users: any;
   fueltypes:any;
+  usersList = [];
   error_message = '';
 
   constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public viewCtrl: ViewController, public storage: Storage) {
@@ -41,7 +42,7 @@ export class AddTransportModalPage {
   addTrans(){
     this.http.post('http://localhost:8080/transports/add_trans', {
       title: this.title,
-      owner: this.userid,
+      owner: this.usersList,
       people: this.people,
       fuel: this.fuel,
       event: this.event._id
