@@ -66,7 +66,7 @@ import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
     ChatbotPage,
     TransportsPage,
     EditTransportModalPage,
-    AddTransportModalPage
+    AddTransportModalPage,
     WaypointPlannerPage,
     WaypointListPage,
     EditAvalPage
@@ -111,7 +111,7 @@ import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
     ChatbotPage,
     TransportsPage,
     EditTransportModalPage,
-    AddTransportModalPage
+    AddTransportModalPage,
     WaypointPlannerPage,
     WaypointListPage,
     EditAvalPage

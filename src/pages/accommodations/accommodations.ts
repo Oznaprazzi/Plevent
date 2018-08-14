@@ -77,7 +77,7 @@ export class ModalAccommodationPage {
   accommo: any;
   error_message = '';
 
-  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient) {
+  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public alertCtrl: AlertController) {
     this.accommo = params.get('accommo');
   }
 
