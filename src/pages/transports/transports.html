@@ -3,33 +3,27 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Accommodations</ion-title>
+    <ion-title>Transports</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="page-content" padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let accommo of accommodations">
+    <ion-item-sliding *ngFor="let trans of transports">
       <ion-item>
         <ion-grid>
           <ion-row>
             <ion-col>
-              <h2>{{accommo.title}}</h2>
+              <h2>{{trans.title}}</h2>
+            </ion-col>
+            <ion-col col-auto>
+              <ion-icon class="lastcol"></ion-icon>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <p> <ion-icon name="pin"></ion-icon> {{accommo.street}}, {{accommo.state}}, {{accommo.city}}, {{accommo.country}}</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <h3>From</h3>
-              <p>{{ accommo.fromDate | date: 'dd MMM yyyy'}}</p>
-            </ion-col>
-            <ion-col>
-              <h3>To</h3>
-              <p>{{ accommo.toDate | date: 'dd MMM yyyy'}}</p>
+              <h3>Owner</h3>
+              <p>{{trans.owner.fname}} {{trans.owner.lname}}</p>
             </ion-col>
             <ion-col col-auto>
               <ion-icon name="arrow-dropright" class="lastcol"></ion-icon>
@@ -37,12 +31,12 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <h3>Price $</h3>
-              <p>{{accommo.price}}</p>
+              <h3>Number of Seats</h3>
+              <p>{{trans.people}}</p>
             </ion-col>
             <ion-col>
-              <h3>Guests <ion-icon name="people"></ion-icon> </h3>
-              <p>{{accommo.guests}}</p>
+              <h3>Fuel type</h3>
+              <p>{{ trans.fuel }}</p>
             </ion-col>
             <ion-col col-auto>
               <ion-icon class="lastcol"></ion-icon>
@@ -51,11 +45,11 @@
         </ion-grid>
       </ion-item>
       <ion-item-options>
-        <button ion-button color="primary" icon-left (click)="editModal(accommo)">
+        <button ion-button color="primary" icon-left (click)="editModal(trans)">
           <ion-icon name="ios-create"></ion-icon>
           Edit
         </button>
-        <button ion-button color="danger" icon-left (click)="deleteAccommo(accommo)">
+        <button ion-button color="danger" icon-left (click)="deleteTrans(trans)">
           <ion-icon name="ios-trash"></ion-icon>
           Delete
         </button>
@@ -64,6 +58,6 @@
   </ion-list>
 
   <ion-fab bottom right >
-    <button ion-fab color="danger" (click)="addAccomo()"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="danger" (click)="addTrans()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

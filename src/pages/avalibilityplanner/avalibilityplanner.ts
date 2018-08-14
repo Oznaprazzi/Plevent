@@ -24,21 +24,29 @@ export class AvalibilityplannerPage {
 
   }
 
-  ngAfterViewInit() {
+  ionViewWillEnter() {
     this.chart = this.AmCharts.makeChart("chartdiv", {
       "type": "gantt",
-      "theme": "light",
+      "theme": "dark",
       "marginRight": 70,
       "period": "DD",
       "dataDateFormat": "YYYY-MM-DD",
+      "color": "#fff",
       "columnWidth": 0.5,
+      "gridColor": "#fff",
+      "axisColor": "#fff",
       "valueAxis": {
-        "type": "date"
+        "type": "date",
+        "gridColor": "#fff",
+        "axisColor": "#fff",
+      },
+      "categoryAxis": {
+        "gridColor": "#fff",
+        "axisColor": "#fff",
       },
       "brightnessStep": 7,
       "graph": {
         "lineAlpha": 1,
-        "lineColor": "#fff",
         "fillAlphas": 0.85,
         "balloonText": "<b>[[task]]</b>:<br />[[open]] -- [[value]]"
       },
@@ -70,9 +78,9 @@ export class AvalibilityplannerPage {
     this.storage.get('tappedEventObject').then((data) => {
       this.eventObject = data;
       this.http.get(`http://localhost:8080/availability/get_all_plan/${this.eventObject._id}`).subscribe(res => {
-
         this.avalPlanner = res;
-
+       this.chart.clear();
+       this.dataprovider = [];
         this.updateGanntChart();
       }, (err) => {
         console.log("error" + err);
@@ -83,10 +91,7 @@ export class AvalibilityplannerPage {
   }
 
   updateGanntChart() {
-
-
       this.AmCharts.updateChart(this.chart, () => {
-
         this.parseData();
         this.chart.dataProvider = this.dataprovider;
       });

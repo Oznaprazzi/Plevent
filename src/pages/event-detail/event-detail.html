@@ -16,7 +16,7 @@
 </ion-header>
 
 
-<ion-content class="page-content"  padding>
+<ion-content class="page-content" padding>
   <div *ngIf="event != undefined && accommodations != undefined && expenses != undefined">
     <h1>{{event.eventName}}</h1>
     <p>Date: {{event.eventDate | date: 'dd MMM yyyy'}}</p>
@@ -43,10 +43,16 @@
         </ion-col>
         <ion-col>
           <ion-item style="background-color:#c3b622" (click)="toTransportPage()">
-            <h2>{{accommoL}} Transport(s)</h2>
+            <h2>{{transportsL}} Transport(s)</h2>
           </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <ion-fab bottom right>
+      <button ion-fab color="danger" (click)="editEvent(event)">
+        <ion-icon name="ios-create"></ion-icon>
+      </button>
+    </ion-fab>
   </div>
 </ion-content>

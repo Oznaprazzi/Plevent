@@ -15,9 +15,11 @@ import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
+import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
 import { UserDetailsPage } from "../pages/user-details/user-details";
 import {FriendslistPage} from "../pages/friendslist-tabs/friendslist";
-
+import {TransportsPage} from "../pages/transports/transports";
+import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 @Component({
   templateUrl: 'app.html'
 })
@@ -25,9 +27,7 @@ export class Plevent {
   @ViewChild(Nav) nav: Nav;
 
 
-  rootPage: any
-
-//  rootPage: any;
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
@@ -60,12 +60,15 @@ export class Plevent {
         { title: 'Event Details', component: EventDetailPage },
         { title: 'Accommodation Planner', component: AccommodationsPage },
         { title: 'Availability Planner', component: AvalibilityplannerPage },
+        { title: 'Waypoint Planner', component: WaypointListPage },
         { title: 'Groceries', component: GroceriesPage },
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
+        { title: 'Transports', component: TransportsPage },
         { title: 'Ask Plive', component: ChatbotPage },
-        {title: 'My Account', component: UserDetailsPage},
-        {title: 'Logout', component: HomePage}
+        { title: 'Your Location', component: WaypointPlannerPage },
+        { title: 'My Account', component: UserDetailsPage},
+        { title: 'Logout', component: HomePage}
       ];
     });
   }

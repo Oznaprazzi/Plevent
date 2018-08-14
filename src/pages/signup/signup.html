@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="page-content" padding>
   <ion-label class="alert alert-danger" *ngIf="show_error_message">{{error_message}}</ion-label>
   <ion-item>
     <ion-label color="primary">Username</ion-label>
@@ -39,6 +39,8 @@
     <ion-label>Date of Birth</ion-label>
     <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="bdate"></ion-datetime>
   </ion-item>
-  <button ion-button (click)="signup()" id="signup-button">Sign Up</button>
+  <div text-center>
+    <button ion-button (click)="signup()">Sign Up</button>
+  </div>
 
 </ion-content>

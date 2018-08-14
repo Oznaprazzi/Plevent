@@ -15,6 +15,8 @@ import { GroceriesPage } from '../pages/groceries/groceries';
 import { GearsPage } from '../pages/gears/gears';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 import { IonicStorageModule } from '@ionic/storage';
 import {CreateEventPage} from "../pages/createEvents/createevent";
@@ -28,11 +30,20 @@ import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avali
 import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
 import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
+
 import {FriendslistPage} from "../pages/friendslist-tabs/friendslist";
 import {FriendsPage} from "../pages/friends/friends";
 import {FindFriendsPage} from "../pages/find-friends/find-friends";
 import {BlockedFriendsPage} from "../pages/blocked-friends/blocked-friends";
 
+
+import {UsernameModalPage} from "../pages/user-details/username-modal";
+import {PasswordModalPage} from "../pages/user-details/password-modal";
+import {EditTransportModalPage} from "../pages/transports/edit-transport-modal";
+import {AddTransportModalPage} from "../pages/transports/add-transport-modal";
+import {TransportsPage} from "../pages/transports/transports";
+import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
+import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 
 
 @NgModule({
@@ -40,8 +51,11 @@ import {BlockedFriendsPage} from "../pages/blocked-friends/blocked-friends";
     Plevent,
     HomePage,
     UserDetailsPage,
+    UsernameModalPage,
+    PasswordModalPage,
     EventPage,
     AvalibilityplannerPage,
+    EditAvalPage,
     AddAccommodationPage,
     AccommodationsPage,
     SignupPage,
@@ -62,7 +76,13 @@ import {BlockedFriendsPage} from "../pages/blocked-friends/blocked-friends";
     FriendslistPage,
     FriendsPage,
     FindFriendsPage,
-    BlockedFriendsPage
+    BlockedFriendsPage,
+    TransportsPage,
+    EditTransportModalPage,
+    AddTransportModalPage,
+    WaypointPlannerPage,
+    WaypointListPage,
+    EditAvalPage
 
   ],
   imports: [
@@ -81,8 +101,11 @@ import {BlockedFriendsPage} from "../pages/blocked-friends/blocked-friends";
     Plevent,
     HomePage,
     UserDetailsPage,
+    UsernameModalPage,
+    PasswordModalPage,
     EventPage,
     AvalibilityplannerPage,
+    EditAvalPage,
     AddAccommodationPage,
     AccommodationsPage,
     SignupPage,
@@ -104,13 +127,21 @@ import {BlockedFriendsPage} from "../pages/blocked-friends/blocked-friends";
     FriendslistPage,
     FriendsPage,
     FindFriendsPage,
-    BlockedFriendsPage
+    BlockedFriendsPage,
+    TransportsPage,
+    EditTransportModalPage,
+    AddTransportModalPage,
+    WaypointPlannerPage,
+    WaypointListPage,
+    EditAvalPage
 
   ],
   providers: [
     StatusBar,
     HomePage,
     SplashScreen,
+    Geolocation,
+    NativeGeocoder,
     DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
