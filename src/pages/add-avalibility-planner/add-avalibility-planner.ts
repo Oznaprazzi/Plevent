@@ -116,8 +116,7 @@ export class ModalSelectDatePage {
 
   setDates() {
     var fullname = this.user.fname + " " + this.user.lname;
-    var date = moment().format('YYYY-MM-DD');
-
+    var date = moment().utc().format('YYYY-MM-DD');
     if (this.toDate < this.fromDate || this.toDate < date || this.fromDate < date ) {
       this.error_message = "Available from Date must be greater then or equal to available to "
     } else {
