@@ -6,8 +6,6 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {Storage} from '@ionic/storage';
 import {EditAvalPage} from "./edit-avalplan";
-import moment from 'moment';
-
 
 @Component({
   selector: 'page-add-avalibility-planner',
@@ -100,7 +98,7 @@ export class ModalSelectDatePage {
   fromDate: Date;
   eventObject: any;
   user: any;
-
+  fromDateMin :string = new Date().toISOString();
 
   constructor(public navCtrl: NavController, public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public storage: Storage) {
     this.eventObject = params.get('eventObject');
@@ -116,27 +114,22 @@ export class ModalSelectDatePage {
 
   setDates() {
     var fullname = this.user.fname + " " + this.user.lname;
-    var date = moment().utc().format('YYYY-MM-DD');
-    if (this.toDate < this.fromDate || this.toDate < date || this.fromDate < date ) {
-      this.error_message = "Available from Date must be greater then or equal to available to "
-    } else {
-      this.http.post('http://localhost:8080/availability/create_planner', {
-          startDate: this.fromDate,
-          endDate: this.toDate,
-          event: this.eventObject._id,
-          name: fullname,
-          user: this.user._id
-        },
-        {
-          headers: {'Content-Type': 'application/json'}
-        })
-        .subscribe(res => {
-          this.dismiss();
-        }, (err) => {
-          this.error_message = "Try again ";
+    this.http.post('http://localhost:8080/availability/create_planner', {
+        startDate: this.fromDate,
+        endDate: this.toDate,
+        event: this.eventObject._id,
+        name: fullname,
+        user: this.user._id
+      },
+      {
+        headers: {'Content-Type': 'application/json'}
+      })
+      .subscribe(res => {
+        this.dismiss();
+      }, (err) => {
+        this.error_message = "Try again ";
 
-        });
-    }
+      });
   }
 
 
