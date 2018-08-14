@@ -4,13 +4,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="page-content" padding>
   <ion-list>
     <ion-item-sliding *ngFor="let plan of avalPlan">
       <ion-item>
         <ion-icon name="clipboard" item-start></ion-icon>
         <p>Available</p>
-        {{plan.startDate | date: 'dd MMM yyyy'}} {{plan.endDate | date: 'dd MMM yyyy'}}
+        <strong> From:</strong> {{plan.startDate | date: 'dd MMM yyyy'}}<strong> To:</strong> {{plan.endDate | date: 'dd MMM yyyy'}}
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary" icon-left (click)="openEditModal(plan,user)">

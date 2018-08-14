@@ -6,6 +6,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {Storage} from '@ionic/storage';
 import {EditAvalPage} from "./edit-avalplan";
+import moment from 'moment';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class AddAvalibilityPlannerPage {
   avalPlan: any;
   user: any;
 
-  constructor( public alertCtrl: AlertController,public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage) {
+  constructor(public alertCtrl: AlertController, public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public modalCtrl: ModalController, public storage: Storage) {
     storage.get('tappedEventObject').then((data) => {
       this.eventObject = data;
       storage.get('userObject').then((data) => {
@@ -32,6 +33,9 @@ export class AddAvalibilityPlannerPage {
 
   openModal() {
     let modal = this.modalCtrl.create(ModalSelectDatePage, {"eventObject": this.eventObject});
+    modal.onDidDismiss(() => {
+      this.updateList();
+    });
     modal.present();
   }
 
@@ -42,7 +46,7 @@ export class AddAvalibilityPlannerPage {
     });
   }
 
-  doDeletePrompt(item){
+  doDeletePrompt(item) {
     const confirm = this.alertCtrl.create({
       title: 'Delete this item?',
       message: 'This item may be important!',
@@ -64,18 +68,24 @@ export class AddAvalibilityPlannerPage {
     confirm.present();
   }
 
-  private deleteItem(item){
+  private deleteItem(item) {
     var id = item._id;
     this.http.delete(`http://localhost:8080/availability/delete_plan/${id}`).subscribe(res => {
       this.updateList();
     });
   }
+
   openEditModal(avalPlanObject, userObject) {
-    let modal = this.modalCtrl.create(EditAvalPage, {"avalPlanObject": avalPlanObject, "userObject": userObject, "eventObject": this.eventObject});
-    modal.present();
+    let modal = this.modalCtrl.create(EditAvalPage, {
+      "avalPlanObject": avalPlanObject,
+      "userObject": userObject,
+      "eventObject": this.eventObject
+    });
+
     modal.onDidDismiss(() => {
       this.updateList();
     });
+    modal.present();
   }
 }
 
@@ -89,10 +99,10 @@ export class ModalSelectDatePage {
   toDate: Date;
   fromDate: Date;
   eventObject: any;
-  avalPlan: any;
   user: any;
 
-  constructor( public navCtrl: NavController, public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public storage: Storage) {
+
+  constructor(public navCtrl: NavController, public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public http: HttpClient, public storage: Storage) {
     this.eventObject = params.get('eventObject');
     storage.get('userObject').then((data) => {
       this.user = data;
@@ -106,31 +116,27 @@ export class ModalSelectDatePage {
 
   setDates() {
     var fullname = this.user.fname + " " + this.user.lname;
+    var date = moment().utc().format('YYYY-MM-DD');
+    if (this.toDate < this.fromDate || this.toDate < date || this.fromDate < date ) {
+      this.error_message = "Available from Date must be greater then or equal to available to "
+    } else {
+      this.http.post('http://localhost:8080/availability/create_planner', {
+          startDate: this.fromDate,
+          endDate: this.toDate,
+          event: this.eventObject._id,
+          name: fullname,
+          user: this.user._id
+        },
+        {
+          headers: {'Content-Type': 'application/json'}
+        })
+        .subscribe(res => {
+          this.dismiss();
+        }, (err) => {
+          this.error_message = "Try again ";
 
-    this.http.post('http://localhost:8080/availability/create_planner', {
-        startDate: this.fromDate,
-        endDate: this.toDate,
-        event: this.eventObject._id,
-        name: fullname,
-        user: this.user._id
-      },
-      {
-        headers: {'Content-Type': 'application/json'}
-      })
-      .subscribe(res => {
-        this.updateList();
-        this.dismiss();
-      }, (err) => {
-        this.error_message = "Try again ";
-
-      });
-  }
-
-  private updateList() {
-    this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}/${this.user._id}`).subscribe(res => {
-      this.avalPlan = res;
-      this.navCtrl.push(AddAvalibilityPlannerPage, {});
-    });
+        });
+    }
   }
 
 

@@ -24,21 +24,29 @@ export class AvalibilityplannerPage {
 
   }
 
-  ngAfterViewInit() {
+  ionViewWillEnter() {
     this.chart = this.AmCharts.makeChart("chartdiv", {
       "type": "gantt",
-      "theme": "light",
+      "theme": "dark",
       "marginRight": 70,
       "period": "DD",
       "dataDateFormat": "YYYY-MM-DD",
+      "color": "#fff",
       "columnWidth": 0.5,
+      "gridColor": "#fff",
+      "axisColor": "#fff",
       "valueAxis": {
-        "type": "date"
+        "type": "date",
+        "gridColor": "#fff",
+        "axisColor": "#fff",
+      },
+      "categoryAxis": {
+        "gridColor": "#fff",
+        "axisColor": "#fff",
       },
       "brightnessStep": 7,
       "graph": {
         "lineAlpha": 1,
-        "lineColor": "#fff",
         "fillAlphas": 0.85,
         "balloonText": "<b>[[task]]</b>:<br />[[open]] -- [[value]]"
       },
