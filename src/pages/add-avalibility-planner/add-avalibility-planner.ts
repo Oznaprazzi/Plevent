@@ -6,6 +6,10 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {Storage} from '@ionic/storage';
 import {EditAvalPage} from "./edit-avalplan";
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 @Component({
   selector: 'page-add-avalibility-planner',
@@ -138,6 +142,4 @@ export class ModalSelectDatePage {
 
       });
   }
-
-
 }
