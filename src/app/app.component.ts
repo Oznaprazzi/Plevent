@@ -17,6 +17,7 @@ import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboa
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
 import { UserDetailsPage } from "../pages/user-details/user-details";
+import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 
 @Component({
   templateUrl: 'app.html'
@@ -34,7 +35,7 @@ export class Plevent {
       if(val){
         this.events.publish('eventsPage:outside');
         this.storage.set('isInsideDets', false);
-        this.nav.setRoot(EventPage);
+        this.nav.setRoot(WaypointListPage);
       }else{
         this.nav.setRoot(HomePage);
       }

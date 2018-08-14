@@ -27,6 +27,7 @@ import { ChatbotPage } from '../pages/chatbot/chatbot';
 import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
 import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
+import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {DatePipe} from "@angular/common";
     GearsPage,
     ExpenseDashboardPage,
     ChatbotPage,
-    WaypointPlannerPage
+    WaypointPlannerPage,
+    WaypointListPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ import {DatePipe} from "@angular/common";
     GearsPage,
     ExpenseDashboardPage,
     ChatbotPage,
-    WaypointPlannerPage
+    WaypointPlannerPage,
+    WaypointListPage
   ],
   providers: [
     StatusBar,
