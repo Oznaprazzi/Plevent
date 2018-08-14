@@ -10,21 +10,19 @@ import {FindFriendsPage} from "../find-friends/find-friends";
   selector: 'page-friendslist',
   templateUrl: 'friendslist.html',
   template:   `
-    <ion-tabs>
+    <ion-tabs  >
       <ion-tab tabTitle="Friends" [root]="tab1"></ion-tab>
       <ion-tab tabTitle="Find Friends" [root]="tab2"></ion-tab>
       <ion-tab tabTitle="Blocked Friends" [root]="tab3"></ion-tab>
     </ion-tabs>`
 })
 export class FriendslistPage {
-  tab1: any;
-  tab2: any;
-  tab3: any;
+  tab1 = FriendsPage;
+  tab2 = FindFriendsPage;
+  tab3 = BlockedFriendsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.tab1 = FriendsPage;
-    this.tab2 = FindFriendsPage;
-    this.tab3 = BlockedFriendsPage;
+
   }
 }
 
