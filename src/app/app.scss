@@ -71,7 +71,7 @@ ion-navbar ion-title{
 }
 
 .item-block {
-  margin-bottom: 0px !important;
+  margin-bottom: 2px !important;
 }
 
 .dismiss{
@@ -109,5 +109,9 @@ ion-content{
 
 .list-md ion-item-sliding{
   background-color: transparent;
+}
+
+.bar-button-menutoggle-md{
+  color: #f4f4f4;
 }
 

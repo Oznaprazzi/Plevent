@@ -25,7 +25,10 @@ import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 export class Plevent {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+
+  rootPage: any
+
+//  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 

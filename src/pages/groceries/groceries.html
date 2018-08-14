@@ -16,7 +16,7 @@
 </ion-header>
 
 <ion-content class="page-content" padding>
-  <ion-list class="grocery-list">
+  <ion-list>
     <ion-item *ngFor="let grocery of groceries" (swipe)="deleteItem(grocery)">
       <ion-icon name="cart" item-start></ion-icon>
       {{grocery.description}}

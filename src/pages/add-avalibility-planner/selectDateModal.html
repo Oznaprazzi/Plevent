@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button (click)="dismiss()" class="dismiss">
+      <ion-icon name="md-close"></ion-icon>
+    </button>
+    <ion-title class="modalTitle">
+      Select Event Period
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
+  <ion-item>
+    <ion-label>Travel From</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="fromDate"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Travel To</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="toDate"></ion-datetime>
+  </ion-item>
+
+
+
+  <div text-center>
+    <button ion-button (click)="setDates()" id="signup-button">Enter</button>
+  </div>
+</ion-content>
