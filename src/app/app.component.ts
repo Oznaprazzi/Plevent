@@ -16,6 +16,7 @@ import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import { UserDetailsPage } from "../pages/user-details/user-details";
+import {FriendslistPage} from "../pages/friendslist/friendslist";
 
 @Component({
   templateUrl: 'app.html'
@@ -36,7 +37,7 @@ export class Plevent {
       if(val){
         this.events.publish('eventsPage:outside');
         this.storage.set('isInsideDets', false);
-        this.nav.setRoot(EventPage);
+        this.nav.setRoot(FriendslistPage);
       }else{
         this.nav.setRoot(HomePage);
       }
@@ -45,9 +46,11 @@ export class Plevent {
     this.events.subscribe('eventsPage:outside',()=>{
       this.pages = [
         {title: 'Home', component: EventPage},
+        {title: 'Friends', component: FriendslistPage},
         { title: 'Ask Plive', component: ChatbotPage },
         {title: 'My Account', component: UserDetailsPage},
-        {title: 'Logout', component: HomePage}
+        {title: 'Logout', component: HomePage},
+
       ];
     });
 
