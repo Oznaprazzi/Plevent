@@ -32,6 +32,9 @@ export class AddAvalibilityPlannerPage {
 
   openModal() {
     let modal = this.modalCtrl.create(ModalSelectDatePage, {"eventObject": this.eventObject});
+    modal.onDidDismiss(() => {
+      this.updateList();
+    });
     modal.present();
   }
 
@@ -72,10 +75,11 @@ export class AddAvalibilityPlannerPage {
   }
   openEditModal(avalPlanObject, userObject) {
     let modal = this.modalCtrl.create(EditAvalPage, {"avalPlanObject": avalPlanObject, "userObject": userObject, "eventObject": this.eventObject});
-    modal.present();
+
     modal.onDidDismiss(() => {
       this.updateList();
     });
+    modal.present();
   }
 }
 
@@ -118,19 +122,11 @@ export class ModalSelectDatePage {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
-        this.updateList();
-        this.dismiss();
+         this.dismiss();
       }, (err) => {
         this.error_message = "Try again ";
 
       });
-  }
-
-  private updateList() {
-    this.http.get(`http://localhost:8080/availability/get_aval_planner/${this.eventObject._id}/${this.user._id}`).subscribe(res => {
-      this.avalPlan = res;
-      this.navCtrl.push(AddAvalibilityPlannerPage, {});
-    });
   }
 
 
