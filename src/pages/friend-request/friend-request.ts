@@ -21,7 +21,6 @@ export class FriendRequestPage {
   getFriendRequest(){
     this.http.get(`http://localhost:8080/friendsrequest/get_friend_request/${this.userObject._id}`).subscribe(res => {
       this.friendRequest = res as Array<Object>;;
-      console.log(res);
     });
   }
 
