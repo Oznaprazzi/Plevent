@@ -1,5 +1,5 @@
 {
-  "name": "plevent",
+  "name": "ionic-firebase-chat",
   "integrations": {
     "cordova": {}
   },

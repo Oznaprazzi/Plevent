@@ -20,6 +20,18 @@ import { UserDetailsPage } from "../pages/user-details/user-details";
 import {TransportsPage} from "../pages/transports/transports";
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 
+import * as firebase from 'firebase';
+import {SigninPage} from "../pages/chat-room/signin/signin";
+
+const config = {
+  apiKey: "AIzaSyCo8dhuRElM4vzR60IIFpcJdIAUsZg8gF0",
+  authDomain: "plevent-carrot-group.firebaseapp.com",
+  databaseURL: "https://plevent-carrot-group.firebaseio.com",
+  projectId: "plevent-carrot-group",
+  storageBucket: "plevent-carrot-group.appspot.com",
+  messagingSenderId: "967840979254"
+};
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -63,6 +75,7 @@ export class Plevent {
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
         { title: 'Transports', component: TransportsPage },
+        { title: 'Chat Room', component: SigninPage },
         { title: 'Ask Plive', component: ChatbotPage },
         { title: 'Your Location', component: WaypointPlannerPage },
         { title: 'My Account', component: UserDetailsPage},
@@ -78,6 +91,7 @@ export class Plevent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    firebase.initializeApp(config);
   }
 
   openPage(page) {
