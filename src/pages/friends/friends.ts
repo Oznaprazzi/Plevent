@@ -40,7 +40,6 @@ export class FriendsPage {
   }
   sendFriendRequest(friendid){
     this.http.post(`http://localhost:8080/friendsrequest/create_friend_request`, {
-        user: this.userObject._id,
         friendRequest: friendid,
       },
       {

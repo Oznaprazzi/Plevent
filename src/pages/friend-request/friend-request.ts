@@ -13,14 +13,14 @@ export class FriendRequestPage {
   friendRequest: any
   constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
     this.storage.get('userObject').then((data) => {
-      this.userObject = data;
+      this.userObject = data ;
       this.getFriendRequest();
     });
   }
 
   getFriendRequest(){
     this.http.get(`http://localhost:8080/friendsrequest/get_friend_request/${this.userObject._id}`).subscribe(res => {
-      this.friendRequest = res;
+      this.friendRequest = res as Array<Object>;;
       console.log(res);
     });
   }
