@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 
+
 @Component({
-  selector: 'page-blocked-friends',
-  templateUrl: 'blocked-friends.html',
+  selector: 'page-friend-request',
+  templateUrl: 'friend-request.html',
 })
-export class BlockedFriendsPage {
+export class FriendRequestPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+
+
 
 }

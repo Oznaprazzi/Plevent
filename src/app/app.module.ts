@@ -34,7 +34,6 @@ import {DatePipe} from "@angular/common";
 import {FriendslistPage} from "../pages/friendslist-tabs/friendslist";
 import {FriendsPage} from "../pages/friends/friends";
 import {FindFriendsPage} from "../pages/find-friends/find-friends";
-import {BlockedFriendsPage} from "../pages/blocked-friends/blocked-friends";
 
 
 import {UsernameModalPage} from "../pages/user-details/username-modal";
@@ -44,6 +43,7 @@ import {AddTransportModalPage} from "../pages/transports/add-transport-modal";
 import {TransportsPage} from "../pages/transports/transports";
 import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
+import {FriendRequestPage} from "../pages/friend-request/friend-request";
 
 
 @NgModule({
@@ -76,13 +76,13 @@ import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
     FriendslistPage,
     FriendsPage,
     FindFriendsPage,
-    BlockedFriendsPage,
     TransportsPage,
     EditTransportModalPage,
     AddTransportModalPage,
     WaypointPlannerPage,
     WaypointListPage,
-    EditAvalPage
+    EditAvalPage,
+    FriendRequestPage
 
   ],
   imports: [
@@ -127,13 +127,13 @@ import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
     FriendslistPage,
     FriendsPage,
     FindFriendsPage,
-    BlockedFriendsPage,
     TransportsPage,
     EditTransportModalPage,
     AddTransportModalPage,
     WaypointPlannerPage,
     WaypointListPage,
-    EditAvalPage
+    EditAvalPage,
+    FriendRequestPage
 
   ],
   providers: [

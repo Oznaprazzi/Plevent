@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {HttpClient} from "@angular/common/http";
-
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'page-friends',
@@ -10,9 +10,13 @@ import {HttpClient} from "@angular/common/http";
 export class FriendsPage {
   users: any
   matchUsers: any
+  userObject: any
 
-  constructor(public http: HttpClient, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public http: HttpClient, public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
     this.retriveUsers();
+    this.storage.get('userObject').then((data) => {
+      this.userObject = data;
+    });
   }
 
   findItem(event: any) {
@@ -33,6 +37,22 @@ export class FriendsPage {
     }, (err) => {
       console.log("error" + err);
     });
+  }
+  sendFriendRequest(friendid){
+    this.http.post(`http://localhost:8080/friendsrequest/create_friend_request`, {
+        user: this.userObject._id,
+        friendRequest: friendid,
+      },
+      {
+        headers: {'Content-Type': 'application/json'}
+      })
+      .subscribe(res => {
+        console.log(res);
+      }, (err) => {
+        console.log(err);
+
+      });
+
   }
 
 }

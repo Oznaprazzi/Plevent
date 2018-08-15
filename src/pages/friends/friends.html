@@ -14,8 +14,19 @@
   <ion-searchbar placeholder="E.g. Plive"(ionInput)="findItem($event)"></ion-searchbar>
   <ion-list *ngFor="let user of matchUsers">
     <ion-item>
-      <ion-icon name="contact"></ion-icon>
-      {{user.username}}
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon name="contact"></ion-icon>
+        </ion-col>
+        <ion-col>
+          {{user.username}}
+        </ion-col>
+        <ion-col>
+          <ion-icon  name="person-add" (click)="sendFriendRequest(user._id)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     </ion-item>
   </ion-list>
 </ion-content>
