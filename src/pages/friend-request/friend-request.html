@@ -9,7 +9,7 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="page-content">
   <ion-list *ngFor="let friend of friendRequest">
     <ion-item>
       <ion-grid>
@@ -21,7 +21,11 @@
             {{friend.sender.username}}
           </ion-col>
           <ion-col>
-            <ion-icon  name="person-add" (click)="sendFriendRequest(friend._id)"></ion-icon>
+            <ion-icon name="checkmark" (click)="doConfirm(friend )"></ion-icon>
+          </ion-col>
+
+          <ion-col>
+            <ion-icon name="close" (click)="doDeletePrompt(friend._id)"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-grid>

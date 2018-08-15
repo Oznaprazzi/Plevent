@@ -2,78 +2,59 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {HttpClient} from "@angular/common/http";
 import {Storage} from '@ionic/storage';
+import {AlertController} from "ionic-angular/components/alert/alert-controller";
 
 @Component({
   selector: 'page-friends',
   templateUrl: 'friends.html',
 })
 export class FriendsPage {
-  users: any
-  friendReqestsSent: any
-  matchUsers: any
-  userObject: any
+  friendList: any;
+  userObject: any;
 
-  constructor(public http: HttpClient, public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
-    this.retriveUsers();
+  constructor(public alertCtrl: AlertController, public http: HttpClient, public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
     this.storage.get('userObject').then((data) => {
       this.userObject = data;
+      this.retriveMyFriends();
     });
   }
 
-  findItem(event: any) {
-    this.getAllFriendsRequestSent(event);
-
+  retriveMyFriends() {
+    this.http.get(`http://localhost:8080/friendslist/get_all_friend/${this.userObject._id}`).subscribe(res => {
+      this.friendList = res as Array<Object>;
+      console.log(this.friendList);
+    }, (err) => {
+      console.log("error" + err);
+    });
   }
 
-  getAllFriendsRequestSent(event){
-    this.http.get(`http://localhost:8080/friendsrequest/get_all_friend_request/${this.userObject._id}`).subscribe(res => {
-      this.friendReqestsSent = res as Array<Object>;
-      let val = event.target.value;
-      if(val && val.trim() !== ''){
-        this.matchUsers = this.users.filter(function (user) {
-          if(user.username.includes(val)){
-            return user;
+  doDeletePrompt(removeFriend){
+    const confirm = this.alertCtrl.create({
+      title: 'Delete Friend ?',
+      message: 'This friend may be important!',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteItem(removeFriend);
           }
-        });
-      }
-      //
-      for (let j = 0; j < this.matchUsers.length; j++) {
-        for (let i = 0; i < this.friendReqestsSent.length; i++) {
-
-          if (this.friendReqestsSent[i].friendRequest._id == this.matchUsers[j]._id) {
-            console.log("here");
-            this.matchUsers.splice(j,1);
+        },
+        {
+          text: 'No',
+          handler: () => {
+            // Close prompt
           }
         }
-      }
-    }, (err) => {
-      console.log("error" + err);
+      ]
     });
+    confirm.present();
   }
 
-  retriveUsers() {
-    this.http.get(`http://localhost:8080/users`).subscribe(res => {
-      this.users = res as Array<Object>;
-
-    }, (err) => {
-      console.log("error" + err);
+  private deleteItem(removeFriend){
+    var id = removeFriend;
+    this.http.delete(`http://localhost:8080/friendslist/unfriend/${id}/${removeFriend.user._id}/${removeFriend.friends._id},`).subscribe(res => {
+      console.log(res);
     });
-  }
-  sendFriendRequest(friendid){
-    this.http.post(`http://localhost:8080/friendsrequest/create_friend_request`, {
-        sender: this.userObject._id,
-        friendRequest: friendid,
-      },
-      {
-        headers: {'Content-Type': 'application/json'}
-      })
-      .subscribe(res => {
-        console.log(res);
-      }, (err) => {
-        console.log(err);
-
-      });
-
   }
 
 }

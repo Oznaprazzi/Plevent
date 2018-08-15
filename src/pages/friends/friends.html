@@ -10,9 +10,8 @@
 
 </ion-header>
 
-<ion-content padding>
-  <ion-searchbar placeholder="E.g. Plive"(ionInput)="findItem($event)"></ion-searchbar>
-  <ion-list *ngFor="let user of matchUsers">
+<ion-content padding class="page-content">
+  <ion-list *ngFor="let friend of friendList">
     <ion-item>
     <ion-grid>
       <ion-row>
@@ -20,10 +19,10 @@
           <ion-icon name="contact"></ion-icon>
         </ion-col>
         <ion-col>
-          {{user.username}}
+          {{friend.user.username}}
         </ion-col>
         <ion-col>
-          <ion-icon  name="person-add" (click)="sendFriendRequest(user._id)"></ion-icon>
+          <ion-icon  name="close" (click)="doDeletePrompt(friend)"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
