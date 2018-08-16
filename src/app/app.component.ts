@@ -51,7 +51,7 @@ export class Plevent {
         this.storage.set('isInsideDets', false);
         this.nav.setRoot(RoomPage);
       }else{
-        this.nav.setRoot(HomePage);
+        this.nav.setRoot(EventPage);
       }
     });
 
