@@ -49,7 +49,7 @@ export class Plevent {
       if(val){
         this.events.publish('eventsPage:outside');
         this.storage.set('isInsideDets', false);
-        this.nav.setRoot(EventPage);
+        this.nav.setRoot(RoomPage);
       }else{
         this.nav.setRoot(HomePage);
       }

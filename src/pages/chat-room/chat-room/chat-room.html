@@ -1,13 +1,8 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Firebase Chat
+      {{roomname}} Chat
     </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="exitChat()">
-        <ion-icon name="exit"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -41,11 +36,11 @@
 <ion-footer>
   <ion-grid>
     <ion-row>
-      <ion-col col-10>
+      <ion-col>
         <ion-input type="text" placeholder="Type a message" [(ngModel)]="data.message" name="message"></ion-input>
       </ion-col>
       <ion-col col-2 (click)="sendMessage()">
-        <ion-icon name="paper-plane"></ion-icon>
+        <ion-icon color="danger" name="paper-plane"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>

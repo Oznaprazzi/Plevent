@@ -2,21 +2,26 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content } from 'ionic-angular';
 import { RoomPage } from '../room/room';
 import * as firebase from 'firebase';
+import { Navbar } from 'ionic-angular';
 
 @Component({
   selector: 'page-chat-room',
   templateUrl: 'chat-room.html'
 })
+
 export class ChatRoomPage {
+  @ViewChild(Navbar) navBar: Navbar;
   @ViewChild(Content) content: Content;
   data = { type:'', nickname:'', message:'' };
   chats = [];
   roomkey:string;
   nickname:string;
   offStatus:boolean = false;
+  roomname:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.roomkey = this.navParams.get("key") as string;
+    this.roomname = this.navParams.get("roomname") as string;
     this.nickname = this.navParams.get("nickname") as string;
     this.data.type = 'message';
     this.data.nickname = this.nickname;
@@ -67,6 +72,13 @@ export class ChatRoomPage {
       nickname:this.nickname
     });
   }
+
+  ionViewDidLoad() {
+    this.navBar.backButtonClick = (e:UIEvent)=>{
+      this.exitChat();
+    }
+  }
+
 }
 
 export const snapshotToArray = snapshot => {

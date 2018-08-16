@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { AddRoomPage } from '../add-room/add-room';
 import { ChatRoomPage } from '../chat-room/chat-room';
 import { Storage } from '@ionic/storage';
@@ -25,8 +25,9 @@ export class RoomPage {
   user:any;
   resRooms:any;
   event: any;
+  firedbrooms=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     storage.get('tappedEventObject').then((data) => {
       this.event = data;
       console.log(this.event._id);
@@ -37,13 +38,13 @@ export class RoomPage {
   getRooms(){
     this.http.get(`http://localhost:8080/chatrooms/get_chatroom/${this.event._id}`).subscribe(res => {
       this.resRooms = res;
-      console.log(this.resRooms);
       this.ref.on('value', resp => {
-        var res = snapshotToArray(resp);
-        for(let i = 0; i < res.length; i++){
+        this.firedbrooms = snapshotToArray(resp);
+        this.rooms = [];
+        for(let i = 0; i < this.firedbrooms.length; i++){
           for(let j = 0; j < this.resRooms.length; j++){
-            if(res[i].key == this.resRooms[j].chatid){
-              this.rooms.push(res[i]);
+            if(this.firedbrooms[i].key == this.resRooms[j].chatid){
+              this.rooms.push(this.firedbrooms[i]);
             }
           }
         }
@@ -66,13 +67,37 @@ export class RoomPage {
 
   addRoom() {
     let modal = this.modalCtrl.create(AddRoomPage);
+    modal.onDidDismiss(() => {
+      this.addtodb(this.firedbrooms[this.firedbrooms.length - 1].key);
+    });
     modal.present();
   }
 
-  joinRoom(key) {
-    this.navCtrl.setRoot(ChatRoomPage, {
+  addtodb(chatid){
+    this.http.post('http://localhost:8080/chatrooms/add_chatroom', {
+        event: this.event._id,
+        chatid: chatid
+      },
+      {
+        headers: {'Content-Type': 'application/json'}
+      })
+      .subscribe(res => {
+        let alert = this.alertCtrl.create({
+          title: 'Successfully created new chat',
+          buttons: ['Ok']
+        });
+        alert.present();
+        this.getRooms();
+      }, (err) => {
+        //this.error_message = "Please fill in all the fields";
+      });
+  }
+
+  joinRoom(key, roomname) {
+    this.navCtrl.push(ChatRoomPage, {
       key:key,
-      nickname:this.user.username
+      nickname:this.user.username,
+      roomname: roomname
     });
   }
 
