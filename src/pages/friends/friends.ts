@@ -19,9 +19,9 @@ export class FriendsPage {
     });
   }
 
-  ionViewWillEnter(){
-    this.retriveMyFriends();
-  }
+  // ionViewWillEnter(){
+  //   this.retriveMyFriends();
+  // }
 
   retriveMyFriends() {
     this.http.get(`http://localhost:8080/friendslist/get_all_friend/${this.userObject._id}`).subscribe(res => {

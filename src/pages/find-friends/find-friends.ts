@@ -15,7 +15,9 @@ export class FindFriendsPage {
   tempUser: any;
   matchUsers: any;
   userObject: any;
-
+  frinedsList: any;
+  userRequestTemp: any
+  friendsTemp: any
   constructor(public alertCtrl: AlertController, public http: HttpClient, public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
     this.retriveUsers();
     this.storage.get('userObject').then((data) => {
@@ -30,29 +32,69 @@ export class FindFriendsPage {
 
 
   getAllFriendsRequestSent(event){
-    this.matchUsers = [];
-    this.http.get(`http://localhost:8080/friendsrequest/get_all_friend_request/${this.userObject._id}`).subscribe(res => {
-      this.friendReqestsSent = res as Array<Object>;
-      let val = event.target.value;
-      if(val && val.trim() !== ''){
-        this.tempUser = this.users.filter(function (user) {
-          if(user.username.includes(val)){
-            return user;
+
+    this.http.get(`http://localhost:8080/friendsrequest/get_all_friend_request/${this.userObject._id}`).subscribe(result => {
+      this.http.get(`http://localhost:8080/friendslist/get_all_friend/${this.userObject._id}`).subscribe(res => {
+
+
+        this.matchUsers = [];
+        this.userRequestTemp = [];
+        this.friendsTemp = [];
+
+        this.frinedsList = res as Array<Object>;
+        this.friendReqestsSent = result as Array<Object>;
+        let val = event.target.value;
+
+        if(val && val.trim() !== ''){
+          this.tempUser = this.users.filter((user) => {
+            if(user.username.includes(val)){
+              if(this.userObject.username != user.username) {
+                return user;
+              }
+            }
+          });
+        }
+
+
+        if(this.friendReqestsSent.length != 0){
+          for (let j = 0; j < this.tempUser.length; j++) {
+            for (let i = 0; i < this.friendReqestsSent.length; i++) {
+              if (this.friendReqestsSent[i].friendRequest.username != this.tempUser[j].username) {
+
+                if(!this.containsObject(this.tempUser[j], this.userRequestTemp)) {
+                  this.userRequestTemp.push(this.tempUser[j]);
+                }
+              }
+            }
           }
-        });
-      }
+        }
 
+        if(this.frinedsList.length != 0){
+          for (let j = 0; j < this.tempUser.length; j++) {
+            for (let i = 0; i < this.frinedsList.length; i++) {
+              if (this.frinedsList[i].friends.username != this.tempUser[j].username) {
 
-      for (let j = 0; j < this.tempUser.length; j++) {
-        for (let i = 0; i < this.friendReqestsSent.length; i++) {
-          if (this.friendReqestsSent[i].friendRequest.username != this.tempUser[j].username) {
-            if(!this.containsObject(this.tempUser[j], this.matchUsers)) {
-              this.matchUsers.push(this.tempUser[j]);
+                if(!this.containsObject(this.tempUser[j], this.friendsTemp)) {
+                  this.friendsTemp.push(this.tempUser[j]);
+                }
+              }
+            }
+          }
+        }
+        if(this.friendReqestsSent.length == 0 && this.frinedsList.length == 0){
+          this.matchUsers = this.tempUser;
+        }else{
+          for (let i = 0; i < this.tempUser.length; i++) {
+            if((this.containsObject(this.tempUser[i], this.userRequestTemp) && this.containsObject(this.tempUser[i],this.friendsTemp) || (this.containsObject(this.tempUser[i], this.userRequestTemp) || this.containsObject(this.tempUser[i],this.friendsTemp) ))){
+              this.matchUsers.push(this.tempUser[i]);
             }
           }
 
         }
-      }
+      }, (err) => {
+        console.log("error" + err);
+      });
+
     }, (err) => {
       console.log("error" + err);
     });
