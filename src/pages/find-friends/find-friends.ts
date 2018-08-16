@@ -68,12 +68,11 @@ export class FindFriendsPage {
             }
           }
         }
-
+      console.log();
         if(this.frinedsList.length != 0){
           for (let j = 0; j < this.tempUser.length; j++) {
             for (let i = 0; i < this.frinedsList.length; i++) {
               if (this.frinedsList[i].friends.username != this.tempUser[j].username) {
-
                 if(!this.containsObject(this.tempUser[j], this.friendsTemp)) {
                   this.friendsTemp.push(this.tempUser[j]);
                 }
@@ -81,13 +80,25 @@ export class FindFriendsPage {
             }
           }
         }
+        console.log(this.friendsTemp);
         if(this.friendReqestsSent.length == 0 && this.frinedsList.length == 0){
+
           this.matchUsers = this.tempUser;
         }else{
           for (let i = 0; i < this.tempUser.length; i++) {
-            if((this.containsObject(this.tempUser[i], this.userRequestTemp) && this.containsObject(this.tempUser[i],this.friendsTemp) || (this.containsObject(this.tempUser[i], this.userRequestTemp) || this.containsObject(this.tempUser[i],this.friendsTemp) ))){
+            // if((this.containsObject(this.tempUser[i], this.userRequestTemp) && this.containsObject(this.tempUser[i],this.friendsTemp)
+            //     || (this.containsObject(this.tempUser[i], this.userRequestTemp) || this.containsObject(this.tempUser[i],this.friendsTemp) ))){
+            //   console.log("here");
+            //   this.matchUsers.push(this.tempUser[i]);
+            // }
+
+
+            if(this.containsObject(this.tempUser[i], this.userRequestTemp) == false && this.containsObject(this.tempUser[i],this.friendsTemp) == false){
+
               this.matchUsers.push(this.tempUser[i]);
             }
+
+
           }
 
         }
@@ -101,61 +112,68 @@ export class FindFriendsPage {
   }
 
   containsObject(obj, list) {
-    var x;
-    for (x in list) {
-      if (list.hasOwnProperty(x) && list[x] === obj) {
+    if(list.length !=0){
+    for(let i = 0; i < list.length; i++){
+      if(obj._id == list[i]._id){
         return true;
       }
     }
-
+    }
     return false;
-  }
+  //   var x;
+  //   for (x in list) {
+  //     if (list.hasOwnProperty(x) && list[x] === obj) {
+  //       return true;
+  //     }
+  //   }
+  //
+  // return false;
+}
 
-  retriveUsers() {
-    this.http.get(`http://localhost:8080/users`).subscribe(res => {
-      this.users = res as Array<Object>;
+retriveUsers() {
+  this.http.get(`http://localhost:8080/users`).subscribe(res => {
+    this.users = res as Array<Object>;
 
-    }, (err) => {
-      console.log("error" + err);
-    });
-  }
+  }, (err) => {
+    console.log("error" + err);
+  });
+}
 
-  doAddPrompt(friendid){
-    let prompt = this.alertCtrl.create({
-      title: 'Add Friend',
-      message: 'Are you sure you want to add this person as friend!',
-      buttons: [
-        {
-          text: 'Add',
-          handler: data => {
-            this.sendFriendRequest(friendid);
-          }
-        },
-        {
-          text: 'Cancel',
-          handler: data => {
-            // Close prompt
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
-
-  sendFriendRequest(friendid){
-    this.http.post(`http://localhost:8080/friendsrequest/create_friend_request`, {
-        sender: this.userObject._id,
-        friendRequest: friendid,
-      },
+doAddPrompt(friendid){
+  let prompt = this.alertCtrl.create({
+    title: 'Add Friend',
+    message: 'Are you sure you want to add this person as friend!',
+    buttons: [
       {
-        headers: {'Content-Type': 'application/json'}
-      })
-      .subscribe(res => {
-        console.log(res);
-      }, (err) => {
-        console.log(err);
+        text: 'Cancel',
+        handler: data => {
+          // Close prompt
+        }
+      },{
+        text: 'Add',
+        handler: data => {
+          this.sendFriendRequest(friendid);
+        }
+      },
+    ]
+  });
+  prompt.present();
+}
 
-      });
+sendFriendRequest(friendid){
+  this.http.post(`http://localhost:8080/friendsrequest/create_friend_request`, {
+      sender: this.userObject._id,
+      friendRequest: friendid,
+    },
+    {
+      headers: {'Content-Type': 'application/json'}
+    })
+    .subscribe(res => {
+      console.log(res);
+    }, (err) => {
+      console.log(err);
 
-  }
+    });
+
+}
 }

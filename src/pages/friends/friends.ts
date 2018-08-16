@@ -15,13 +15,13 @@ export class FriendsPage {
   constructor(public alertCtrl: AlertController, public http: HttpClient, public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
     this.storage.get('userObject').then((data) => {
       this.userObject = data;
-      this.retriveMyFriends();
+      // this.retriveMyFriends();
     });
   }
 
-  // ionViewWillEnter(){
-  //   this.retriveMyFriends();
-  // }
+  ionViewWillEnter(){
+    this.retriveMyFriends();
+  }
 
   retriveMyFriends() {
     this.http.get(`http://localhost:8080/friendslist/get_all_friend/${this.userObject._id}`).subscribe(res => {
