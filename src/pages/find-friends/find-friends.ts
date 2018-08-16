@@ -42,17 +42,10 @@ export class FindFriendsPage {
         });
       }
 
-      console.log(this.friendReqestsSent.length);
 
       for (let j = 0; j < this.tempUser.length; j++) {
         for (let i = 0; i < this.friendReqestsSent.length; i++) {
-          console.log(this.friendReqestsSent[i].friendRequest.username);
-          console.log(this.tempUser[j]);
-          if (this.friendReqestsSent[i].friendRequest.username == this.tempUser[j].username) {
-
-          }
-          else{
-
+          if (this.friendReqestsSent[i].friendRequest.username != this.tempUser[j].username) {
             if(!this.containsObject(this.tempUser[j], this.matchUsers)) {
               this.matchUsers.push(this.tempUser[j]);
             }

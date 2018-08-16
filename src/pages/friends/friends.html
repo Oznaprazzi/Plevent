@@ -13,19 +13,24 @@
 <ion-content padding class="page-content">
   <ion-list *ngFor="let friend of friendList">
     <ion-item>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-icon name="contact"></ion-icon>
-        </ion-col>
-        <ion-col>
-          {{friend.user.username}}
-        </ion-col>
-        <ion-col>
-          <ion-icon  name="close" (click)="doDeletePrompt(friend)"></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      <ion-grid>
+        <ion-row no-margin text-left>
+          <ion-col text-left col-auto>
+            <ion-icon name="contact" padding-right="5px"></ion-icon>
+          </ion-col>
+          <ion-col text-left>
+            <p>{{friend.friends.username}}</p>
+
+            {{friend.friends.fname}}
+
+           {{friend.friends.lname}}
+
+          </ion-col>
+          <ion-col col-auto>
+            <ion-icon  name="close" (click)="doDeletePrompt(friend)" icon-right></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 </ion-content>

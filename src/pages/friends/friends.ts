@@ -36,16 +36,17 @@ export class FriendsPage {
       title: 'Delete Friend?',
       message: 'This friend may be important!',
       buttons: [
-        {
-          text: 'Yes',
-          handler: () => {
-            this.deleteItem(removeFriend);
-          }
-        },
+
         {
           text: 'No',
           handler: () => {
             // Close prompt
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteItem(removeFriend);
           }
         }
       ]
