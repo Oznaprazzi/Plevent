@@ -19,10 +19,13 @@ export class FriendsPage {
     });
   }
 
+  ionViewWillEnter(){
+    this.retriveMyFriends();
+  }
+
   retriveMyFriends() {
     this.http.get(`http://localhost:8080/friendslist/get_all_friend/${this.userObject._id}`).subscribe(res => {
       this.friendList = res as Array<Object>;
-      console.log(this.friendList);
     }, (err) => {
       console.log("error" + err);
     });
@@ -30,7 +33,7 @@ export class FriendsPage {
 
   doDeletePrompt(removeFriend){
     const confirm = this.alertCtrl.create({
-      title: 'Delete Friend ?',
+      title: 'Delete Friend?',
       message: 'This friend may be important!',
       buttons: [
         {
@@ -51,10 +54,14 @@ export class FriendsPage {
   }
 
   private deleteItem(removeFriend){
-    var id = removeFriend;
-    this.http.delete(`http://localhost:8080/friendslist/unfriend/${id}/${removeFriend.user._id}/${removeFriend.friends._id},`).subscribe(res => {
-      console.log(res);
+    var id = removeFriend._id;
+    var rmUser = removeFriend.user._id;
+    var rmFriends  = removeFriend.friends._id;
+
+    this.http.delete(`http://localhost:8080/friendslist/unfriend/${id}/${rmUser}/${rmFriends}`).subscribe(res => {
+      this.retriveMyFriends();
     });
+
   }
 
 }

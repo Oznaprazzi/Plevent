@@ -10,10 +10,11 @@ import {AlertController} from "ionic-angular/components/alert/alert-controller";
 })
 export class FindFriendsPage {
 
-  users: any
-  friendReqestsSent: any
-  matchUsers: any
-  userObject: any
+  users: any;
+  friendReqestsSent: any;
+  tempUser: any;
+  matchUsers: any;
+  userObject: any;
 
   constructor(public alertCtrl: AlertController, public http: HttpClient, public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
     this.retriveUsers();
@@ -27,31 +28,52 @@ export class FindFriendsPage {
 
   }
 
+
   getAllFriendsRequestSent(event){
+    this.matchUsers = [];
     this.http.get(`http://localhost:8080/friendsrequest/get_all_friend_request/${this.userObject._id}`).subscribe(res => {
       this.friendReqestsSent = res as Array<Object>;
       let val = event.target.value;
       if(val && val.trim() !== ''){
-        this.matchUsers = this.users.filter(function (user) {
+        this.tempUser = this.users.filter(function (user) {
           if(user.username.includes(val)){
             return user;
           }
         });
       }
-      //
-      // for (let j = 0; j < this.matchUsers.length; j++) {
-      //   for (let i = 0; i < this.friendReqestsSent.length; i++) {
-      //     console.log(this.friendReqestsSent[i].friendRequest.username);
-      //     console.log(this.matchUsers[j]);
-      //     if (this.friendReqestsSent[i].friendRequest.username == this.matchUsers[j].username) {
-      //       console.log("here");
-      //       this.matchUsers.splice(j,1);
-      //     }
-      //   }
-      // }
+
+      console.log(this.friendReqestsSent.length);
+
+      for (let j = 0; j < this.tempUser.length; j++) {
+        for (let i = 0; i < this.friendReqestsSent.length; i++) {
+          console.log(this.friendReqestsSent[i].friendRequest.username);
+          console.log(this.tempUser[j]);
+          if (this.friendReqestsSent[i].friendRequest.username == this.tempUser[j].username) {
+
+          }
+          else{
+
+            if(!this.containsObject(this.tempUser[j], this.matchUsers)) {
+              this.matchUsers.push(this.tempUser[j]);
+            }
+          }
+
+        }
+      }
     }, (err) => {
       console.log("error" + err);
     });
+  }
+
+  containsObject(obj, list) {
+    var x;
+    for (x in list) {
+      if (list.hasOwnProperty(x) && list[x] === obj) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   retriveUsers() {
