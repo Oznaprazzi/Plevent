@@ -36,11 +36,11 @@
 <ion-footer>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-input type="text" placeholder="Type a message" [(ngModel)]="data.message" name="message"></ion-input>
+      <ion-col padding-horizontal>
+        <ion-input type="text" placeholder="Type a message" [(ngModel)]="data.message" name="message" (keyup.enter)="sendMessage()"></ion-input>
       </ion-col>
-      <ion-col col-2 (click)="sendMessage()">
-        <ion-icon color="danger" name="paper-plane"></ion-icon>
+      <ion-col col-auto padding-horizontal (click)="sendMessage()">
+        <ion-icon color="danger" name="send"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>
