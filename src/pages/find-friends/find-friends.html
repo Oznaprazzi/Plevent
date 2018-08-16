@@ -16,15 +16,15 @@
     <ion-list *ngFor="let user of matchUsers">
       <ion-item>
         <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-icon name="contact"></ion-icon>
+          <ion-row no-margin text-left>
+            <ion-col col-auto>
+              <ion-icon  name="contact" icon-left></ion-icon>
             </ion-col>
-            <ion-col>
+            <ion-col text-left>
               {{user.username}}
             </ion-col>
-            <ion-col>
-              <ion-icon  name="person-add" (click)="doAddPrompt(user._id)"></ion-icon>
+            <ion-col col-auto >
+              <ion-icon  name="person-add" (click)="doAddPrompt(user._id)"  icon-left></ion-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
