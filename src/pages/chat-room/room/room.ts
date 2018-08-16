@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { AddRoomPage } from '../add-room/add-room';
-import { HomePage } from '../chat-room/chat-room';
-import * as firebase from 'Firebase';
+import { ChatRoomPage } from '../chat-room/chat-room';
+import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
+
+import * as firebase from 'firebase';
 
 /**
  * Generated class for the RoomPage page.
@@ -19,22 +22,57 @@ import * as firebase from 'Firebase';
 export class RoomPage {
   rooms = [];
   ref = firebase.database().ref('chatrooms/');
+  user:any;
+  resRooms:any;
+  event: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.ref.on('value', resp => {
-      this.rooms = [];
-      this.rooms = snapshotToArray(resp);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public modalCtrl: ModalController) {
+    storage.get('tappedEventObject').then((data) => {
+      this.event = data;
+      console.log(this.event._id);
+      this.getRooms();
+    });
+  }
+
+  getRooms(){
+    this.http.get(`http://localhost:8080/chatrooms/get_chatroom/${this.event._id}`).subscribe(res => {
+      this.resRooms = res;
+      console.log(this.resRooms);
+      this.ref.on('value', resp => {
+        var res = snapshotToArray(resp);
+        for(let i = 0; i < res.length; i++){
+          for(let j = 0; j < this.resRooms.length; j++){
+            if(res[i].key == this.resRooms[j].chatid){
+              this.rooms.push(res[i]);
+            }
+          }
+        }
+        this.storage.get('userid').then((data) => {
+          this.getUser(data);
+        });
+      });
+    }, (err) => {
+      console.log("error" + err);
+    });
+  }
+
+  getUser(data) {
+    this.http.get(`http://localhost:8080/users/get_user/${data}`).subscribe(res => {
+      this.user = res;
+    }, (err) => {
+      console.log("error" + err);
     });
   }
 
   addRoom() {
-    this.navCtrl.push(AddRoomPage);
+    let modal = this.modalCtrl.create(AddRoomPage);
+    modal.present();
   }
 
   joinRoom(key) {
-    this.navCtrl.setRoot(HomePage, {
+    this.navCtrl.setRoot(ChatRoomPage, {
       key:key,
-      nickname:this.navParams.get("nickname")
+      nickname:this.user.username
     });
   }
 

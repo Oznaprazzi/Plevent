@@ -21,7 +21,7 @@ import {TransportsPage} from "../pages/transports/transports";
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 
 import * as firebase from 'firebase';
-import {SigninPage} from "../pages/chat-room/signin/signin";
+import {RoomPage} from "../pages/chat-room/room/room";
 
 const config = {
   apiKey: "AIzaSyCo8dhuRElM4vzR60IIFpcJdIAUsZg8gF0",
@@ -75,7 +75,7 @@ export class Plevent {
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
         { title: 'Transports', component: TransportsPage },
-        { title: 'Chat Room', component: SigninPage },
+        { title: 'Chat Room', component: RoomPage },
         { title: 'Ask Plive', component: ChatbotPage },
         { title: 'Your Location', component: WaypointPlannerPage },
         { title: 'My Account', component: UserDetailsPage},

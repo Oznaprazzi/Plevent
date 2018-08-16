@@ -41,7 +41,6 @@ import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 import {ChatRoomPage} from "../pages/chat-room/chat-room/chat-room";
 import {AddRoomPage} from "../pages/chat-room/add-room/add-room";
 import {RoomPage} from "../pages/chat-room/room/room";
-import {SigninPage} from "../pages/chat-room/signin/signin";
 
 @NgModule({
   declarations: [
@@ -77,8 +76,7 @@ import {SigninPage} from "../pages/chat-room/signin/signin";
     EditAvalPage,
     ChatRoomPage,
     AddRoomPage,
-    RoomPage,
-    SigninPage
+    RoomPage
   ],
   imports: [
     BrowserModule,
@@ -122,8 +120,10 @@ import {SigninPage} from "../pages/chat-room/signin/signin";
     AddTransportModalPage,
     WaypointPlannerPage,
     WaypointListPage,
-    EditAvalPage
-
+    EditAvalPage,
+    ChatRoomPage,
+    AddRoomPage,
+    RoomPage
   ],
   providers: [
     StatusBar,
