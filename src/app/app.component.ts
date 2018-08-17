@@ -81,6 +81,7 @@ export class Plevent {
         { title: 'Transports', component: TransportsPage },
         { title: 'Chat Room', component: RoomPage },
         { title: 'Ask Plive', component: ChatbotPage },
+        {title: 'Friends', component: FriendslistPage},
         { title: 'Your Location', component: YourLocationPage },
         { title: 'My Account', component: UserDetailsPage},
         { title: 'Logout', component: HomePage}
