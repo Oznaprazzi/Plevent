@@ -10,16 +10,18 @@ import {HttpClient} from '@angular/common/http';
 export class EditEventPage {
 
   error_message = '';
-  users: any;
+  users: any =[];
   username: string = "";
   userid: any;
   eventObject:any;
   usersList = [];
+  userObject: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient,  public storage: Storage, public viewCtrl: ViewController) {
     storage.get('userObject').then((data)=> {
       this.username = data.username;
       this.userid = data._id;
+      this.userObject = data;
       this.updateUsers();
     });
     storage.get('tappedEventObject').then((data) => {
@@ -57,8 +59,11 @@ export class EditEventPage {
   }
 
   updateUsers(){
-    this.http.get(`http://localhost:8080/users`).subscribe(res => {
-      this.users  = res as Array<Object>
+    this.http.get(`http://localhost:8080/friendslist/get_all_friend/${this.userid}`).subscribe(res => {
+      for(let i in res){
+        this.users.push(res[i].friends);
+      }
+      this.users.push(this.userObject);
     }, (err) => {
       console.log("error"+ err);
     });
