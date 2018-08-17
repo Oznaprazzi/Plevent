@@ -11,9 +11,6 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
  * Ionic pages and navigation.
  */
 
-
-
-@IonicPage()
 @Component({
   selector: 'page-your-location',
   templateUrl: 'your-location.html',

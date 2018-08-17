@@ -15,7 +15,7 @@ import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
-import { WaypointPlannerPage } from '../pages/your-location/your-location';
+import { YourLocationPage } from '../pages/your-location/your-location';
 import { UserDetailsPage } from "../pages/user-details/user-details";
 import {TransportsPage} from "../pages/transports/transports";
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
@@ -77,7 +77,7 @@ export class Plevent {
         { title: 'Transports', component: TransportsPage },
         { title: 'Chat Room', component: RoomPage },
         { title: 'Ask Plive', component: ChatbotPage },
-        { title: 'Your Location', component: WaypointPlannerPage },
+        { title: 'Your Location', component: YourLocationPage },
         { title: 'My Account', component: UserDetailsPage},
         { title: 'Logout', component: HomePage}
       ];

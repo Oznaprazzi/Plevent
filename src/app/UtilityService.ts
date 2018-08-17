@@ -10,7 +10,8 @@ export class UtilityService{
 
   presentLoadingDots() {
     let loading = this.loadingCtrl.create({
-      spinner: 'circles'
+      spinner: 'circles',
+      showBackdrop: false
     });
 
     return loading;
