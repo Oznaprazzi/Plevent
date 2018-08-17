@@ -15,34 +15,33 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <h2>{{trans.title}}</h2>
-              </ion-col>
-              <ion-col col-auto>
-                <ion-icon class="lastcol"></ion-icon>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <h3>Owner</h3>
-                <p>{{trans.owner.fname}} {{trans.owner.lname}}</p>
+                <ion-row>
+                  <ion-col>
+                    <h2>{{trans.title}}</h2>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h3>Owner</h3>
+                    <p>{{trans.owner.fname}} {{trans.owner.lname}}</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h3>Number of Seats</h3>
+                    <p>{{trans.people}}</p>
+                  </ion-col>
+                  <ion-col>
+                    <h3>Fuel type</h3>
+                    <p>{{ trans.fuel }}</p>
+                  </ion-col>
+                </ion-row>
               </ion-col>
               <ion-col col-auto>
                 <ion-icon name="arrow-dropright" class="lastcol"></ion-icon>
               </ion-col>
             </ion-row>
-            <ion-row>
-              <ion-col>
-                <h3>Number of Seats</h3>
-                <p>{{trans.people}}</p>
-              </ion-col>
-              <ion-col>
-                <h3>Fuel type</h3>
-                <p>{{ trans.fuel }}</p>
-              </ion-col>
-              <ion-col col-auto>
-                <ion-icon class="lastcol"></ion-icon>
-              </ion-col>
-            </ion-row>
+
           </ion-grid>
         </ion-item>
         <ion-item-options>
