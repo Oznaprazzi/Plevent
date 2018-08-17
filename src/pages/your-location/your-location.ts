@@ -22,9 +22,7 @@ export class YourLocationPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public http: HttpClient, public nativeGeocoder: NativeGeocoder) {
   }
 
-  getAddresses(){
 
-  }
 
   loadMap(){
     this.map = leaflet.map('map').fitWorld();

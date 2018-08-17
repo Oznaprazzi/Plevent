@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Friends Request</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="page-content">
+  <ion-list *ngFor="let friend of friendRequest">
+    <ion-item>
+      <ion-grid>
+        <ion-row no-margin text-left>
+          <ion-col text-left col-auto>
+            <ion-icon name="contact"></ion-icon>
+          </ion-col>
+          <ion-col text-left>
+            {{friend.sender.username}}
+          </ion-col>
+          <ion-col col-auto>
+            <ion-icon style="padding-right: 10px" name="checkmark" icon-right (click)="doConfirm(friend )"></ion-icon>
+          </ion-col>
+
+          <ion-col col-auto>
+            <ion-icon name="close" icon-right (click)="doDeletePrompt(friend._id)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

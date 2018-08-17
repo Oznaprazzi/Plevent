@@ -17,8 +17,10 @@ import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboa
 import { ChatbotPage } from '../pages/chatbot/chatbot';
 import { YourLocationPage } from '../pages/your-location/your-location';
 import { UserDetailsPage } from "../pages/user-details/user-details";
+import {FriendslistPage} from "../pages/friendslist-tabs/friendslist";
 import {TransportsPage} from "../pages/transports/transports";
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
+
 
 import * as firebase from 'firebase';
 import {RoomPage} from "../pages/chat-room/room/room";
@@ -58,9 +60,11 @@ export class Plevent {
     this.events.subscribe('eventsPage:outside',()=>{
       this.pages = [
         {title: 'Home', component: EventPage},
+        {title: 'Friends', component: FriendslistPage},
         { title: 'Ask Plive', component: ChatbotPage },
         {title: 'My Account', component: UserDetailsPage},
-        {title: 'Logout', component: HomePage}
+        {title: 'Logout', component: HomePage},
+
       ];
     });
 

@@ -30,6 +30,12 @@ import {AddAvalibilityPlannerPage, ModalSelectDatePage} from "../pages/add-avali
 import {EditAvalPage} from "../pages/add-avalibility-planner/edit-avalplan";
 import {UserDetailsPage} from "../pages/user-details/user-details";
 import {DatePipe} from "@angular/common";
+
+import {FriendslistPage} from "../pages/friendslist-tabs/friendslist";
+import {FriendsPage} from "../pages/friends/friends";
+import {FindFriendsPage} from "../pages/find-friends/find-friends";
+
+
 import {UsernameModalPage} from "../pages/user-details/username-modal";
 import {PasswordModalPage} from "../pages/user-details/password-modal";
 import {EditTransportModalPage} from "../pages/transports/edit-transport-modal";
@@ -37,6 +43,8 @@ import {AddTransportModalPage} from "../pages/transports/add-transport-modal";
 import {TransportsPage} from "../pages/transports/transports";
 import { YourLocationPage } from '../pages/your-location/your-location';
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
+import {FriendRequestPage} from "../pages/friend-request/friend-request";
+
 
 import {ChatRoomPage} from "../pages/chat-room/chat-room/chat-room";
 import {AddRoomPage} from "../pages/chat-room/add-room/add-room";
@@ -69,15 +77,21 @@ import {UtilityService} from "./UtilityService";
     ModalSelectDatePage,
     ExpenseDashboardPage,
     ChatbotPage,
+    EditAvalPage,
+    FriendslistPage,
+    FriendsPage,
+    FindFriendsPage,
     TransportsPage,
     EditTransportModalPage,
     AddTransportModalPage,
     YourLocationPage,
     WaypointListPage,
     EditAvalPage,
+    FriendRequestPage,
     ChatRoomPage,
     AddRoomPage,
     RoomPage
+
   ],
   imports: [
     BrowserModule,
@@ -116,12 +130,18 @@ import {UtilityService} from "./UtilityService";
     ModalSelectDatePage,
     ExpenseDashboardPage,
     ChatbotPage,
+    EditAvalPage,
+    FriendslistPage,
+    FriendslistPage,
+    FriendsPage,
+    FindFriendsPage,
     TransportsPage,
     EditTransportModalPage,
     AddTransportModalPage,
     YourLocationPage,
     WaypointListPage,
     EditAvalPage,
+    FriendRequestPage,
     ChatRoomPage,
     AddRoomPage,
     RoomPage

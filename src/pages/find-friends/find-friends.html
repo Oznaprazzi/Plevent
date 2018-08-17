@@ -1,0 +1,34 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Find Friends</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="page-content">
+
+    <ion-searchbar placeholder="E.g. Plive"(ionInput)="findItem($event)"></ion-searchbar>
+    <ion-list *ngFor="let user of matchUsers">
+      <ion-item>
+        <ion-grid>
+          <ion-row no-margin text-left>
+            <ion-col col-auto>
+              <ion-icon  name="contact" icon-left></ion-icon>
+            </ion-col>
+            <ion-col text-left>
+              {{user.username}}
+            </ion-col>
+            <ion-col col-auto >
+              <ion-icon  name="person-add" (click)="doAddPrompt(user._id)"  icon-left></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
