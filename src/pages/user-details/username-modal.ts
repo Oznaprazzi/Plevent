@@ -42,6 +42,10 @@ export class UsernameModalPage {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
+        if(res.message){
+          this.presentErrorAlert(res.message);
+          return;
+        }
         if(!res){
           this.error_message = "Username exists";
         }else{
@@ -56,6 +60,14 @@ export class UsernameModalPage {
     let alert = this.alertCtrl.create({
       title: 'Edit username',
       subTitle: 'Successfully updated username!',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+
+  presentErrorAlert(title) {
+    let alert = this.alertCtrl.create({
+      title: title,
       buttons: ['Ok']
     });
     alert.present();

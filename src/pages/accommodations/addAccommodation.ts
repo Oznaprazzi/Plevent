@@ -56,6 +56,10 @@ export class AddAccommodationPage {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
+        if(res.message){
+          this.error_message = res.message;
+          return;
+        }
         let alert = this.alertCtrl.create({
           title: 'Successfully added new accommodation',
           buttons: ['Ok']
@@ -64,7 +68,7 @@ export class AddAccommodationPage {
         this.dismiss();
 
       }, (err) => {
-        this.error_message = "Please fill in all the fields";
+
       });
   }
 }

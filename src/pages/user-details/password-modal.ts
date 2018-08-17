@@ -55,6 +55,10 @@ export class PasswordModalPage {
                   headers: {'Content-Type': 'application/json'}
                 })
                 .subscribe(res => {
+                  if(res.message){
+                    this.presentErrorAlert(res.message);
+                    return;
+                  }
                   this.getUser();
                   this.dismiss();
                   this.presentAlert();
@@ -76,6 +80,14 @@ export class PasswordModalPage {
     let alert = this.alertCtrl.create({
       title: 'Change password',
       subTitle: 'Password changed successfully!',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+
+  presentErrorAlert(title) {
+    let alert = this.alertCtrl.create({
+      title: title,
       buttons: ['Ok']
     });
     alert.present();

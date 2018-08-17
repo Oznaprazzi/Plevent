@@ -59,6 +59,10 @@ export class UserDetailsPage {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
+        if(res.message){
+          this.presentAlert(res.message);
+          return;
+        }
         this.getUser();
       });
   }
@@ -71,6 +75,10 @@ export class UserDetailsPage {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
+        if(res.message){
+          this.presentAlert(res.message);
+          return;
+        }
         this.getUser();
       });
   }
@@ -83,6 +91,10 @@ export class UserDetailsPage {
         headers: {'Content-Type': 'application/json'}
       })
       .subscribe(res => {
+        if(res.message){
+          this.presentAlert(res.message);
+          return;
+        }
         this.getUser();
       });
   }
@@ -148,5 +160,13 @@ export class UserDetailsPage {
       ]
     });
     prompt.present();
+  }
+
+  presentAlert(title) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
