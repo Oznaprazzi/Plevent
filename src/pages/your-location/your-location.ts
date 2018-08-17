@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import leaflet from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';

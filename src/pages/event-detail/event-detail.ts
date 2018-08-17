@@ -13,6 +13,7 @@ import {WaypointListPage} from "../waypoint-list/waypoint-list";
   selector: 'page-event-detail',
   templateUrl: 'event-detail.html',
 })
+
 export class EventDetailPage {
   event:any;
   accommodations:any;
@@ -24,6 +25,7 @@ export class EventDetailPage {
   wayPoints: any;
   wayPointsL = 0;
   showPage = false;
+  usersLength: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,
               public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController, public util: UtilityService) {
@@ -31,6 +33,12 @@ export class EventDetailPage {
     loading.present();
     this.storage.get('tappedEventObject').then((data) => {
       this.event = data;
+
+      if(this.event.users.length == 1){
+        this.usersLength = "Just you";
+      }else{
+        this.usersLength = this.event.users.length;
+      }
       this.loadQueries();
       loading.dismissAll();
     });

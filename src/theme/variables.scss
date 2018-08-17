@@ -59,6 +59,10 @@ $card-md-background-color: #3B3B3B;
 // Windows only Sass variables can go here
 $card-wp-background-color: #3B3B3B;
 
+$loading-ios-background: transparent;
+$loading-md-background: $loading-ios-background;
+$loading-wp-background: $loading-ios-background;
+$loading-md-box-shadow: none;
 
 
 // App Theme

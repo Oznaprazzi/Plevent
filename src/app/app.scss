@@ -126,3 +126,9 @@ ion-content{
   background-color: white;
 }
 
+ion-loading.loading{
+  .loading-wrapper {
+    background: transparent;
+    box-shadow: none;
+  }
+}
