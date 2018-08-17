@@ -5,7 +5,6 @@ import {AmChartsService, AmChart} from "@amcharts/amcharts3-angular";
 import {HttpClient} from "@angular/common/http";
 import {Storage} from '@ionic/storage';
 import {AddAvalibilityPlannerPage} from "../add-avalibility-planner/add-avalibility-planner";
-import {UtilityService} from "../../app/UtilityService";
 
 @Component({
   selector: 'page-avalibilityplanner',
@@ -17,10 +16,8 @@ export class AvalibilityplannerPage {
   private chart: AmChart;
   user: any;
   dataprovider = [];
-  showPage = false;
 
-  constructor(private AmCharts: AmChartsService, public navCtrl: NavController, public storage: Storage, public http: HttpClient,
-              public util: UtilityService) {
+  constructor(private AmCharts: AmChartsService, public navCtrl: NavController, public storage: Storage, public http: HttpClient) {
     this.storage.get('userObject').then((data) => {
       this.user = data;
     });
@@ -77,18 +74,13 @@ export class AvalibilityplannerPage {
         "enabled": false
       }
     });
-    var loading = this.util.presentLoadingDots();
-    loading.present();
     this.storage.get('tappedEventObject').then((data) => {
       this.eventObject = data;
       this.http.get(`http://localhost:8080/availability/get_all_plan/${this.eventObject._id}`).subscribe(res => {
         this.avalPlanner = res;
        this.chart.clear();
        this.dataprovider = [];
-        this.updateGanntChart(loading);
-        loading.onDidDismiss(()=>{
-          this.showPage = true;
-        });
+        this.updateGanntChart();
       }, (err) => {
         console.log("error" + err);
       });
@@ -97,11 +89,10 @@ export class AvalibilityplannerPage {
 
   }
 
-  updateGanntChart(loading) {
+  updateGanntChart() {
       this.AmCharts.updateChart(this.chart, () => {
         this.parseData();
         this.chart.dataProvider = this.dataprovider;
-        loading.dismissAll();
       });
 
 
