@@ -24,7 +24,7 @@ export class SignupPage {
   signup() {
     if(this.password == this.repassword) {
       this.http.post('http://localhost:8080/register', {
-          username: this.username,
+          username: this.username.trim().toLowerCase(),
           password: this.password,
           fname: this.fname,
           lname: this.lname,

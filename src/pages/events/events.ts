@@ -75,21 +75,19 @@ export class EventPage {
 
 
   openModal(eventObject) {
-    let modal = this.modalCtrl.create(EditEventPage, {"eventObject": eventObject});
+    this.storage.set('tappedEventObject', eventObject);
+    let modal = this.modalCtrl.create(EditEventPage);
     modal.present();
     modal.onDidDismiss(() => {
       this.getAllEvents();
     });
   }
-  tapped(eventObject){
 
+  tapped(eventObject){
     this.storage.set('tappedEventObject', eventObject);
     this.storage.set('isInsideDets', true);
     this.events.publish('eventsPage:inside');
-    this.navCtrl.setRoot(EventDetailPage,{
-      eventObject: eventObject
-    });
-    this.storage.set('tappedEventObject', eventObject);
+    this.navCtrl.setRoot(EventDetailPage);
   }
 
 }

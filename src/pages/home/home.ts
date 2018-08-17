@@ -28,7 +28,7 @@ export class HomePage {
 
   login() {
     this.http.post('http://localhost:8080/login', {
-        username : this.username,
+        username : this.username.trim().toLowerCase(),
         password: this.password
       },
       {

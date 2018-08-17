@@ -12,25 +12,27 @@
 
 
 <ion-content class="page-content" padding>
-  <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
-  <ion-item>
-    <ion-label>Event Name</ion-label>
-    <ion-input [(ngModel)]="eventObject.eventName" required></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Event Date</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="eventObject.eventDate"></ion-datetime>
-  </ion-item>
+  <div *ngIf="eventObject != undefined">
+    <ion-label class="alert alert-danger" *ngIf="error_message!=''">{{error_message}}</ion-label>
+    <ion-item>
+      <ion-label>Event Name</ion-label>
+      <ion-input [(ngModel)]="eventObject.eventName" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Event Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" max="2050-12-30" [(ngModel)]="eventObject.eventDate"></ion-datetime>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Users</ion-label>
-    <!--need to still do adding these users to table when click ok-->
-    <ion-select [(ngModel)]="usersList"  multiple="true" cancelText="Close" okText="Ok">
-      <ion-option *ngFor="let user of users"  value={{user._id}}>{{user.username}}</ion-option>
-    </ion-select>
-  </ion-item>
+    <ion-item>
+      <ion-label>Users</ion-label>
+      <!--need to still do adding these users to table when click ok-->
+      <ion-select [(ngModel)]="usersList"  multiple="true" cancelText="Close" okText="Ok">
+        <ion-option *ngFor="let user of users"  value={{user._id}}>{{user.username}}</ion-option>
+      </ion-select>
+    </ion-item>
 
-  <div text-center>
-    <button ion-button (click)="editEvent()">Save</button>
+    <div text-center>
+      <button ion-button (click)="editEvent()">Save</button>
+    </div>
   </div>
 </ion-content>
