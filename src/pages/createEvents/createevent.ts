@@ -14,14 +14,16 @@ export class CreateEventPage {
   eventname = "";
   eventdate = "";
   error_message = '';
-  users: any;
+  users: any = [];
   username: string = "";
   userid: any;
+  userObject: any;
 
   constructor(public navCtrl: NavController, public http: HttpClient, public storage: Storage) {
     storage.get('userObject').then((data)=> {
       this.username = data.username;
       this.userid = data._id;
+      this.userObject = data;
       this.updateUsers();
     });
   }
@@ -50,8 +52,14 @@ export class CreateEventPage {
   }
 
   updateUsers(){
-    this.http.get(`http://localhost:8080/users`).subscribe(res => {
-      this.users  = res as Array<Object>;
+    this.http.get(`http://localhost:8080/friendslist/get_all_friend/${this.userid}`).subscribe(res => {
+
+      for(let i in res){
+        this.users.push(res[i].friends);
+      }
+      this.users.push(this.userObject);
+
+
     }, (err) => {
       console.log("error"+ err);
     });
