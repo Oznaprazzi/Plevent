@@ -58,7 +58,7 @@ export class UserDetailsPage {
       {
         headers: {'Content-Type': 'application/json'}
       })
-      .subscribe(res => {
+      .subscribe((res:any) => {
         if(res.message){
           this.presentAlert(res.message);
           return;
@@ -74,7 +74,7 @@ export class UserDetailsPage {
       {
         headers: {'Content-Type': 'application/json'}
       })
-      .subscribe(res => {
+      .subscribe((res:any) => {
         if(res.message){
           this.presentAlert(res.message);
           return;
@@ -90,7 +90,7 @@ export class UserDetailsPage {
       {
         headers: {'Content-Type': 'application/json'}
       })
-      .subscribe(res => {
+      .subscribe((res:any) => {
         if(res.message){
           this.presentAlert(res.message);
           return;

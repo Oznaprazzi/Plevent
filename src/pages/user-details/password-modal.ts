@@ -54,7 +54,7 @@ export class PasswordModalPage {
                 {
                   headers: {'Content-Type': 'application/json'}
                 })
-                .subscribe(res => {
+                .subscribe((res:any) => {
                   if(res.message){
                     this.presentErrorAlert(res.message);
                     return;

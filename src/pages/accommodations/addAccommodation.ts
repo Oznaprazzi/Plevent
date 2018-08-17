@@ -55,7 +55,7 @@ export class AddAccommodationPage {
       {
         headers: {'Content-Type': 'application/json'}
       })
-      .subscribe(res => {
+      .subscribe((res:any) => {
         if(res.message){
           this.error_message = res.message;
           return;
