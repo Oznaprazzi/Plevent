@@ -140,7 +140,7 @@ export class ExpenseListPage {
 
   private deleteItem(item){
     var id = item._id;
-    this.http.delete(`http://localhost:808s0/expenses/expense/${id}`).subscribe(res => {
+    this.http.delete(`http://localhost:8080/expenses/expense/${id}`).subscribe(res => {
       this.updateList();
     });
   }
