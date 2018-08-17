@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import leaflet from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
@@ -22,9 +22,7 @@ export class YourLocationPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl : AlertController, public http: HttpClient, public nativeGeocoder: NativeGeocoder) {
   }
 
-  getAddresses(){
 
-  }
 
   loadMap(){
     this.map = leaflet.map('map').fitWorld();
