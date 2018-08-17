@@ -16,12 +16,14 @@ export class SignupPage {
   fname: string;
   lname: string;
   bdate: any;
-  error_message= "";
-  show_error_message= false;
+  error_message= '';
   constructor(public navCtrl: NavController, public http: HttpClient) {
   }
 
   signup() {
+    if(this.username == undefined){
+      return;
+    }
     if(this.password == this.repassword) {
       this.http.post('http://localhost:8080/register', {
           username: this.username.trim().toLowerCase(),
@@ -41,11 +43,9 @@ export class SignupPage {
 
         }, (err) => {
           this.error_message = "Please fill in all the fields";
-          this.show_error_message = true;
         });
     }else{
       this.error_message = "Passwords do not match";
-      this.show_error_message = true;
     }
   }
 }

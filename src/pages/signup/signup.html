@@ -5,19 +5,19 @@
 </ion-header>
 
 <ion-content class="page-content" padding>
-  <ion-label class="alert alert-danger" *ngIf="show_error_message">{{error_message}}</ion-label>
+  <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
   <ion-item>
     <ion-label color="primary">Username</ion-label>
-    <ion-input placeholder="Enter Username" [(ngModel)]="username"></ion-input>
+    <ion-input placeholder="Enter Username" [(ngModel)]="username" required></ion-input>
   </ion-item>
   <ion-item>
     <ion-label color="primary">Password</ion-label>
-    <ion-input type= "password" placeholder="6 or more characters" [(ngModel)]="password"></ion-input>
+    <ion-input type= "password" placeholder="6 or more characters" [(ngModel)]="password" required></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Confirm Password</ion-label>
-    <ion-input type= "password" placeholder="Re-enter password" [(ngModel)]="repassword"></ion-input>
+    <ion-input type= "password" placeholder="Re-enter password" [(ngModel)]="repassword" required></ion-input>
   </ion-item>
 
   <!--<ion-item>
@@ -27,17 +27,17 @@
 
   <ion-item>
     <ion-label color="primary">First Name</ion-label>
-    <ion-input placeholder="First Name" [(ngModel)]="fname"></ion-input>
+    <ion-input placeholder="First Name" [(ngModel)]="fname" required></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color="primary">Last Name</ion-label>
-    <ion-input placeholder="Last Name" [(ngModel)]="lname"></ion-input>
+    <ion-input placeholder="Last Name" [(ngModel)]="lname" required></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Date of Birth</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="bdate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="bdate" required></ion-datetime>
   </ion-item>
   <div text-center>
     <button ion-button (click)="signup()">Sign Up</button>
