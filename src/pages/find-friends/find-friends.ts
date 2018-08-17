@@ -34,7 +34,9 @@ export class FindFriendsPage {
   getAllFriendsRequestSent(event){
 
     this.http.get(`http://localhost:8080/friendsrequest/get_all_friend_request/${this.userObject._id}`).subscribe(result => {
+      this.friendReqestsSent = result as Array<Object>;
       this.http.get(`http://localhost:8080/friendslist/get_all_friend/${this.userObject._id}`).subscribe(res => {
+    //console.log((this.friendReqestsSent[0][0]).friendRequest.username);
 
 
         this.matchUsers = [];
@@ -42,7 +44,7 @@ export class FindFriendsPage {
         this.friendsTemp = [];
 
         this.frinedsList = res as Array<Object>;
-        this.friendReqestsSent = result as Array<Object>;
+
         let val = event.target.value;
 
         if(val && val.trim() !== ''){
@@ -59,7 +61,7 @@ export class FindFriendsPage {
         if(this.friendReqestsSent.length != 0){
           for (let j = 0; j < this.tempUser.length; j++) {
             for (let i = 0; i < this.friendReqestsSent.length; i++) {
-              if (this.friendReqestsSent[i].friendRequest.username == this.tempUser[j].username) {
+              if (this.friendReqestsSent[0][i].friendRequest.username == this.tempUser[j].username) {
 
                 if(!this.containsObject(this.tempUser[j], this.userRequestTemp)) {
                   this.userRequestTemp.push(this.tempUser[j]);
@@ -80,6 +82,7 @@ export class FindFriendsPage {
             }
           }
         }
+
 
         if(this.friendReqestsSent.length == 0 && this.frinedsList.length == 0){
 
