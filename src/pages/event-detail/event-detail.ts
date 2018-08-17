@@ -7,6 +7,7 @@ import {ExpenseDashboardPage} from "../expense-dashboard/expense-dashboard";
 import {EditEventPage} from "../events/edit-event";
 import {TransportsPage} from "../transports/transports";
 import {UtilityService} from "../../app/UtilityService";
+import {WaypointListPage} from "../waypoint-list/waypoint-list";
 
 @Component({
   selector: 'page-event-detail',
@@ -20,6 +21,8 @@ export class EventDetailPage {
   totalExpenses = 0;
   transportsL = 0;
   transports: any;
+  wayPoints: any;
+  wayPointsL = 0;
   showPage = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,
@@ -40,6 +43,7 @@ export class EventDetailPage {
     await this.getAccommo();
     await this.getExpenses();
     await this.getTrans();
+    await this.getWayPoints();
   }
 
   getAccommo(){
@@ -66,7 +70,10 @@ export class EventDetailPage {
   }
 
   getWayPoints(){
-
+    this.http.get(`http://localhost:8080/waypoints/${this.event._id}`).subscribe(res => {
+      this.wayPoints = res;
+      this.wayPointsL = this.wayPoints.length;
+    });
   }
 
   editEvent(eventObject){
@@ -83,7 +90,7 @@ export class EventDetailPage {
   }
 
   toWayPointsPage(){
-    //this.navCtrl.setRoot(ExpenseDashboardPage);
+    this.navCtrl.setRoot(WaypointListPage);
   }
 
   toTransportPage(){

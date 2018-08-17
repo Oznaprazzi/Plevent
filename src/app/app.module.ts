@@ -35,7 +35,7 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
 import {EditTransportModalPage} from "../pages/transports/edit-transport-modal";
 import {AddTransportModalPage} from "../pages/transports/add-transport-modal";
 import {TransportsPage} from "../pages/transports/transports";
-import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
+import { YourLocationPage } from '../pages/your-location/your-location';
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 
 import {ChatRoomPage} from "../pages/chat-room/chat-room/chat-room";
@@ -72,7 +72,7 @@ import {UtilityService} from "./UtilityService";
     TransportsPage,
     EditTransportModalPage,
     AddTransportModalPage,
-    WaypointPlannerPage,
+    YourLocationPage,
     WaypointListPage,
     EditAvalPage,
     ChatRoomPage,
@@ -119,7 +119,7 @@ import {UtilityService} from "./UtilityService";
     TransportsPage,
     EditTransportModalPage,
     AddTransportModalPage,
-    WaypointPlannerPage,
+    YourLocationPage,
     WaypointListPage,
     EditAvalPage,
     ChatRoomPage,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { WaypointPlannerPage } from './waypoint-planner';
+import { WaypointPlannerPage } from './your-location';
 
 @NgModule({
   declarations: [
