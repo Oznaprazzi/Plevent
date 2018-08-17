@@ -38,9 +38,13 @@ export class ExpenseDashboardPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public storage: Storage,
               public util: UtilityService) {
+    
+  }
+  
+  ionViewDidEnter(){
     var loading = this.util.presentLoadingDots();
     loading.present();
-    storage.get('tappedEventObject').then((data) => {
+    this.storage.get('tappedEventObject').then((data) => {
       this.event = data;
       this.loadQueries();
       loading.dismissAll();
