@@ -8,6 +8,8 @@ import {EditEventPage} from "../events/edit-event";
 import {TransportsPage} from "../transports/transports";
 import {UtilityService} from "../../app/UtilityService";
 import {WaypointListPage} from "../waypoint-list/waypoint-list";
+import {GearsPage} from "../gears/gears";
+import {GroceriesPage} from "../groceries/groceries";
 
 @Component({
   selector: 'page-event-detail',
@@ -24,6 +26,10 @@ export class EventDetailPage {
   transports: any;
   wayPoints: any;
   wayPointsL = 0;
+  gears: any;
+  gearsL = 0;
+  groceries: any;
+  groceriesL: any;
   showPage = false;
   usersLength: any;
 
@@ -52,6 +58,8 @@ export class EventDetailPage {
     await this.getExpenses();
     await this.getTrans();
     await this.getWayPoints();
+    await this.getGears();
+    await this.getGeroceries();
   }
 
   getAccommo(){
@@ -84,6 +92,20 @@ export class EventDetailPage {
     });
   }
 
+  getGears(){
+    this.http.get(`http://localhost:8080/gears/${this.event._id}`).subscribe(res => {
+      this.gears = res;
+      this.gearsL = this.gears.length;
+    });
+  }
+
+  getGeroceries(){
+    this.http.get(`http://localhost:8080/grocery/${this.event._id}`).subscribe(res => {
+      this.groceries = res;
+      this.groceriesL = this.groceries.length;
+    });
+  }
+
   editEvent(eventObject){
     let modal = this.modalCtrl.create(EditEventPage, {"eventObject": eventObject});
     modal.present();
@@ -103,5 +125,13 @@ export class EventDetailPage {
 
   toTransportPage(){
     this.navCtrl.setRoot(TransportsPage);
+  }
+
+  toGearsPage(){
+    this.navCtrl.setRoot(GearsPage);
+  }
+
+  toGroceryPage(){
+    this.navCtrl.setRoot(GroceriesPage);
   }
 }

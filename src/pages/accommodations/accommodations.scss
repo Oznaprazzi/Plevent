@@ -6,4 +6,21 @@ page-accommodationplanner {
     }
   }
 
+  .item-md.item-block .item-inner{
+    padding-right: 0px;
+  }
+
+  .secondCol{
+    width: 15%;
+  }
+
+  .firstCol{
+    width: 85%;
+    white-space:normal;
+  }
+
+  .row{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
 }

@@ -24,12 +24,12 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-item style="background-color:#42bd82" (click)="toAccommoPage()">
+          <ion-item style="background-color:#51a0fb" (click)="toAccommoPage()">
             <h2>{{accommoL}} Accommodation(s)</h2>
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item style="background-color:#d6535d" (click)="toExpensePage()">
+          <ion-item style="background-color:#ff3333" (click)="toExpensePage()">
             <h2>Total Expenses</h2>
             <h2>${{totalExpenses}}</h2>
           </ion-item>
@@ -37,13 +37,25 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-item style="background-color:#9b8af7" (click)="toWayPointsPage()">
+          <ion-item style="background-color:#ff3385" (click)="toWayPointsPage()">
             <h2>{{wayPointsL}} Way Points(s)</h2>
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item style="background-color:#c3b622" (click)="toTransportPage()">
+          <ion-item style="background-color:#ffaf1a" (click)="toTransportPage()">
             <h2>{{transportsL}} Transport(s)</h2>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item style="background-color:#00cc99" (click)="toGearsPage()">
+            <h2>{{gearsL}} Gear(s)</h2>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item style="background-color:#bf80ff" (click)="toGroceryPage()">
+            <h2>{{groceriesL}} Grocery(s)</h2>
           </ion-item>
         </ion-col>
       </ion-row>

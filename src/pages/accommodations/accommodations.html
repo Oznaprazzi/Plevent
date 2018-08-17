@@ -19,34 +19,35 @@
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col>
-                <p> <ion-icon name="pin"></ion-icon> {{accommo.street}}, {{accommo.state}}, {{accommo.city}}, {{accommo.country}}</p>
+              <ion-col class="firstCol">
+                <ion-row>
+                  <ion-col>
+                    <p> <ion-icon name="pin"></ion-icon> {{accommo.street}}, {{accommo.state}}, {{accommo.city}}, {{accommo.country}}</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h3>From</h3>
+                    <p>{{ accommo.fromDate | date: 'dd MMM yyyy'}}</p>
+                  </ion-col>
+                  <ion-col>
+                    <h3>To</h3>
+                    <p>{{ accommo.toDate | date: 'dd MMM yyyy'}}</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h3>Price $</h3>
+                    <p>{{accommo.price}}</p>
+                  </ion-col>
+                  <ion-col>
+                    <h3>Guests <ion-icon name="people"></ion-icon> </h3>
+                    <p>{{accommo.guests}}</p>
+                  </ion-col>
+                </ion-row>
               </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <h3>From</h3>
-                <p>{{ accommo.fromDate | date: 'dd MMM yyyy'}}</p>
-              </ion-col>
-              <ion-col>
-                <h3>To</h3>
-                <p>{{ accommo.toDate | date: 'dd MMM yyyy'}}</p>
-              </ion-col>
-              <ion-col col-auto>
-                <ion-icon name="arrow-dropright" class="lastcol"></ion-icon>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <h3>Price $</h3>
-                <p>{{accommo.price}}</p>
-              </ion-col>
-              <ion-col>
-                <h3>Guests <ion-icon name="people"></ion-icon> </h3>
-                <p>{{accommo.guests}}</p>
-              </ion-col>
-              <ion-col col-auto>
-                <ion-icon class="lastcol"></ion-icon>
+              <ion-col col-auto class="secondCol">
+                <ion-icon name="arrow-dropright"></ion-icon>
               </ion-col>
             </ion-row>
           </ion-grid>

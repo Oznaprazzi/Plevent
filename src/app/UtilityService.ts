@@ -11,9 +11,8 @@ export class UtilityService{
   presentLoadingDots() {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
-      animation: 'fade-in',
       showBackdrop: true,
-      cssClass: loading
+      cssClass: 'loading'
     });
 
     return loading;
