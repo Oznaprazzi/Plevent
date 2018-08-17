@@ -38,12 +38,12 @@
 
   <ion-item>
     <ion-label>From</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDateMin" [(ngModel)]="fromDate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDateMin" max="2050-01-01" [(ngModel)]="fromDate"></ion-datetime>
   </ion-item>
 
   <ion-item>
     <ion-label>To</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [min]="getMinDate()" [(ngModel)]="toDate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [min]="getMinDate()" max="2050-01-01" [(ngModel)]="toDate"></ion-datetime>
   </ion-item>
 
   <ion-item>

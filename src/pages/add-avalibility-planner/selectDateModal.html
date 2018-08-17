@@ -12,12 +12,12 @@
   <ion-label class="alert alert-danger" *ngIf="error_message != ''">{{error_message}}</ion-label>
   <ion-item>
     <ion-label>Available From</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDateMin" [(ngModel)]="fromDate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [min]="fromDateMin" max="2050-12-30" [(ngModel)]="fromDate"></ion-datetime>
   </ion-item>
 
   <ion-item>
     <ion-label>Available To</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [min]="getMinDate()" [(ngModel)]="toDate"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [min]="getMinDate()" max="2050-12-30" [(ngModel)]="toDate"></ion-datetime>
   </ion-item>
 
   <div text-center>
