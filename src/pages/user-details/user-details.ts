@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
 import {PasswordModalPage} from "./password-modal";
 import {UsernameModalPage} from "./username-modal";
+import {UtilityService} from "../../app/UtilityService";
 
 
 /**
@@ -22,13 +23,24 @@ import {UsernameModalPage} from "./username-modal";
 export class UserDetailsPage {
   user:any;
   userid: any;
-  errorMessage = "";
+  showPage = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient, public alertCtrl: AlertController, public datepipe: DatePipe, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public http: HttpClient,
+              public alertCtrl: AlertController, public datepipe: DatePipe, public modalCtrl: ModalController, public util: UtilityService) {
+    var loading = this.util.presentLoadingDots();
+    loading.present();
     storage.get('userid').then((data) => {
       this.userid = data;
-      this.getUser();
+      this.loadQueries();
+      loading.dismissAll();
     });
+    loading.onDidDismiss(()=>{
+      this.showPage = true;
+    });
+  }
+
+  async loadQueries(){
+    await this.getUser();
   }
 
   getUser() {

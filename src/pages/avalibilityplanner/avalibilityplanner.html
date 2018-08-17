@@ -10,8 +10,10 @@
 </ion-header>
 
 <ion-content class="page-content" padding>
+  <div *ngIf="showPage">
+    <div id="chartdiv" [style.width.%]="100" [style.height.px]="500"></div>
+  </div>
 
-  <div id="chartdiv" [style.width.%]="100" [style.height.px]="500"></div>
   <ion-fab bottom right >
     <button ion-fab color="danger" (click)="modifyAcalility()">
       <ion-icon name="construct" ></ion-icon>

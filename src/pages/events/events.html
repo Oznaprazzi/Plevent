@@ -8,36 +8,39 @@
 </ion-header>
 
 <ion-content class="page-content" padding>
-  <ion-list>
-    <ion-item-sliding *ngFor="let event of eventsList">
-      <ion-item (tap)="tapped(event)" >
-        <ion-grid>
-          <ion-row no-margin>
-            <ion-col text-left col-auto>
-              <ion-icon name="md-calendar"  item-start padding-right="10px"></ion-icon>
-            </ion-col>
-            <ion-col text-left>
-              <p><strong>{{event.eventName}}</strong></p>
-              <p id="event_date">{{event.eventDate | date: 'dd MMM yyyy'}}</p>
-            </ion-col>
-            <ion-col col-auto>
-              <ion-icon name="arrow-dropright" class="lastcol"></ion-icon>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item-options>
-        <button ion-button color="primary" icon-left (click)="openModal(event)">
-          <ion-icon name="ios-create"></ion-icon>
-          Edit
-        </button>
-        <button ion-button color="danger" icon-left (click)="deleteEvent(event._id)">
-          <ion-icon name="ios-trash"></ion-icon>
-          Delete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <div *ngIf="showPage">
+    <ion-list>
+      <ion-item-sliding *ngFor="let event of eventsList">
+        <ion-item (tap)="tapped(event)" >
+          <ion-grid>
+            <ion-row no-margin>
+              <ion-col text-left col-auto>
+                <ion-icon name="md-calendar"  item-start padding-right="10px"></ion-icon>
+              </ion-col>
+              <ion-col text-left>
+                <p><strong>{{event.eventName}}</strong></p>
+                <p id="event_date">{{event.eventDate | date: 'dd MMM yyyy'}}</p>
+              </ion-col>
+              <ion-col col-auto>
+                <ion-icon name="arrow-dropright" class="lastcol"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+        <ion-item-options>
+          <button ion-button color="primary" icon-left (click)="openModal(event)">
+            <ion-icon name="ios-create"></ion-icon>
+            Edit
+          </button>
+          <button ion-button color="danger" icon-left (click)="deleteEvent(event._id)">
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
   <ion-fab bottom right>
     <button ion-fab color="danger" (click)="addEvent()">
       <ion-icon name="add"></ion-icon>

@@ -4,6 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AddAccommodationPage } from "./addAccommodation";
 import { Storage } from '@ionic/storage';
+import {UtilityService} from "../../app/UtilityService";
 
 @Component({
   selector: 'page-accommodationPlanner',
@@ -13,12 +14,24 @@ import { Storage } from '@ionic/storage';
 export class AccommodationsPage {
   accommodations:any;
   eventid :any;
+  showPage = false;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public modalCtrl: ModalController, public alertCtrl: AlertController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public modalCtrl: ModalController,
+              public alertCtrl: AlertController, public storage: Storage, public util: UtilityService) {
+    var loading = this.util.presentLoadingDots();
+    loading.present();
     storage.get('tappedEventObject').then((data) => {
       this.eventid = data;
-      this.updateList();
+      this.loadQueries();
+      loading.dismissAll();
     });
+    loading.onDidDismiss(()=>{
+      this.showPage = true;
+    });
+  }
+
+  async loadQueries(){
+    await this.updateList();
   }
 
   updateList(){

@@ -41,6 +41,7 @@ import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 import {ChatRoomPage} from "../pages/chat-room/chat-room/chat-room";
 import {AddRoomPage} from "../pages/chat-room/add-room/add-room";
 import {RoomPage} from "../pages/chat-room/room/room";
+import {UtilityService} from "./UtilityService";
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import {RoomPage} from "../pages/chat-room/room/room";
     SplashScreen,
     Geolocation,
     NativeGeocoder,
+    UtilityService,
     DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
