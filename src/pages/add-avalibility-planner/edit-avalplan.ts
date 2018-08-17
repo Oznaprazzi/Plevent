@@ -18,12 +18,20 @@ export class EditAvalPage {
   eventObject: any;
   avalObject: any;
   user: any;
+  fromDateMin :string = new Date().toISOString();
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public storage: Storage, public viewCtrl: ViewController) {
     this.user = this.navParams.get('userObject');
     this.avalObject = this.navParams.get('avalPlanObject');
     this.eventObject = this.navParams.get('eventObject');
+  }
+
+  getMinDate(){
+    if(this.fromDate == undefined){
+      return this.fromDateMin;
+    }
+    return this.fromDate;
   }
 
   dismiss() {

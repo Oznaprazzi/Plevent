@@ -15,11 +15,25 @@ import { Events } from 'ionic-angular';
 import { EventDetailPage } from "../pages/event-detail/event-detail";
 import { ExpenseDashboardPage } from '../pages/expense-dashboard/expense-dashboard';
 import { ChatbotPage } from '../pages/chatbot/chatbot';
-import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
+import { YourLocationPage } from '../pages/your-location/your-location';
 import { UserDetailsPage } from "../pages/user-details/user-details";
 import {FriendslistPage} from "../pages/friendslist-tabs/friendslist";
 import {TransportsPage} from "../pages/transports/transports";
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
+
+
+import * as firebase from 'firebase';
+import {RoomPage} from "../pages/chat-room/room/room";
+
+const config = {
+  apiKey: "AIzaSyCo8dhuRElM4vzR60IIFpcJdIAUsZg8gF0",
+  authDomain: "plevent-carrot-group.firebaseapp.com",
+  databaseURL: "https://plevent-carrot-group.firebaseio.com",
+  projectId: "plevent-carrot-group",
+  storageBucket: "plevent-carrot-group.appspot.com",
+  messagingSenderId: "967840979254"
+};
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -65,8 +79,9 @@ export class Plevent {
         { title: 'Gears', component: GearsPage },
         { title: 'Expenses', component: ExpenseDashboardPage },
         { title: 'Transports', component: TransportsPage },
+        { title: 'Chat Room', component: RoomPage },
         { title: 'Ask Plive', component: ChatbotPage },
-        { title: 'Your Location', component: WaypointPlannerPage },
+        { title: 'Your Location', component: YourLocationPage },
         { title: 'My Account', component: UserDetailsPage},
         { title: 'Logout', component: HomePage}
       ];
@@ -80,6 +95,7 @@ export class Plevent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    firebase.initializeApp(config);
   }
 
   openPage(page) {

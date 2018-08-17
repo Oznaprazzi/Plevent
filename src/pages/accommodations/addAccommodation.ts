@@ -20,11 +20,19 @@ export class AddAccommodationPage {
   guests: number;
   event : any;
   error_message = '';
+  fromDateMin :string = new Date().toISOString();
 
   constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public viewCtrl: ViewController, public storage: Storage) {
     storage.get('tappedEventObject').then((data) => {
       this.event = data;
     });
+  }
+
+  getMinDate(){
+    if(this.fromDate == undefined){
+      return this.fromDateMin;
+    }
+    return this.fromDate;
   }
 
   dismiss() {

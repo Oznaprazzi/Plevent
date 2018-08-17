@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Chart } from 'chart.js';
 import { ExpenseListPage } from '../expense-list/expense-list';
 import { Storage } from '@ionic/storage';
+import {UtilityService} from "../../app/UtilityService";
 
 /**
  * Generated class for the ExpenseDashboardPage page.
@@ -33,13 +34,24 @@ export class ExpenseDashboardPage {
   data: any;
   colours: any;
   event: any;
+  showPage = false;
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, public storage: Storage,
+              public util: UtilityService) {
+    var loading = this.util.presentLoadingDots();
+    loading.present();
     storage.get('tappedEventObject').then((data) => {
       this.event = data;
-      this.updateList();
+      this.loadQueries();
+      loading.dismissAll();
     });
+    loading.onDidDismiss(()=>{
+      this.showPage = true;
+    });
+  }
+
+  async loadQueries(){
+    await this.updateList();
   }
 
   toExpenseDetails(){

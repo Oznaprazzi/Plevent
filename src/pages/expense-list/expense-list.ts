@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Platform, ViewController, ModalCon
 import { HttpClient } from '@angular/common/http';
 import { ExpenseDashboardPage } from '../expense-dashboard/expense-dashboard';
 import {Storage} from '@ionic/storage';
+import {UtilityService} from "../../app/UtilityService";
 
 /**
  * Generated class for the ExpenseListPage page.
@@ -28,12 +29,24 @@ interface  Expense {
 export class ExpenseListPage {
   expenses: any;
   event:any;
+  showPage = false;
 
-  constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public modalCtrl : ModalController, public http : HttpClient,
+              public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public util: UtilityService) {
+    var loading = this.util.presentLoadingDots();
+    loading.present();
     storage.get('tappedEventObject').then((data) => {
       this.event = data;
-      this.updateList();
+      this.loadQueries();
+      loading.dismissAll();
     });
+    loading.onDidDismiss(()=>{
+      this.showPage = true;
+    });
+  }
+
+  async loadQueries(){
+    await this.updateList();
   }
 
   toDashboard(){

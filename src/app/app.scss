@@ -34,6 +34,10 @@ ion-row {
   text-align: center;
 }
 
+ion-navbar button{
+  color: #f4f4f4 !important;
+}
+
 ion-item {
   border-radius: 10px !important;
   padding-left: 30px !important;
@@ -115,6 +119,7 @@ ion-content{
   color: #f4f4f4;
 }
 
+
 .searchbar-md{
   padding: 0;
   padding-bottom: 8px;
@@ -124,3 +129,12 @@ ion-content{
 .searchbar-md .searchbar-input{
   border-radius: 10px;
 }
+
+.msg-box {
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  background-color: white;
+}
+
+

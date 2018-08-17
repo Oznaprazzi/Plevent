@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import {Storage} from '@ionic/storage';
+import {UtilityService} from "../../app/UtilityService";
 
 /**
  * Generated class for the GroceriesPage page.
@@ -20,12 +21,24 @@ export class GroceriesPage {
   error_message: string = '';
   groceries: any;
   event:any;
+  showPage = false;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController, public navParams: NavParams, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public alertCtrl: AlertController,
+              public navParams: NavParams, public storage: Storage, public util: UtilityService) {
+    var loading = this.util.presentLoadingDots();
+    loading.present();
     storage.get('tappedEventObject').then((data) => {
       this.event = data;
-      this.updateList();
+      this.loadQueries();
+      loading.dismissAll();
     });
+    loading.onDidDismiss(()=>{
+      this.showPage = true;
+    });
+  }
+
+  async loadQueries(){
+    await this.updateList();
   }
 
   updateList() {

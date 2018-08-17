@@ -22,11 +22,12 @@ export class EditEventPage {
       this.userid = data._id;
       this.updateUsers();
     });
-    this.eventObject = this.navParams.get('eventObject');
-    for(let i = 0; i < this.eventObject.users.length; i++) {
-      this.usersList.push(this.eventObject.users[i]._id);
-    }
-    console.log(this.eventObject);
+    storage.get('tappedEventObject').then((data) => {
+      this.eventObject = data;
+      for(let i = 0; i < this.eventObject.users.length; i++) {
+        this.usersList.push(this.eventObject.users[i]._id);
+      }
+    });
   }
 
   dismiss() {
@@ -44,6 +45,10 @@ export class EditEventPage {
       })
       .subscribe(res => {
         this.error_message = '';
+        this.http.get(`http://localhost:8080/events/get_event/${this.eventObject._id}`).subscribe(event =>{
+          this.storage.set('tappedEventObject', event);
+          console.log(event);
+        });
         this.dismiss();
       }, (err) => {
         this.error_message = "Try again ";

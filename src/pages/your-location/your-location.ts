@@ -5,20 +5,17 @@ import { HttpClient } from '@angular/common/http';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 /**
- * Generated class for the WaypointPlannerPage page.
+ * Generated class for the YourLocationPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
-
-
-@IonicPage()
 @Component({
-  selector: 'page-waypoint-planner',
-  templateUrl: 'waypoint-planner.html',
+  selector: 'page-your-location',
+  templateUrl: 'your-location.html',
 })
-export class WaypointPlannerPage {
+export class YourLocationPage {
   @ViewChild('map') mapContainer : ElementRef;
   map: any;
 
@@ -62,7 +59,7 @@ export class WaypointPlannerPage {
 
   ionViewDidLoad() {
     this.loadMap();
-    console.log('ionViewDidLoad WaypointPlannerPage');
+    console.log('ionViewDidLoad YourLocationPage');
   }
 
 }

@@ -7,6 +7,7 @@ import{EventDetailPage} from '../event-detail/event-detail';
 import {CreateEventPage} from "../createEvents/createevent";
 import {HttpClient} from "@angular/common/http";
 import {Events} from 'ionic-angular';
+import {UtilityService} from "../../app/UtilityService";
 
 @Component({
   selector: 'page-events',
@@ -16,14 +17,26 @@ export class EventPage {
 
   userid: number = -1;
   eventsList: any;
-  usersList=[];
+  showPage = false;
 
-  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams, public storage: Storage, public events: Events, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public navParams: NavParams,
+              public storage: Storage, public events: Events, public modalCtrl: ModalController,
+              public alertCtrl: AlertController, public util: UtilityService) {
+    var loading = this.util.presentLoadingDots();
+    loading.present();
     storage.get('userid').then((data) => {
       this.userid = data;
-      this.getUser();
-      this.getAllEvents();
+      this.loadQueries();
+      loading.dismissAll();
     });
+    loading.onDidDismiss(()=>{
+      this.showPage = true;
+    });
+  }
+
+  async loadQueries(){
+    await this.getUser();
+    await this.getAllEvents();
   }
 
   addEvent() {
@@ -75,21 +88,19 @@ export class EventPage {
 
 
   openModal(eventObject) {
-    let modal = this.modalCtrl.create(EditEventPage, {"eventObject": eventObject});
+    this.storage.set('tappedEventObject', eventObject);
+    let modal = this.modalCtrl.create(EditEventPage);
     modal.present();
     modal.onDidDismiss(() => {
       this.getAllEvents();
     });
   }
-  tapped(eventObject){
 
+  tapped(eventObject){
     this.storage.set('tappedEventObject', eventObject);
     this.storage.set('isInsideDets', true);
     this.events.publish('eventsPage:inside');
-    this.navCtrl.setRoot(EventDetailPage,{
-      eventObject: eventObject
-    });
-    this.storage.set('tappedEventObject', eventObject);
+    this.navCtrl.setRoot(EventDetailPage);
   }
 
 }

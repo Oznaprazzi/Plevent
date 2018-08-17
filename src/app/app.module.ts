@@ -41,10 +41,15 @@ import {PasswordModalPage} from "../pages/user-details/password-modal";
 import {EditTransportModalPage} from "../pages/transports/edit-transport-modal";
 import {AddTransportModalPage} from "../pages/transports/add-transport-modal";
 import {TransportsPage} from "../pages/transports/transports";
-import { WaypointPlannerPage } from '../pages/waypoint-planner/waypoint-planner';
+import { YourLocationPage } from '../pages/your-location/your-location';
 import { WaypointListPage } from '../pages/waypoint-list/waypoint-list';
 import {FriendRequestPage} from "../pages/friend-request/friend-request";
 
+
+import {ChatRoomPage} from "../pages/chat-room/chat-room/chat-room";
+import {AddRoomPage} from "../pages/chat-room/add-room/add-room";
+import {RoomPage} from "../pages/chat-room/room/room";
+import {UtilityService} from "./UtilityService";
 
 @NgModule({
   declarations: [
@@ -79,10 +84,13 @@ import {FriendRequestPage} from "../pages/friend-request/friend-request";
     TransportsPage,
     EditTransportModalPage,
     AddTransportModalPage,
-    WaypointPlannerPage,
+    YourLocationPage,
     WaypointListPage,
     EditAvalPage,
-    FriendRequestPage
+    FriendRequestPage,
+    ChatRoomPage,
+    AddRoomPage,
+    RoomPage
 
   ],
   imports: [
@@ -130,11 +138,13 @@ import {FriendRequestPage} from "../pages/friend-request/friend-request";
     TransportsPage,
     EditTransportModalPage,
     AddTransportModalPage,
-    WaypointPlannerPage,
+    YourLocationPage,
     WaypointListPage,
     EditAvalPage,
-    FriendRequestPage
-
+    FriendRequestPage,
+    ChatRoomPage,
+    AddRoomPage,
+    RoomPage
   ],
   providers: [
     StatusBar,
@@ -142,6 +152,7 @@ import {FriendRequestPage} from "../pages/friend-request/friend-request";
     SplashScreen,
     Geolocation,
     NativeGeocoder,
+    UtilityService,
     DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

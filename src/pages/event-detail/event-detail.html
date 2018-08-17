@@ -17,7 +17,7 @@
 
 
 <ion-content class="page-content" padding>
-  <div *ngIf="event != undefined && accommodations != undefined && expenses != undefined">
+  <div *ngIf="showPage">
     <h1>{{event.eventName}}</h1>
     <p>Date: {{event.eventDate | date: 'dd MMM yyyy'}}</p>
     <p>No. people </p>
@@ -38,7 +38,7 @@
       <ion-row>
         <ion-col>
           <ion-item style="background-color:#9b8af7" (click)="toWayPointsPage()">
-            <h2>{{accommoL}} Way Points(s)</h2>
+            <h2>{{wayPointsL}} Way Points(s)</h2>
           </ion-item>
         </ion-col>
         <ion-col>
